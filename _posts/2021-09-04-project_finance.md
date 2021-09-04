@@ -11,7 +11,8 @@ categories: project python 재무제표 dart
 #### project_finance
 전체코드 [finstate.py/github](https://github.com/yeonseo-Jung/project_finance/blob/aca4af282fedc2452e5f95f44f3d58ab07d4f09a/finstate.py)
 
-* fstate_all_account: 단일회사 사업연도별, 분기별 전체 재무제표(BS, IS, CIS, CF)를 병합한 table   
+* fstate_all_account: 단일회사의 재무제표를 분기별로 병합한 테이블  
+       
     columns_0 = [stock_name, stock_code, corp_code]   
     (리스트의 각 원소 자료형: string)  
         
