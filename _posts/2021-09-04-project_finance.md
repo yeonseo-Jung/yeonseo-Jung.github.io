@@ -91,20 +91,11 @@ stock_name = "삼성전자"
 years = ["2021", "2020", "2019", "2018", "2017"]
 quarters = ["11013", "11012", "11014", "11011"]
 fstate_samsung = finstate_all_account(stock_name, years, quarters)
-fstate_samsung
 ```
 
-    C:\Users\wjddu\anaconda3\lib\site-packages\ipykernel_launcher.py:13: SettingWithCopyWarning: 
-    A value is trying to be set on a copy of a slice from a DataFrame.
-    Try using .loc[row_indexer,col_indexer] = value instead
-    
-    See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-      del sys.path[0]
-    
 
 
-
-##### 병합 이후 단일회사 5개년치 재무제표 테이블
+##### 병합 이후 단일회사 5개년치 재무제표 테이블 (fstate_samsung)
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -418,7 +409,7 @@ fstate_samsung
 
 
 #### 병합 이후 문제점  
-각 분기별 재무제표에서 같은 계정과목에 대해서 ("account_id", "account_nm")이 다르게 명시되어있는 경우가 많음     
+각 분기별 재무제표에서 같은 계정과목에 대해서 ("account_id", "account_nm")이 다르게 명시되어있는 경우가 많다.    
 예를들면 "지배기업 소유주에 귀속되는 당기순이익" 계정과목에 대해서   
 ("ifrs_ProfitLossAttributableToOwnersOfParent", "지배기업 소유주 지분")도 존재하고,    
 ("ifrs-full_ProfitLossAttributableToOwnersOfParent", "지배기업 귀속 당기순이익")도 존재한다.   
