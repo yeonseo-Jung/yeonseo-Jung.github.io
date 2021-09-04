@@ -3,14 +3,14 @@ title: project_finance (1)
 date: 2021-09-04
 categories: project python 재무제표 dart
 ---
+### 단일회사 5개년치 재무제표 테이블 병합하기   
 
-### OpenDartReader 라이브러리를 활용한 재무제표 분석  
+#### OpenDartReader 라이브러리를 활용한 재무제표 분석  
 [OpenDartReader/github](https://github.com/FinanceData/OpenDartReader)  
   
-### project_finance
+#### project_finance
 전체코드 [finstate.py/github](https://github.com/yeonseo-Jung/project_finance/blob/aca4af282fedc2452e5f95f44f3d58ab07d4f09a/finstate.py)
 
-### 단일회사 4개년치 재무제표 테이블 병합하기  
 * fstate_all_account: 단일회사 사업연도별, 분기별 전체 재무제표(BS, IS, CIS, CF)를 병합한 table   
     columns_0 = [stock_name, stock_code, corp_code]   
     (리스트의 각 원소 자료형: string)  
@@ -103,7 +103,7 @@ fstate_samsung
 
 
 
-
+##### 병합 이후 단일회사 5개년치 재무제표 테이블
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
