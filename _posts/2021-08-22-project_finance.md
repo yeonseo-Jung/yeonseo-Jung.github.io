@@ -3,8 +3,9 @@ title: project_finance (0)
 date: 2021-08-22
 categories: project python dart
 ---
-### 코스피, 코스닥에 상장된 기업들의 기업개황 테이블 만들기
-  
+### 코스피, 코스닥에 상장된 기업들의 기업개황 테이블 만들기    
+
+
 #### OpenDartReader 라이브러리를 활용한 재무제표 분석  
 [OpenDartReader/github](https://github.com/FinanceData/OpenDartReader)  
   
