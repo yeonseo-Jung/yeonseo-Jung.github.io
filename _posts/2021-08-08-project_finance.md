@@ -9,7 +9,7 @@ categories: project python
 ### project_finstate
 전체코드 [github.com/yeonseo-Jung/project_finance](https://github.com/yeonseo-Jung/project_finance/blob/aca4af282fedc2452e5f95f44f3d58ab07d4f09a/finstate.py)  
 
-## 재무제표 분석을 통한 기업 분석 및 기업가치 평가  &포트폴리오 구성 프로그램
+### 재무제표 분석을 통한 기업 분석 및 기업가치 평가  &포트폴리오 구성 프로그램
 
 ### 목표
 * when? 언제 
