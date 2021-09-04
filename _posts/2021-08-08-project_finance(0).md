@@ -1,5 +1,5 @@
 ---
-title: project_finstate 계획서 
+title: project_finstate(0) 계획서 
 date: 2021-08-08
 categories: project python 
 ---
