@@ -3,27 +3,28 @@ title: project_finstate 계획서
 date: 2021-08-08
 categories: project python 
 ---
-### OpenDartReader 라이브러리를 활용한 재무제표 분석  
-[OpenDartReader/github](https://github.com/FinanceData/OpenDartReader)  
-  
-### project_finstate
-전체코드 [github.com/yeonseo-Jung/project_finance](https://github.com/yeonseo-Jung/project_finance/blob/aca4af282fedc2452e5f95f44f3d58ab07d4f09a/finstate.py)  
 
 ### 재무제표 분석을 통한 기업 분석 및 기업가치 평가 & 포트폴리오 구성 프로그램
 
-### 목표
+#### OpenDartReader 라이브러리를 활용한 재무제표 분석  
+[OpenDartReader/github](https://github.com/FinanceData/OpenDartReader)  
+  
+#### project_finstate
+전체코드 [github.com/yeonseo-Jung/project_finance](https://github.com/yeonseo-Jung/project_finance/blob/aca4af282fedc2452e5f95f44f3d58ab07d4f09a/finstate.py)  
+
+#### 목표
 * when? 언제 
 * what? 무슨 종목을  
 * how? 어떤 전략으로 매도, 매수할 지를 제시하기  
 **가장 중요한 것은 정량적 데이터를 통해 why?에 대한 대답**
 
-### 필요한 기능
+#### 필요한 기능
 
 * 수정과 병합이 용이한 단일회사에 대한 분기별 재무제표
 * 단일 회사에 대한 사업연도별, 분기별로 원하는 계정과목의 정확한 금액 호출
 * 단일 회사에 대한 지배구조, 주주 현황, 임직원 현황,  자기주식 및 유통 주식 수 파악
 
-### tables 
+#### tables 
   
 * corp_info (DataFrame) : 회사의 기본정보 table  
 
