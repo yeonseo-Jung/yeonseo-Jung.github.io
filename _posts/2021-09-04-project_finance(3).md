@@ -40,9 +40,11 @@ columns_quarters = [
  'thstrm_amount_2017_3',
  'thstrm_amount_2017_4',
 ]
-```
+```  
 
-##### key: 계정과목 id values: 계정과목 이름 딕셔너리
+##### accounts 딕셔너리
+##### key: 계정과목 id 
+##### values: 계정과목 이름
 ```python
 accounts = {}
 accounts["equity"] = ["ifrs_EquityAttributableToOwnersOfParent", "ifrs-full_EquityAttributableToOwnersOfParent"]
@@ -73,8 +75,9 @@ def find_amounts(finstate, account, accounts):
             else:
                 df_tot += df.loc[i]
         return list(df_tot)
-```
-
+```  
+  
+  
 * 재무제표 테이블에서 특정 계정과목의 금액 추출하여 다중회사의 특정 계정과목 테이블에 데이터를 추가하는 함수
 ```python
 # 재무제표 테이블에서 특정 계정과목의 금액 추출하여 다중회사의 특정 계정과목 테이블에 데이터를 추가하는 함수
@@ -95,7 +98,8 @@ def append_amounts(account_df, stock_infos, stock_name, account, accounts):
     
     return account_df
 ```
-
+  
+  
 * 계정과목 금액 테이블에서 결측 데이터 찾는 함수  
 ```python
 # account table에서 결측 데이터 찾기 
@@ -112,16 +116,16 @@ def find_zero_null(df, columns_quarters):
             i += 1
     return zero_row_columns, null_row_columns
 ```
-
+  
+  
 #### 결과
-___
+___  
+  
+  
+* profit_df 테이블
 ```python
 read_xlsx("profit_df_test")
-```
-
-
-
-
+```  
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -335,10 +339,9 @@ read_xlsx("profit_df_test")
   </tbody>
 </table>
 <p>7 rows × 21 columns</p>
-</div>
-
-
-
+</div>  
+  
+* equity_df 테이블
 
 ```python
 read_xlsx("equity_df_test")
