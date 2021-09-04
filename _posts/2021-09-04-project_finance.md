@@ -25,6 +25,7 @@ categories: project python 재무제표 dart
     병합(join) 기준 key = ["sj_div", "account_id", "account_nm"]
   
 #### code
+___
 ##### 분기별 재무제표를 병합해서 DataFrame으로 return 해주는 함수  
 ```python
 # 분기별 재무제표를 병합해서 DataFrame으로 return 해주는 함수 
