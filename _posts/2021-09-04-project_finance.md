@@ -409,10 +409,15 @@ fstate_samsung = finstate_all_account(stock_name, years, quarters)
 
 
 #### 병합 이후 문제점  
-각 분기별 재무제표에서 같은 계정과목에 대해서 ("account_id", "account_nm")이 다르게 명시되어있는 경우가 많다.    
-예를들면 "지배기업 소유주에 귀속되는 당기순이익" 계정과목에 대해서   
-("ifrs_ProfitLossAttributableToOwnersOfParent", "지배기업 소유주 지분")도 존재하고,    
-("ifrs-full_ProfitLossAttributableToOwnersOfParent", "지배기업 귀속 당기순이익")도 존재한다.   
-즉, 회사별 재무제표 table에서 일반키 지정이 불가능한 상황이 된다.   
+각 분기별 재무제표에서 같은 계정과목에 대해서   
+("account_id", "account_nm")이 다르게 명시되어있는 경우가 많다.  
+
+예를들면 "지배기업 소유주에 귀속되는 당기순이익" 계정과목에 대해서     
+("ifrs_ProfitLossAttributableToOwnersOfParent", "지배기업 소유주 지분")도 존재하고,      
+("ifrs-full_ProfitLossAttributableToOwnersOfParent", "지배기업 귀속 당기순이익")도 존재한다.  
+
+즉, 회사별 재무제표 table에서 일반키 지정이 불가능한 상황이 된다. 
+  
 이를 해결하기 위해 병합한 회사별 재무제표 table 자체를 수정하기 보단   
-계정과목의 "account_id"를 기준으로 row데이터를 추출하여 새로운 계정과목별 table을 만들어보기로 했다.  
+계정과목의 "account_id"를 기준으로 row데이터를 추출하여  
+새로운 계정과목별 table을 만들어보기로 했다.  
