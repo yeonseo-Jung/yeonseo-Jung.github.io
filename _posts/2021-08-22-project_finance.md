@@ -16,7 +16,8 @@ categories: project python dart
                기업개황 테이블  
 
   columns = [stock_code, stock_name, corp_code]       
-  (리스트의 각 원소 자료형: string)      
+  (리스트의 각 원소 자료형: string)  
+  
   key = stock_code    
     
 #### code
