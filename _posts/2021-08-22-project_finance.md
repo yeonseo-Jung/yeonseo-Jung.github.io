@@ -3,18 +3,18 @@ title: project_finance (0)
 date: 2021-08-22
 categories: project python dart
 ---
-
-### OpenDartReader 라이브러리를 활용한 재무제표 분석  
+### 코스피, 코스닥에 상장된 기업들의 기업개황 테이블 만들기
+  
+#### OpenDartReader 라이브러리를 활용한 재무제표 분석  
 [OpenDartReader/github](https://github.com/FinanceData/OpenDartReader)  
   
-### project_finance
+#### project_finance
 전체코드 [finstate.py/github](https://github.com/yeonseo-Jung/project_finance/blob/aca4af282fedc2452e5f95f44f3d58ab07d4f09a/finstate.py)  
 
-### 코스피, 코스닥에 상장된 기업들의 기업개황 table 만들기
-* stock_infos: 코스피, 코스닥에 상장된 기업들의 기업개황 table
-  columns = [stock_code, stock_name, corp_code]   
-  (리스트의 각 원소 자료형: string)  
-  key = stock_code  
+* stock_infos: 코스피, 코스닥에 상장된 기업들의 기업개황 테이블
+  columns = [stock_code, stock_name, corp_code]     
+  (리스트의 각 원소 자료형: string)    
+  key = stock_code    
     
 #### code  
 ```python
@@ -450,4 +450,4 @@ stock_infos
 <p>2020 rows × 3 columns</p>
 </div>
 
-stock_infos 테이블은 앞으로 많은 테이블의 부모 테이블이 될 예정이다. 
+**stock_infos 테이블은 앞으로 많은 테이블의 부모 테이블이 될 예정이다.** 
