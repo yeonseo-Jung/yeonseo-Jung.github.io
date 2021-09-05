@@ -43,8 +43,8 @@ columns_quarters = [
 ```  
 
 ##### accounts 딕셔너리
-##### key: 계정과목 id 
-##### values: 계정과목 이름
+##### key: 계정과목 이름 (string)
+##### values: 계정과목 id (list)
 ```python
 accounts = {}
 accounts["equity"] = ["ifrs_EquityAttributableToOwnersOfParent", "ifrs-full_EquityAttributableToOwnersOfParent"]
