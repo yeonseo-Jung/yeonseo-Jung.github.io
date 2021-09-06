@@ -573,6 +573,12 @@ ___
 
 * 찾고자 하는 계정과목에 대응되는 account_id가 재무제표 자체에서 누락됨
 
+###### 예시  
+![nc_당기순이익](https://user-images.githubusercontent.com/86001773/132180595-6b6c1c21-26b5-4da0-92d9-b9a1d08d1aa7.PNG)
 
+
+엔씨소프트 재무제표에서 **지배기업의 소유주에게 귀속되는 당기순이익**의   
+account_id가 재무제표 자체에서 누락되어 있고  
+account_nm 또한 IFRS 기반 XBRL 재무제표 공시용 표준계정과목체계의 이름과 다르다. 
 
 
