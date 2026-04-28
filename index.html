@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정연서 — Software Engineer</title>
+<meta name="description" content="정연서 — Software Engineer. Resume & Portfolio.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --text:       #191F28;
+  --text-sub:   #6B7684;
+  --text-muted: #ADB5BD;
+  --border:     #E5E8EB;
+  --border2:    #CDD1D6;
+  --bg:         #FFFFFF;
+  --surface:    #F9FAFB;
+  --surface2:   #F2F4F6;
+  --accent:     #0064FF;
+  --accent-bg:  #EBF3FF;
+  --r:          4px;
+  --r2:         6px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--accent); text-decoration: none; }
+strong { font-weight: 600; }
+
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 72px 48px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ── Header ── */
+.sub-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.name {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.title-line {
+  font-size: 15px;
+  color: var(--text-sub);
+  margin-top: 6px;
+}
+
+.contact-row {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.contact-item svg {
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+/* ── Summary ── */
+.summary {
+  margin-top: 28px;
+  font-size: 14.5px;
+  line-height: 1.85;
+  max-width: 760px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border2);
+  color: var(--text);
+}
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 44px 0;
+}
+
+/* ── Cards ── */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 28px 30px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--border2);
+  box-shadow: 0 2px 12px rgba(25, 31, 40, 0.04);
+  transform: translateY(-1px);
+}
+
+.card-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+.card-meta {
+  font-size: 12.5px;
+  color: var(--text-sub);
+  margin-top: 8px;
+  line-height: 1.65;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: var(--r);
+  font-size: 12.5px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  background: #fff;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border2);
+}
+
+.btn.primary {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.btn.primary:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn svg {
+  flex-shrink: 0;
+}
+
+/* ── Footer ── */
+.foot {
+  margin-top: 36px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .page { padding: 56px 24px; }
+  .name { font-size: 30px; }
+  .cards { grid-template-columns: 1fr; gap: 14px; }
+  .contact-row { gap: 14px; font-size: 12.5px; }
+  .summary { font-size: 13.5px; }
+  .divider { margin: 32px 0; }
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header>
+    <span class="sub-label">Yeonseo Jung</span>
+    <div class="name">정연서</div>
+    <div class="title-line">Software Engineer</div>
+
+    <div class="contact-row">
+      <div class="contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.44 1.18 2 2 0 012.42.04h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.73-1.73a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.02z"/></svg>
+        010-6632-0568
+      </div>
+      <div class="contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:yeonseosla@gmail.com">yeonseosla@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        <a href="https://github.com/yeonseo-Jung">github.com/yeonseo-Jung</a>
+      </div>
+      <div class="contact-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://www.linkedin.com/in/yeonseo-jung">linkedin.com/in/yeonseo-jung</a>
+      </div>
+    </div>
+
+    <div class="summary">
+      <strong>분산 시스템 · 메시징 · 관측성</strong> 같은 시스템 엔지니어링의 기초 위에서 문제를 풀어왔습니다. 단일 스택에 머물지 않고 백엔드 · 데브옵스 · 데이터/ML 엔지니어링 · 퀀트 영역을 오가며, 문제마다 가장 적합한 도구를 선택하는 방식으로 일합니다.
+      공학적 지식과 기술은 목적이 아니라 <strong>해결의 도구</strong>이며, 회사의 사업 방향과 도메인을 본질부터 학습해 실질적인 가치로 연결하는 데 집중합니다.
+    </div>
+  </header>
+
+  <hr class="divider">
+
+  <!-- ═══════════ ENTRY CARDS ═══════════ -->
+  <section class="cards">
+
+    <a class="card" href="resume.html">
+      <span class="card-label">Document 01</span>
+      <div class="card-title">Resume</div>
+      <div class="card-meta">4 페이지 · 경력 · Skills · Core Projects</div>
+      <div class="card-actions">
+        <a class="btn primary" href="resume.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          View HTML
+        </a>
+        <a class="btn" href="resume.pdf" download>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </a>
+
+    <a class="card" href="portfolio.html">
+      <span class="card-label">Document 02</span>
+      <div class="card-title">Portfolio</div>
+      <div class="card-meta">20 페이지 · 3개 프로젝트 상세 분석</div>
+      <div class="card-actions">
+        <a class="btn primary" href="portfolio.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          View HTML
+        </a>
+        <a class="btn" href="portfolio.pdf" download>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </a>
+
+  </section>
+
+  <div class="foot">© 2026 Yeonseo Jung</div>
+
+</main>
+
+</body>
+</html>
