@@ -180,6 +180,57 @@ strong { font-weight: 600; }
 
 .pdf-link svg { flex-shrink: 0; }
 
+/* ── Skills ── */
+.skills-label {
+  display: block;
+  margin-bottom: 22px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.skill-group {
+  margin-bottom: 22px;
+}
+
+.skill-group:last-child {
+  margin-bottom: 0;
+}
+
+.skill-group-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 14px;
+  padding: 7px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-row:last-child {
+  border-bottom: none;
+}
+
+.skill-row-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.skill-row-text {
+  color: var(--text-sub);
+}
+
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .page { padding: 56px 24px; }
@@ -188,6 +239,17 @@ strong { font-weight: 600; }
   .contact-row { gap: 14px; font-size: 12.5px; }
   .summary { font-size: 13.5px; }
   .divider { margin: 32px 0; }
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 3px;
+    padding: 9px 0;
+  }
+  .skill-row-label {
+    font-size: 10.5px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .skill-row-text { font-size: 12.5px; }
 }
 </style>
 </head>
@@ -250,6 +312,48 @@ strong { font-weight: 600; }
       </div>
     </article>
 
+  </section>
+
+  <hr class="divider">
+
+  <section class="skills">
+    <span class="skills-label">Skill Set</span>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Core Development</div>
+      <div class="skill-row">
+        <span class="skill-row-label">Language</span>
+        <span class="skill-row-text">Python · FastAPI · Celery · asyncio · SQLAlchemy · Django</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row-label">Database</span>
+        <span class="skill-row-text">MySQL · Redis · PostgreSQL · PyArrow / Parquet</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row-label">Infra</span>
+        <span class="skill-row-text">Docker · RabbitMQ · AWS (S3, Lambda, EC2) · Azure VM</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">ML & Data Engineering</div>
+      <div class="skill-row">
+        <span class="skill-row-label">ML / Stats</span>
+        <span class="skill-row-text">Scikit-learn · XGBoost · LightGBM · statsmodels (HMM, GARCH)</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row-label">Data Pipeline</span>
+        <span class="skill-row-text">대규모 데이터 ETL 자동화 · 분산 작업 큐 설계 · Apache Airflow · Prometheus / Grafana 모니터링</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Domain Expertise</div>
+      <div class="skill-row">
+        <span class="skill-row-label">Quant</span>
+        <span class="skill-row-text">포트폴리오 최적화 (HRP, HRB) · 실시간 자산 배분 알고리즘 설계 · Crypto CTA 전략 설계</span>
+      </div>
+    </div>
   </section>
 
 </main>
