@@ -18,7 +18,6 @@
   --border2:    #CDD1D6;
   --bg:         #FFFFFF;
   --surface:    #F9FAFB;
-  --surface2:   #F2F4F6;
   --accent:     #0064FF;
   --accent-bg:  #EBF3FF;
   --r:          4px;
@@ -41,9 +40,9 @@ a { color: var(--accent); text-decoration: none; }
 strong { font-weight: 600; }
 
 .page {
-  max-width: 920px;
+  max-width: 880px;
   margin: 0 auto;
-  padding: 72px 48px;
+  padding: 80px 48px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -51,16 +50,6 @@ strong { font-weight: 600; }
 }
 
 /* ── Header ── */
-.sub-label {
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-  display: block;
-}
-
 .name {
   font-size: 38px;
   font-weight: 700;
@@ -94,15 +83,14 @@ strong { font-weight: 600; }
   flex-shrink: 0;
 }
 
-/* ── Summary ── */
 .summary {
-  margin-top: 28px;
-  font-size: 14.5px;
-  line-height: 1.85;
-  max-width: 760px;
-  padding-left: 16px;
+  margin-top: 26px;
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 680px;
+  padding-left: 14px;
   border-left: 2px solid var(--border2);
-  color: var(--text);
+  color: var(--text-sub);
 }
 
 /* ── Divider ── */
@@ -116,36 +104,20 @@ strong { font-weight: 600; }
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 16px;
 }
 
 .card {
   border: 1px solid var(--border);
   border-radius: var(--r2);
-  padding: 28px 30px;
+  padding: 26px 28px;
   background: #fff;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-}
-
-.card:hover {
-  border-color: var(--border2);
-  box-shadow: 0 2px 12px rgba(25, 31, 40, 0.04);
-  transform: translateY(-1px);
-}
-
-.card-label {
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 10px;
 }
 
 .card-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.3px;
   color: var(--text);
@@ -154,15 +126,15 @@ strong { font-weight: 600; }
 .card-meta {
   font-size: 12.5px;
   color: var(--text-sub);
-  margin-top: 8px;
+  margin-top: 6px;
   line-height: 1.65;
 }
 
 .card-actions {
   display: flex;
   gap: 8px;
-  margin-top: 26px;
-  padding-top: 18px;
+  margin-top: 22px;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
 }
 
@@ -199,23 +171,13 @@ strong { font-weight: 600; }
   color: #fff;
 }
 
-.btn svg {
-  flex-shrink: 0;
-}
-
-/* ── Footer ── */
-.foot {
-  margin-top: 36px;
-  font-size: 11.5px;
-  color: var(--text-muted);
-  letter-spacing: 0.3px;
-}
+.btn svg { flex-shrink: 0; }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .page { padding: 56px 24px; }
   .name { font-size: 30px; }
-  .cards { grid-template-columns: 1fr; gap: 14px; }
+  .cards { grid-template-columns: 1fr; gap: 12px; }
   .contact-row { gap: 14px; font-size: 12.5px; }
   .summary { font-size: 13.5px; }
   .divider { margin: 32px 0; }
@@ -226,9 +188,7 @@ strong { font-weight: 600; }
 
 <main class="page">
 
-  <!-- ═══════════ HEADER ═══════════ -->
   <header>
-    <span class="sub-label">Yeonseo Jung</span>
     <div class="name">정연서</div>
     <div class="title-line">Software Engineer</div>
 
@@ -252,20 +212,17 @@ strong { font-weight: 600; }
     </div>
 
     <div class="summary">
-      <strong>분산 시스템 · 메시징 · 관측성</strong> 같은 시스템 엔지니어링의 기초 위에서 문제를 풀어왔습니다. 단일 스택에 머물지 않고 백엔드 · 데브옵스 · 데이터/ML 엔지니어링 · 퀀트 영역을 오가며, 문제마다 가장 적합한 도구를 선택하는 방식으로 일합니다.
-      공학적 지식과 기술은 목적이 아니라 <strong>해결의 도구</strong>이며, 회사의 사업 방향과 도메인을 본질부터 학습해 실질적인 가치로 연결하는 데 집중합니다.
+      단일 스택에 머물지 않고 <strong>백엔드 · 데이터/ML · 퀀트</strong> 영역을 오가며, 문제마다 가장 적합한 도구를 선택합니다.
     </div>
   </header>
 
   <hr class="divider">
 
-  <!-- ═══════════ ENTRY CARDS ═══════════ -->
   <section class="cards">
 
-    <a class="card" href="resume.html">
-      <span class="card-label">Document 01</span>
-      <div class="card-title">Resume</div>
-      <div class="card-meta">4 페이지 · 경력 · Skills · Core Projects</div>
+    <article class="card">
+      <h2 class="card-title">Resume</h2>
+      <div class="card-meta">경력 · Skills · Core Projects</div>
       <div class="card-actions">
         <a class="btn primary" href="resume.html">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -276,12 +233,11 @@ strong { font-weight: 600; }
           Download PDF
         </a>
       </div>
-    </a>
+    </article>
 
-    <a class="card" href="portfolio.html">
-      <span class="card-label">Document 02</span>
-      <div class="card-title">Portfolio</div>
-      <div class="card-meta">20 페이지 · 3개 프로젝트 상세 분석</div>
+    <article class="card">
+      <h2 class="card-title">Portfolio</h2>
+      <div class="card-meta">프로젝트 상세 분석</div>
       <div class="card-actions">
         <a class="btn primary" href="portfolio.html">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -292,11 +248,9 @@ strong { font-weight: 600; }
           Download PDF
         </a>
       </div>
-    </a>
+    </article>
 
   </section>
-
-  <div class="foot">© 2026 Yeonseo Jung</div>
 
 </main>
 
