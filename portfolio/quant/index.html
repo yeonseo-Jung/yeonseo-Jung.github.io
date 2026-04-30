@@ -336,24 +336,65 @@ code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:v
   <!-- 백테스팅 인프라 · 성과 검증 -->
   <div class="sub-h">백테스팅 인프라 · 성과 검증</div>
   <p class="body-text" style="margin-bottom:12px">
-    퀀트 전략은 <strong>백테스트 품질이 운용 판단의 근거 품질을 결정</strong>하기 때문에, 백테스팅 인프라 자체를 별도 설계 대상으로 다뤘습니다. 라이브와 백테스트의 재현성 확보, look-ahead bias 차단, 가설 기반 반증 구조가 핵심 축입니다.
+    퀀트 전략은 <strong>백테스트 품질이 운용 판단의 근거 품질을 결정</strong>하기 때문에, 백테스팅 인프라 자체를 별도 설계 대상으로 다뤘습니다. 라이브와 백테스트의 재현성 확보, look-ahead bias 차단, 가설 기반 반증 구조, 거래비용·시그널 lag 강건성 검증이 핵심 축입니다.
   </p>
+
+  <p class="body-text" style="margin-top:14px; margin-bottom:6px"><strong>① 시계열 분할 — Walk-Forward Optimization (WFO)</strong></p>
   <ul class="blist">
-    <li><span class="bullet">→</span><span><strong>Walk-Forward 검증 프레임워크</strong> — 단일 train/test 분할은 구간 선택 편향에 노출되므로, <strong>시간 순차로 창을 슬라이딩하며 매 구간 OOS(out-of-sample) 성과를 측정</strong>. 실전 상황과 동일하게 "당시 시점에 알 수 있었던 정보만으로" 의사결정이 이뤄지도록 시뮬레이터 내부에서 look-ahead bias를 구조적으로 차단</span></li>
-    <li><span class="bullet">→</span><span><strong>라이브 ↔ 백테스트 코드 경로 동형성</strong> — 백테스트 결과가 아무리 좋아도 라이브 로직이 따로 돌면 실전 재현성이 깨집니다. 동일 시그널 생성 함수가 <strong>라이브(DB의 직전 승인 비중 참조)와 walk-forward 백테스트(시뮬레이터의 직전 승인 비중 참조)에서 동형으로 호출</strong>되도록 설계해, 백테스트가 라이브의 정확한 시뮬레이션임을 구조적으로 보장</span></li>
-    <li><span class="bullet">→</span><span><strong>시그널 상태 3-tier 분리</strong> — 세 가지 가중치 도메인을 명시적으로 분리해 시뮬레이션·라이브에서 동일하게 재현되도록 구성:
+    <li><span class="bullet">→</span><span><strong>이론적 정당화</strong>: 단일 train/test 분할은 분할 시점 선택 편향과 반복 평가에 따른 in-sample fit 변질에 노출되므로, <strong>multi-fold OoS 평균을 objective</strong>로 채택해 단일 fold의 우연 fit이 평균에서 희석되도록 강제 (Pardo 2008 <em>The Evaluation and Optimization of Trading Strategies</em>의 walk-forward 표준)</span></li>
+    <li><span class="bullet">→</span><span><strong>WFO 표준 구현 — 라인업 일관 검증 인프라</strong>: 라인업 중 hyperparameter 자유도가 큰 전략(Gold Active 등)에 동일 WFO 표준을 적용. <strong>Gold Active의 WFO 구체 구성</strong>:
       <ul class="blist" style="margin-top:8px">
-        <li><span class="bullet">·</span><span><strong>최신 최적화 산출물</strong> — 매 시그널 평가 시 산출되는 가장 최근 최적 비중. 매일 갱신</span></li>
-        <li><span class="bullet">·</span><span><strong>직전 승인 비중</strong> — 리밸런싱 임계(최대 비중 편차)를 통과해 실제로 채택된 가장 최근 비중. 임계 미통과 시 갱신되지 않음</span></li>
-        <li><span class="bullet">·</span><span><strong>실 포지션 상태</strong> — 실 계정에 체결된 포지션. 부분 체결·주문 실패가 반영되어 직전 승인 비중과 의도적으로 다를 수 있음</span></li>
-      </ul>
-      <span style="display:block; margin-top:8px">이 3-tier 분리로 "<strong>최적화는 매일, 리밸런싱은 임계 통과 후, 체결은 또 다른 상태</strong>"가 독립적으로 관리됩니다.</span>
-    </span></li>
-    <li><span class="bullet">→</span><span><strong>가설 기반 반증 조건 사전 정의</strong> — 각 가설마다 성과 기준이 아니라 <strong>반증 조건을 설계 단계에서 정의</strong>. 백테스트 결과가 좋게 나와도 반증 조건이 충족되면 구조적 재설계 근거로 활용. "좋은 성과를 설명하는 이유"가 아니라 "가설이 언제 기각되는가"를 먼저 합의해 결과 편향을 억제</span></li>
+        <li><span class="bullet">·</span><span><strong>n_folds = 4</strong> (rolling window) · <strong>train_days = 252</strong> (≈1 year) · <strong>test_days = 63</strong> (≈3 months)</span></li>
+        <li><span class="bullet">·</span><span><strong>gap_days = 5 (Embargo)</strong> — train 종료와 test 시작 사이의 buffer로, 자산 수익률 자기상관에 의한 train-test 정보 leakage를 차단. <strong>López de Prado (2018) <em>Advances in Financial Machine Learning</em> Ch.7</strong>의 <em>Embargoed Cross-Validation</em> 표준 적용</span></li>
+        <li><span class="bullet">·</span><span><strong>Objective</strong>: <code>Score(θ) = (1/|F|) Σ Sharpe^OoS_f(θ)</code>. Bayesian optimization 기반 sampler + 부진 trial 조기 종료 결합으로 search 효율 확보</span></li>
+      </ul></span></li>
+    <li><span class="bullet">→</span><span><strong>글로벌 올웨더의 WFO 미적용 — 정당화</strong>: 본 전략은 <strong>튜닝 자유도가 작도록 설계</strong>했고(상품 레벨별로 변동되는 free hyperparameter는 소수), 그보다 <strong>구조적 design 위험</strong>(자산 유니버스 구성·자산군 분리·체제 정의)이 핵심 검증 대상이라 판단. 데이터 측면 한계도 함께 작용 — <strong>백테스트 기간 4.32년</strong>은 multi-fold 평가의 통계적 한계 효용을 줄임. 대신 <strong>Regime detector의 point-in-time 사전 검증</strong>(2017–2024, 13개 test dates에서 Growth axis 100% / 4-regime 77% 정확도) + <strong>Leave-one-out + N_eff</strong>를 적용해, *parameter optimization 위험*이 아닌 <strong>structural design 위험</strong>에 검증 자원을 집중</span></li>
+  </ul>
+
+  <p class="body-text" style="margin-top:14px; margin-bottom:6px"><strong>② Look-ahead bias 차단 — 4 메커니즘</strong></p>
+  <ul class="blist">
+    <li><span class="bullet">→</span><span><strong>Point-in-Time (PIT) 데이터 처리</strong> — 외부 신호(매크로 지표, 거시 데이터)는 <strong>release date 기준으로 indexing</strong>해 시뮬레이터 timeline에서 *발표 시점부터 사용 가능*하도록 lag 적용. <em>as-of</em>가 아닌 <em>available-at</em> 기준이 시계열 백테스트의 표준</span></li>
+    <li><span class="bullet">→</span><span><strong>신호 생성 함수 구조적 동형성</strong> — 동일 시그널 생성 함수가 라이브/백테스트에서 동형으로 호출. <strong>라이브는 DB의 직전 승인 비중</strong>, <strong>백테스트는 시뮬레이터의 직전 승인 비중</strong>을 참조. 함수 시그니처와 입력 데이터 구조 일치로 <strong>코드 변경을 최소화하는 구조</strong>를 채택해, *"백테스트와 라이브에서 다르게 동작"*의 가장 흔한 원인인 *상이한 데이터 흐름*을 구조적으로 차단</span></li>
+    <li><span class="bullet">→</span><span><strong>WFO Embargo 메커니즘 (라인업 일부 전략에 한정 적용)</strong> — 위 ①의 <em>gap_days=5</em>는 시그널 자기상관에 대한 buffer로 작동. 자산 수익률은 단기 자기상관(Lo &amp; MacKinlay 1988)을 가지므로, train 종료 직후 test 시작 시 동일 정보가 train-test 양쪽에 포함되어 OoS가 인위적으로 부풀어짐. 5일 embargo는 daily strategy의 1주 horizon을 cover</span></li>
+    <li><span class="bullet">→</span><span><strong>시그널 상태 3-tier 분리</strong> — "최적화는 매일, 리밸런싱은 임계 통과 후, 체결은 또 다른 상태"의 세 가중치 도메인을 명시적으로 분리해 시뮬레이션·라이브에서 동일한 의미를 갖도록 강제. 3개 도메인의 혼동이 *가장 흔한 look-ahead leakage 패턴* — <strong>최신 최적화 산출물 / 직전 승인 비중 / 실 포지션 상태</strong>를 별도 저장 슬롯으로 관리</span></li>
+  </ul>
+
+  <p class="body-text" style="margin-top:14px; margin-bottom:6px"><strong>③ 거래비용·슬리피지 — 현재 처리와 한계 declaration</strong></p>
+  <ul class="blist">
+    <li><span class="bullet">→</span><span><strong>현재 상태 — gross 기준 백테스트</strong>: 본 전략의 백테스트는 <strong>gross return 기준</strong>이며 거래비용·슬리피지·시장충격을 명시 모델로 차감하지 않음. 자산배분 전략의 turnover가 본질적으로 낮아 net-gross 괴리가 작다는 *경험적 가정*에 기반하지만, <strong>공식적인 net 성과 검증은 후속 과제</strong>로 정직하게 분리. 자산운용 학술 표준(<strong>Frazzini, Israel &amp; Moskowitz 2018 <em>Trading Costs of Asset Pricing Anomalies</em></strong>) 기준 자산배분류 전략의 거래비용은 risk-adjusted return을 약 10-20bps 후퇴시키는 수준</span></li>
+    <li><span class="bullet">→</span><span><strong>완화 메커니즘 — 임계 기반 deadband</strong>: 백테스트에서 직접 net 비용을 모델링하는 대신, <strong>리밸런싱 임계(deadband)</strong>를 채택해 turnover 자체를 구조적으로 낮춤. 매일 최적화는 수행하되 *직전 승인 비중 대비 최대 비중 편차가 임계값 이하면 리밸런싱 skip*. 일별 noise가 turnover로 변환되지 않도록 차단해, 자산배분 표준 대비 낮은 turnover 영역에 위치</span></li>
+    <li><span class="bullet">→</span><span><strong>거래비용·시장충격 스트레스 테스트 — 후속 과제</strong>: Phase 2에서 정식 도입 예정.
+      <ul class="blist" style="margin-top:8px">
+        <li><span class="bullet">·</span><span><strong>거래비용 stress</strong>: 다단계 거래비용 시나리오에서 net Sharpe·CAGR 변화 측정. <em>어느 cost level에서 BM 대비 우위가 소멸하는가</em>를 정량 답</span></li>
+        <li><span class="bullet">·</span><span><strong>시장충격 stress</strong>: 자산별 비중이 일별 거래량 대비 임계 초과 시 시장충격 적용. 본 전략은 자산당 비중 범위가 단일 사용자 운용에서는 무관하나 <strong>AUM 확장 시 critical</strong>. <strong>Almgren &amp; Chriss (2000) implementation shortfall</strong> 모델 적용 검토</span></li>
+      </ul></span></li>
+  </ul>
+
+  <p class="body-text" style="margin-top:14px; margin-bottom:6px"><strong>④ 시그널 Lagging 강건성 — 발생 원천과 대응</strong></p>
+  <ul class="blist">
+    <li><span class="bullet">→</span><span><strong>Lag의 두 발생 원천</strong>:
+      <ul class="blist" style="margin-top:8px">
+        <li><span class="bullet">·</span><span><strong>Data lag</strong> — 매크로 지표의 release lag (CPI ~2주, GDP ~4주). 시그널 입력 자체가 과거 정보 기반</span></li>
+        <li><span class="bullet">·</span><span><strong>Execution lag</strong> — 시그널 생성 시점부터 실제 체결까지의 시차 (본 전략은 일별 평가 + 다음 거래일 진입)</span></li>
+      </ul></span></li>
+    <li><span class="bullet">→</span><span><strong>현재 처리 (구현 완료)</strong>: 시뮬레이터는 <strong>다음 거래일 진입</strong> 원칙으로 동작 — 시그널이 t 시점에 생성되면 t+1 시점에 체결. 동일 bar 내 진입(look-ahead의 한 형태)은 구조적으로 차단됨. 매크로 신호의 release lag는 위 ②-PIT 처리로 cover</span></li>
+    <li><span class="bullet">→</span><span><strong>Lag 스트레스 테스트 — 후속 과제</strong>: Phase 2에서 정식 도입 예정.
+      <ul class="blist" style="margin-top:8px">
+        <li><span class="bullet">·</span><span><strong>추가 1-2일 lag 시나리오</strong> — 시그널 생성 후 추가 1일 / 2일 지연 후 진입했을 때의 성과 변화. *운영 사고(배치 실패, 데이터 지연) 시 alpha persistence* 측정</span></li>
+        <li><span class="bullet">·</span><span><strong>시그널 frequency degradation</strong> — 일별 평가 → 주별 평가로 frequency를 낮췄을 때 alpha persistence. <em>시그널이 빠르게 decay하는지</em>를 측정해 운영 안정성 위협 판단</span></li>
+      </ul></span></li>
+  </ul>
+
+  <p class="body-text" style="margin-top:14px; margin-bottom:6px"><strong>⑤ 가설·구조 검증 — 결과 편향 차단</strong></p>
+  <ul class="blist">
+    <li><span class="bullet">→</span><span><strong>가설 기반 반증 조건 사전 정의</strong> — 각 가설마다 성과 기준이 아니라 <strong>반증 조건을 설계 단계에서 정의</strong>. 백테스트 결과가 좋게 나와도 반증 조건이 충족되면 구조적 재설계 근거로 활용. "좋은 성과를 설명하는 이유"가 아니라 <strong>"가설이 언제 기각되는가"</strong>를 먼저 합의해 결과 편향을 억제</span></li>
     <li><span class="bullet">→</span><span><strong>Leave-one-out 종목 기여도 검증</strong> — 자산 유니버스 정제의 정당성을 사후 검증하기 위해 <strong>각 종목을 1개씩 제외했을 때 portfolio Sharpe 변화</strong>를 측정. 2022–2025 백테스트 기간에서 19개 종목 모두 <strong>positive marginal Sharpe contribution</strong> (가장 큰 contribution은 GLD 제외 시 ΔSharpe -0.21, 이어서 TLT -0.08, DBMF -0.06 순)을 확인. 이는 V2 유니버스의 추가 reduction이 backtest 범위에서 정당화되지 않음을 의미하며, 자산 유니버스 정제 결정의 boundary를 데이터로 입증</span></li>
     <li><span class="bullet">→</span><span><strong>자산군 분리 민감도 — Effective Number of Bets</strong> — Sector(SMH/VHT/VDC)와 US_Equity의 상관 ρ ≈ 0.85가 외부 비판으로 가장 자주 제기되는 부분. 이에 대해 <strong>Meucci (2009) Effective Number of Bets</strong> 메트릭으로 정량 답: V2의 정규화 RC 분포에서 <strong>N_eff ≈ 6.5</strong> (8 nominal class 중). Sector를 US_Equity로 합치면 N_eff ≈ 5.2로 추가 손실 — 분리 유지가 분산 효과 측면에서 정당</span></li>
+  </ul>
+
+  <p class="body-text" style="margin-top:14px; margin-bottom:6px"><strong>⑥ 시뮬레이션 ↔ 라이브 정합성 + 시스템 경계</strong></p>
+  <ul class="blist">
     <li><span class="bullet">→</span><span><strong>백테스트 ↔ 실 운용 일관성 검증</strong> — 핵심 OoS(out-of-sample) 성능 지표는 <strong>실 운용에서 백테스트의 risk-adjusted 우위가 유지되는가</strong>. V2 백테스트 Sharpe 1.15 ↔ 실운용 통합 Sharpe 1.18 (+0.03)로 정합 일관 확인, MDD 압축도 백테스트 3.2× / 실운용 1.8× 동일 방향 작동. 실운용 표본 1.36년 한계는 명시하되 <em>방향성과 부호 일치는 robust signal</em>로 1차 평가</span></li>
-    <li><span class="bullet">→</span><span><strong>거래비용·슬리피지 관점의 한계 명시</strong> — 현재 백테스트는 <strong>gross 기준</strong>이라 실전 net 성능과 괴리 가능성이 존재. 리밸런싱 임계값을 보수적으로 설정해 실질 turnover를 낮추는 방향으로 완화 중이며, turnover-net return 민감도 분석은 후속 과제</span></li>
     <li><span class="bullet">→</span><span><strong>집행 위임 — 전략·집행 분리 원칙</strong> — 최종 주문 집행은 <strong>Project 02의 분산 트레이딩 · 주문 집행 엔진</strong>에 위임되며, 전략 로직과 집행 인프라가 수평 확장 가능한 형태로 분리. 백테스트에서 검증된 시그널이 라이브에서 동일하게 재현되는 것은 이 위임 경계가 명확하기 때문</span></li>
   </ul>
 
