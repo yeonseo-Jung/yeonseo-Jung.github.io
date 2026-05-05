@@ -50,7 +50,7 @@ em { font-style: italic; color: var(--text-sub); }
 
 .role-cards { display: flex; flex-direction: column; gap: 6px; margin-top: 18px; }
 .role-card { display: flex; align-items: baseline; gap: 14px; font-size: 13.5px; line-height: 1.6; }
-.role-card-label { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; color: var(--text-muted); white-space: nowrap; min-width: 140px; }
+.role-card-label { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; color: var(--text-muted); white-space: nowrap; min-width: 180px; }
 .role-card-text { color: var(--text-sub); }
 
 /* SECTIONS */
@@ -75,6 +75,7 @@ section { padding-top: 40px; }
 .edu-block { margin-top: 4px; }
 .edu-school { font-size: 14px; font-weight: 600; }
 .edu-dept { font-size: 13px; color: var(--text-sub); margin-top: 3px; }
+.edu-supplement { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.55; }
 
 /* EXPERIENCE */
 .exp-item { padding-bottom: 36px; margin-bottom: 36px; border-bottom: 1px solid var(--border); }
@@ -88,6 +89,7 @@ section { padding-top: 40px; }
 .blist li { display: grid; grid-template-columns: 14px 1fr; gap: 8px; padding: 5px 0; font-size: 13.5px; line-height: 1.7; border-bottom: 1px solid var(--border); }
 .blist li:last-child { border-bottom: none; }
 .blist li .bullet { color: var(--text-muted); font-size: 12px; margin-top: 4px; }
+.blist li.priority .bullet { color: var(--accent); font-weight: 700; }
 .result-badge { display: inline-block; font-size: 11.5px; font-weight: 500; padding: 1px 8px; border-radius: 3px; margin-left: 5px; border: 1px solid var(--border); color: var(--text-sub); background: var(--surface); }
 .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
 
@@ -107,12 +109,51 @@ section { padding-top: 40px; }
 .gap-card-title { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
 .gap-card-body { font-size: 12.5px; color: var(--text-sub); line-height: 1.7; }
 
+@media (max-width: 768px) {
+  body { padding: 28px 20px 40px; }
+  .contact-row { gap: 12px 16px; }
+  .summary { font-size: 14px; line-height: 1.75; }
+  .role-card { display: block; }
+  .role-card-label { display: block; min-width: 0; margin-bottom: 4px; }
+  .skills-layout { grid-template-columns: 1fr; gap: 24px; }
+  .exp-head { display: block; }
+  .exp-period { margin-left: 0; margin-top: 4px; display: block; }
+  .proj-card { padding: 18px 16px; }
+  .proj-card-head { display: block; }
+  .proj-card-meta { display: block; margin-top: 4px; }
+  .proj-card-row { grid-template-columns: 1fr; gap: 2px; }
+}
+
 @media print {
-  body { padding: 20px 36px 36px; font-size: 12px; }
-  section { padding-top: 24px; }
-  .sec-label { margin-bottom: 16px; }
-  .exp-item { margin-bottom: 24px; padding-bottom: 24px; }
-  .proj-card { page-break-inside: avoid; }
+  @page { margin: 14mm 12mm 14mm 12mm; }
+  body { padding: 10px 20px 20px; font-size: 10.5px; }
+  section { padding-top: 12px; page-break-inside: auto; }
+  .sec-label { margin-bottom: 8px; }
+  header { margin-bottom: 6px; }
+  .name { font-size: 22px; }
+  .title-line { font-size: 13px; }
+  .contact-row { margin-top: 6px; gap: 12px; }
+  .summary { margin: 8px 0; line-height: 1.55; font-size: 10.5px; }
+  .role-cards { margin: 10px 0; gap: 10px; }
+  .role-card { padding: 8px 10px; }
+  .role-card-text { font-size: 10px; line-height: 1.5; }
+  .skills-layout { gap: 14px; margin-top: 6px; }
+  .skill-row { padding: 3px 0; font-size: 10.5px; }
+  .skill-group { padding: 8px; }
+  .sg-title { font-size: 10.5px; margin-bottom: 4px; }
+  .tg-title { font-size: 10px; margin-bottom: 4px; }
+  .tag { font-size: 9.5px; padding: 2px 6px; }
+  .tag-cloud { gap: 4px; }
+  /* Core Projects만 새 페이지에서 시작 */
+  #projects { page-break-before: always; }
+  /* 단위별 분할 보호 */
+  .exp-item { margin-bottom: 16px; padding-bottom: 16px; page-break-inside: avoid; }
+  .proj-card { page-break-inside: avoid; margin-bottom: 14px; }
+  .role-card { page-break-inside: avoid; }
+  .summary { page-break-inside: avoid; }
+  .blist > li { page-break-inside: avoid; }
+  .tag-col > div { page-break-inside: avoid; }
+  .skill-group { page-break-inside: avoid; }
 }
 </style>
 </head>
@@ -125,10 +166,6 @@ section { padding-top: 40px; }
 
   <div class="contact-row">
     <div class="contact-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.44 1.18 2 2 0 012.42.04h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.73-1.73a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.02z"/></svg>
-      010-6632-0568
-    </div>
-    <div class="contact-item">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       <a href="mailto:yeonseosla@gmail.com">yeonseosla@gmail.com</a>
     </div>
@@ -137,12 +174,16 @@ section { padding-top: 40px; }
       <a href="https://github.com/yeonseo-Jung">github.com/yeonseo-Jung</a>
     </div>
     <div class="contact-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      <a href="https://yeonseo-jung.github.io">yeonseo-jung.github.io</a>
+    </div>
+    <div class="contact-item">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       <a href="https://www.linkedin.com/in/yeonseo-jung">linkedin.com/in/yeonseo-jung</a>
     </div>
     <div class="contact-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      <a href="https://yeonseo-jung.github.io">yeonseo-jung.github.io</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.44 1.18 2 2 0 012.42.04h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.73-1.73a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.02z"/></svg>
+      010-6632-0568
     </div>
   </div>
 
@@ -152,23 +193,21 @@ section { padding-top: 40px; }
   </div>
 
   <div class="summary">
-    비즈니스 문제를 기술로 풀어 실질적 가치로 연결하는 데 집중하는 소프트웨어 엔지니어입니다.<br>
-    <strong>분산 시스템</strong>을 중심으로, 1,600+ 계좌가 동작하는 24/7 운용 환경에서 시스템 신뢰성, 메시징, 관측성, 장애 대응 구조를 설계 · 운영해왔습니다.<br>
-    특정 스택에 종속되기보다 <strong>문제에 맞는 도구를 빠르게 검증</strong>하고, 운영 환경에 적용 가능한 수준까지 내재화합니다.<br>
-    설계 결정을 <strong>성능 · 안정성 · 비용 · 복잡도의 트레이드오프</strong>로 해석하며, 도메인이 바뀌어도 재사용 가능한 구조적 사고를 지향합니다.
+    <strong>비즈니스 문제를 기술로 풀어 실질적 가치로 연결</strong>하는 데 집중하는 소프트웨어 엔지니어입니다. 분산 시스템을 중심으로 <strong>1,600+ 계좌가 동작하는 24/7 운용 환경</strong>에서 시스템 신뢰성·메시징·관측성·장애 대응 구조를 설계·운영해왔으며, <strong>메시징 신뢰성 패턴 설계 · 무중단 언어 마이그레이션 · 레거시 아키텍처 재설계</strong> 같은 시스템 수준 의사결정을 직접 책임진 경험을 보유하고 있습니다.<br>
+    특정 스택에 종속되기보다 <strong>문제에 맞는 도구를 빠르게 검증하고 운영 환경에 적용 가능한 수준까지 내재화</strong>합니다. 설계 결정을 <strong>성능 · 안정성 · 비용 · 복잡도의 트레이드오프</strong>로 해석하며, 도메인이 바뀌어도 재사용 가능한 구조적 사고를 지향합니다.
   </div>
 
   <div class="role-cards">
     <div class="role-card">
-      <span class="role-card-label">Domain Depth</span>
+      <span class="role-card-label">Problem-First Design</span>
       <span class="role-card-text">도메인의 핵심 모델과 제약 조건을 먼저 정의한 뒤, 이를 시스템 경계와 데이터 흐름에 반영합니다.</span>
     </div>
     <div class="role-card">
-      <span class="role-card-label">Proactive</span>
+      <span class="role-card-label">End-to-End Ownership</span>
       <span class="role-card-text">운영 중 발견한 비효율과 리스크를 개선 과제로 전환하고, 합의된 항목은 설계부터 배포까지 책임지고 추진합니다.</span>
     </div>
     <div class="role-card">
-      <span class="role-card-label">Data-Driven</span>
+      <span class="role-card-label">Evidence-Based Decision</span>
       <span class="role-card-text">관성적으로 사용되던 로직도 데이터와 통계 검정으로 재평가하고, 유효성이 낮은 경우 제품 요구사항과 시스템 구조를 함께 재설계합니다.</span>
     </div>
   </div>
@@ -184,68 +223,53 @@ section { padding-top: 40px; }
       <div class="skill-group">
         <span class="sg-title">핵심 기술</span>
         <div class="skill-row"><span>Python</span><span class="skill-level expert">Expert</span></div>
-        <div class="skill-row"><span>Rust</span><span class="skill-level advanced">Proficient</span></div>
+        <div class="skill-row"><span>Rust</span><span class="skill-level advanced">Advanced</span></div>
         <div class="skill-row"><span>Apache Airflow</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>SQLAlchemy / MySQL</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>Pandas / NumPy / SciPy</span><span class="skill-level expert">Expert</span></div>
-        <div class="skill-row"><span>데이터 파이프라인 설계</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>Docker Compose / AWS</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>통계 분석 / ML</span><span class="skill-level advanced">Advanced</span></div>
+        <div class="skill-row"><span>FastAPI / Django</span><span class="skill-level advanced">Advanced</span></div>
+        <div class="skill-row"><span>RabbitMQ / Celery</span><span class="skill-level advanced">Advanced</span></div>
+        <div class="skill-row"><span>MySQL / Redis</span><span class="skill-level advanced">Advanced</span></div>
+        <div class="skill-row"><span>Docker / AWS</span><span class="skill-level advanced">Advanced</span></div>
       </div>
       <div class="skill-group">
         <span class="sg-title">학력</span>
         <div class="edu-block">
           <div class="edu-school">서울시립대학교</div>
-          <div class="edu-dept">신소재공학과 · 논술전형 입학 · 4학년 중퇴</div>
+          <div class="edu-dept">신소재공학과 · 4학년 중퇴</div>
+          <div class="edu-supplement">이후 5년간 데이터 엔지니어 및 백엔드 개발자로 실무 + CS 자기 학습 (분산 시스템 · 비동기 런타임 · 메시징 패턴 · DB · 시스템 설계 · Rust 생태계)</div>
         </div>
       </div>
     </div>
     <div class="tag-col">
       <div>
-        <span class="tg-title">데이터 처리 · 분석</span>
+        <span class="tg-title">분산 시스템 · 메시징</span>
         <div class="tag-cloud">
-          <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">SciPy</span>
-          <span class="tag">statsmodels</span><span class="tag">scikit-learn</span>
-          <span class="tag">XGBoost · LightGBM</span>
-          <span class="tag">Optuna</span>
+          <span class="tag">pub/sub · Fanout</span><span class="tag">DLQ · 멱등성</span>
+          <span class="tag">Bulkhead · Strangler Fig</span><span class="tag">Feature Flag · 무중단 배포</span>
+          <span class="tag">서킷 브레이커 · 백프레셔</span>
         </div>
       </div>
       <div>
-        <span class="tg-title">오케스트레이션 · 파이프라인</span>
+        <span class="tg-title">백엔드 · API</span>
         <div class="tag-cloud">
-          <span class="tag">Apache Airflow</span><span class="tag">Celery</span>
-          <span class="tag">RabbitMQ</span><span class="tag">Redis</span>
-          <span class="tag">asyncio</span><span class="tag">tenacity</span>
+          <span class="tag">FastAPI</span><span class="tag">Django</span>
+          <span class="tag">Celery</span>
+          <span class="tag">RESTful API 설계</span>
         </div>
       </div>
       <div>
         <span class="tg-title">Rust 생태계</span>
         <div class="tag-cloud">
-          <span class="tag">tokio</span><span class="tag">sqlx</span>
-          <span class="tag">lapin</span><span class="tag">axum</span>
+          <span class="tag">tokio (async runtime)</span><span class="tag">axum (HTTP)</span>
+          <span class="tag">sqlx (async DB)</span><span class="tag">lapin (AMQP)</span>
           <span class="tag">Cargo workspace</span>
         </div>
       </div>
       <div>
-        <span class="tg-title">데이터베이스 · 스토리지</span>
+        <span class="tg-title">DevOps · 관측성</span>
         <div class="tag-cloud">
-          <span class="tag">SQLAlchemy</span><span class="tag">MySQL</span><span class="tag">PostgreSQL</span>
-          <span class="tag">AWS S3</span><span class="tag">Azure Blob</span>
-        </div>
-      </div>
-      <div>
-        <span class="tg-title">DevOps · 모니터링</span>
-        <div class="tag-cloud">
-          <span class="tag">Docker Compose</span><span class="tag">Nginx</span>
+          <span class="tag">Docker Compose</span>
           <span class="tag">Prometheus · Grafana</span>
-          <span class="tag">pytest</span>
-        </div>
-      </div>
-      <div>
-        <span class="tg-title">데이터 소스</span>
-        <div class="tag-cloud">
-          <span class="tag">KRX · KIS</span><span class="tag">EODHD · FRED</span>
-          <span class="tag">Binance · Bitget · OKX</span>
+          <span class="tag">GitHub Actions</span>
         </div>
       </div>
     </div>
@@ -263,23 +287,24 @@ section { padding-top: 40px; }
       <span class="exp-company">STOA Investment (퀀터스)</span>
       <span class="exp-period">2023.01 – 현재 · 3년 5개월</span>
     </div>
-    <div class="exp-role">백엔드 · 데이터 파이프라인 · ML 엔지니어링</div>
+    <div class="exp-role">백엔드 · 데이터 파이프라인 · ML 엔지니어링 · 퀀트 시스템</div>
     <div class="exp-quote">
-      초기 멤버로 합류해 백엔드 · 데이터 파이프라인 · 인프라 · 배포 · 운영을 기획부터 고도화까지 단독으로 담당해왔습니다. 주요 프로젝트는 아래와 같고, 각각의 문제 정의와 해결 과정은 Core Projects와 포트폴리오에서 다룹니다.
+      초기 멤버로 합류해 백엔드 · 데이터 파이프라인 · 인프라 · 배포 · 운영을 기획부터 고도화까지 전담으로 담당해왔습니다. 주요 프로젝트는 아래와 같고, 각각의 문제 정의와 해결 과정은 Core Projects와 포트폴리오에서 다룹니다.
     </div>
     <ul class="blist">
-      <li><span class="bullet">→</span><span><strong>분산 트레이딩 시스템 Zero-to-One 설계 · 운영</strong> — pub/sub 1:N 브로드캐스트, DLQ 격리, 시간 슬롯 멱등성, Bulkhead 패턴 등 <strong>메시징 신뢰성 패턴을 직접 설계</strong>해 1,600+ 계좌 · 6개 외부 시스템 · <strong>24/7 무중단 · 메시지 유실 0건</strong> 유지. 시그널 생성부와 집행부를 물리적으로 분리해 부분 장애가 전체로 확산되지 않는 구조를 확보했습니다. (월평균 거래대금 약 5천억 규모)</span></li>
-      <li><span class="bullet">→</span><span><strong>거래 실행 엔진 Python → Rust 무중단 마이그레이션</strong> — 운영 중인 시스템의 GIL · 이벤트 루프 · 드라이버 호환성 등 <strong>구조적 한계를 언어 수준에서 해소</strong>하기 위해 거래 실행 엔진을 Rust로 단독 마이그레이션. <strong>Strangler Fig + Feature Flag</strong>(<code>QUANTUS_ENGINE</code>) 기반 점진 전환으로 무중단·즉시 롤백을 보장. <strong>13-crate Cargo workspace</strong> 설계, <code>ExchangeAdapter</code> trait으로 4개 거래소 어댑터 통일, 3-Stage Docker 빌드 + GitHub Actions CI/CD 구축. <strong>메모리 -95% (4.3GB→193MB) · Docker 이미지 -87% (1.2GB→160MB) · 트레이딩 핵심 LOC -53%</strong>를 실측 검증.</span></li>
-      <li><span class="bullet">→</span><span><strong>퀀터스 프라임 서비스 런칭 및 전략 설계</strong> — 3-클릭 구독형 B2C 서비스를 기획·구현. 글로벌 올웨더 액티브 전략의 피처 엔지니어링부터 실전 운용까지 단독 담당했습니다.<span class="result-badge">매출 40% 기여</span><span class="result-badge">Total AUM 500억</span></span></li>
-      <li><span class="bullet">→</span><span><strong>레거시 데이터 파이프라인 Airflow 기반 현대화</strong> — 3년간 유지보수하며 관찰한 구조적 한계를 아키텍처 차원에서 진단하고 단독 재설계. 프로덕션 전환 이후 레거시 2종 모두 폐기했습니다.</span></li>
-      <li><span class="bullet">→</span><span><strong>데이터로 내부 가정 뒤집기</strong> — 기존에 검증 없이 통용되던 로직의 유효성을 통계 검정으로 확인해 무효임을 증명하고, 이 근거로 제품 재설계까지 이어졌습니다. 감이 아닌 근거로 판단을 뒤집는 사례를 실제로 만들어낸 경험입니다.</span></li>
+      <li class="priority"><span class="bullet">→</span><span><strong>분산 트레이딩 · 주문 집행 엔진 Zero-to-One 설계 · 운영</strong> — <strong>시그널 생성부와 집행부를 pub/sub 1:N 구조로 물리적 분리</strong>해 부분 장애가 전체로 확산되지 않는 구조를 확보. 메시징 신뢰성 패턴(DLQ 격리 · 시간 슬롯 멱등성 · Bulkhead) 직접 설계.<span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌</span><span class="result-badge">6개 외부 시스템 통합</span><span class="result-badge">24/7 무중단 · 메시지 유실 0건</span><span class="result-badge">월평균 거래대금 5천억</span></span></span></li>
+      <li class="priority"><span class="bullet">→</span><span><strong>거래 실행 엔진 Python → Rust 무중단 마이그레이션</strong> — 운영 중인 시스템의 <strong>GIL · 이벤트 루프 · 드라이버 호환성을 언어 수준에서 해소</strong>하기 위해 전담 마이그레이션. Strangler Fig + Feature Flag 기반 점진 전환으로 무중단·즉시 롤백 보장. 메모리·이미지·LOC 모두 실측 검증. (상세: Core Project 2)<span style="display:block;margin-top:6px"><span class="result-badge">메모리 -95% (4.3GB → 193MB)</span><span class="result-badge">이미지 -87% (1.2GB → 160MB)</span><span class="result-badge">트레이딩 핵심 LOC -53%</span></span></span></li>
+      <li><span class="bullet">→</span><span><strong>자산배분형 액티브 전략 엔진 전담 설계·구현·운용</strong> — <strong>시장 상태 분류 (regime detection) · 자산별 리스크 가중 배분 (risk parity) · 동적 비중 조절 · 꼬리 위험 자동 차단 (tail-risk hedging) · 추세 신호 반영</strong>의 5개 알고리즘 모듈을 단일 엔진에 결합하고, 백테스팅 시뮬레이터부터 라이브 운용 파이프라인까지 직접 구축.<span style="display:block;margin-top:5px">· 전략 버전 진화(자산 구성 정제 · 신규 자산군 편입)를 무중단 배포로 반영하는 운영 파이프라인까지 직접 책임</span><span style="display:block;margin-top:3px">· 설계 결정은 walk-forward (시간순 점진 검증) · leave-one-out · 모듈 분리 민감도 · 시뮬레이션↔라이브 일관성의 4단계 검증으로 사후 입증</span><span style="display:block;margin-top:6px"><span class="result-badge">시뮬레이션 4.15y · 라이브 1.36y · 정합 검증</span><span class="result-badge">1,600+ 계좌 라이브 운용 무사고</span><span class="result-badge">매출 40% 기여 · 단일 전략 최대 운용 자산(AUM) 50억</span></span></span></li>
+      <li><span class="bullet">→</span><span><strong>다중 전략 라인업 개발·운용</strong> — 동일한 시뮬레이션·라이브 인프라 위에 입력 신호와 자산 구성이 서로 다른 전략들을 시리즈로 확장.<span style="display:block;margin-top:5px">· <strong>추세 신호 기반 비중 조절 전략군</strong>(지수·섹터·개별주 13종) · <strong>자산 페어 간 동적 비중 스위칭 전략</strong>(2종) 추가 운용</span><span style="display:block;margin-top:3px">· 각 전략은 가설 정의 → 하이퍼파라미터 walk-forward 최적화 → out-of-sample 일반화 검증 → 라이브 진입의 동일한 파이프라인을 통해 출시</span></span></li>
+      <li><span class="bullet">→</span><span><strong>레거시 데이터 파이프라인 Airflow 기반 현대화</strong> — 3년간 직접 유지보수하며 누적된 구조적 부채(오케스트레이션 · 의존성 관리 · 관측성 · 관심사 분리)를 아키텍처 차원에서 진단하고 <strong>Airflow 기반 통합 플랫폼으로 전담 재설계</strong>. 금융 도메인 특수성(거래 세션 · 외부 API 제약)을 스케줄링 계층에 명시 반영, 무중단 전환 후 레거시 2종 완전 폐기.</span></li>
+      <li><span class="bullet">→</span><span><strong>Django · FastAPI 기반 백엔드 서버 개발 및 운영</strong> — 핀테크 플랫폼의 RESTful API 서버를 전담 설계·구현·운영.<span style="display:block;margin-top:5px">· <strong>동기·비동기 워크로드를 명세별로 분리</strong> — Django DRF로 동기 처리 / FastAPI + asyncio로 비동기 처리를 담당시키고, Celery 기반 백그라운드 잡 큐와 SQLAlchemy 커넥션 풀을 표준화</span><span style="display:block;margin-top:3px">· 고부하 환경에서의 <strong>안정성 · 관측성 · 롤백 가능성</strong>을 갖춘 운영 체계 확립</span></span></li>
     </ul>
     <div class="tag-row">
       <span class="tag">Apache Airflow</span><span class="tag">SQLAlchemy</span>
       <span class="tag">RabbitMQ · Celery</span><span class="tag">FastAPI</span>
       <span class="tag">Rust · tokio · sqlx · lapin</span><span class="tag">Cargo workspace</span>
       <span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
-      <span class="tag">XGBoost · LightGBM</span><span class="tag">statsmodels</span>
+      <span class="tag">ML 서빙 (학습→예측→재학습)</span>
     </div>
   </div>
 
@@ -309,46 +334,44 @@ section { padding-top: 40px; }
 <section id="projects">
   <span class="sec-label">Core Projects</span>
   <div class="exp-quote" style="border-left:none;padding-left:0;font-size:12.5px;margin-bottom:18px">
-    아래는 각 프로젝트의 핵심 요약입니다. <strong>아키텍처 다이어그램 · 대안 비교 트레이드오프 · 설계 결정 근거 · 솔직한 한계</strong> 등 상세 분석은 포트폴리오에서 다룹니다 → <a href="https://yeonseo-jung.github.io/portfolio/" style="font-weight:500">yeonseo-jung.github.io/portfolio</a>
+    아래는 각 프로젝트의 핵심 요약입니다. <strong>아키텍처 다이어그램 · 대안 비교 트레이드오프 · 설계 결정 근거 · 솔직한 한계</strong> 등 상세 분석은 포트폴리오에서 다룹니다 → <a href="https://yeonseo-jung.github.io/portfolio/swe" style="font-weight:500">yeonseo-jung.github.io/portfolio/swe</a>
   </div>
 
   <div class="proj-card">
     <div class="proj-card-head">
-      <span class="proj-card-title">1. 분산 트레이딩 시스템 — Zero-to-One 구축 + Rust 마이그레이션</span>
-      <span class="proj-card-meta">STOA · 2023 – 현재 · 단독 설계·구현·운영</span>
+      <span class="proj-card-title">1. 핀테크 플랫폼 — 액티브 포트폴리오 운용 시스템 전담 구축</span>
+      <span class="proj-card-meta">STOA · 2024 – 현재 · 기획·설계·운영</span>
     </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>계좌 수 증가로 시그널 생성과 주문 집행이 동일 프로세스에 묶여 장애 파급이 광범위. 24/7 이벤트 매매가 필요한 코인과 장 세션·리밸런싱 기반으로 돌아가는 주식을 단일 엔진으로 처리하기도 어려웠음</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>pub/sub 기반 1:N 구조로 <strong>시그널 생성부와 주문 집행부를 물리적으로 분리</strong>. 집행부는 공통 Celery 인프라 위에서 <strong>코인=이벤트 기반, 주식=요청 기반 TWAP으로 오케스트레이션 이원화</strong>. ML 서빙(학습→예측→재학습)을 시그널 파이프라인에 통합</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 · 6개 거래소/증권사 · 24/7 무중단 · 메시지 유실 0건</strong> · 월평균 거래대금 약 5천억 규모 운용</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">진화</span><span>운영 중 노출된 GIL · 이벤트 루프 · 드라이버 호환성 등 <strong>언어 수준 한계를 해소하기 위해 거래 실행 엔진을 Python → Rust로 무중단 마이그레이션</strong>. Strangler Fig + Feature Flag 기반 점진 전환, 13-crate Cargo workspace 설계, ExchangeAdapter trait으로 4개 거래소 어댑터 통일. <strong>메모리 -95% · 이미지 -87% · 트레이딩 핵심 LOC -53%</strong> 실측</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>플랫폼 학습 곡선이 높아 라이트·신규 유저 이탈. 기관급 올웨더 프레임워크 (all-weather portfolio)를 개인 투자자가 바로 운용하기 어려워 실전 운용 가능한 형태로 재설계 필요</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>3-클릭 구독형 B2C 서비스 기획·구현</strong> — 5개 알고리즘 모듈을 단일 엔진에 결합한 <strong>자산배분 운용 시스템</strong>으로 재구성.<span style="display:block;margin-top:5px">· 시장 상태 분류 (regime detection) · 자산별 리스크 가중 배분 (risk parity) · 꼬리 위험 자동 차단 (tail-risk hedging) · 추세 신호 반영</span><span style="display:block;margin-top:3px">· 전략 버전 진화(자산 구성 정제 · 신규 자산군 편입)를 <strong>무중단 배포</strong>로 반영하는 운영 파이프라인까지 일관 구축</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 라이브 운용 1.36년 무사고 · 시뮬레이션↔라이브 risk-adjusted 지표 일관 검증 · 단일 전략 최대 운용 자산(AUM) 50억 · 서비스 전체 매출 40% 기여</strong><span style="display:block;margin-top:5px">· 시뮬레이션 (5.94y / 4.15y) — risk-adjusted 지표에서 벤치마크 대비 일관 우위, drawdown 약 70% 감소</span><span style="display:block;margin-top:3px">· 라이브 운용 (1.36y) — drawdown 약 44% 감소 + 시뮬레이션↔라이브 out-of-sample 일관성 검증 (정량 수치는 포트폴리오 문서 참조)</span></span></div>
     <div class="proj-card-tags">
-      <span class="tag">RabbitMQ</span><span class="tag">FastAPI · Celery</span><span class="tag">asyncio</span><span class="tag">Rust · tokio · sqlx · lapin</span><span class="tag">axum</span><span class="tag">3-Stage Docker</span><span class="tag">XGBoost · LightGBM</span>
+      <span class="tag">Portfolio Optimization</span><span class="tag">Regime Detection</span><span class="tag">Risk Overlay</span><span class="tag">Feature Engineering</span>
     </div>
   </div>
-
-  <div class="proj-card">
+      <div class="proj-card">
     <div class="proj-card-head">
-      <span class="proj-card-title">2. quantus-pipeline — 레거시 데이터 파이프라인 Airflow 현대화</span>
-      <span class="proj-card-meta">STOA · 2026.03 · 단독 수행</span>
+      <span class="proj-card-title">2. 분산 트레이딩 시스템 — Zero-to-One 구축 + Rust 마이그레이션</span>
+      <span class="proj-card-meta">STOA · 2023 – 현재 · 설계·구현·운영</span>
+    </div>
+    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>① 계좌 수 증가로 <strong>시그널 생성과 주문 집행이 동일 프로세스에 묶여 장애 파급이 광범위</strong>.<span style="display:block;margin-top:3px">② 24/7 이벤트 매매 코인과 장 세션 · 리밸런싱 기반 주식을 <strong>단일 엔진으로 처리하기 어려움</strong></span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>시그널 생성부와 주문 집행부를 pub/sub 1:N 구조로 물리적 분리</strong>.<span style="display:block;margin-top:5px">· 집행부는 공통 Celery 인프라 위에서 <strong>코인 = 이벤트 기반 / 주식 = 요청 기반 TWAP (Time-Weighted Average Price)</strong>으로 오케스트레이션 이원화</span><span style="display:block;margin-top:3px">· ML 서빙(학습 → 예측 → 재학습)을 시그널 파이프라인에 통합</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 · 6개 거래소/증권사 · 24/7 무중단 · 메시지 유실 0건</strong><span style="display:block;margin-top:3px">· 월평균 거래대금 약 5천억 규모 운용</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">진화</span><span>운영 중 노출된 GIL · 이벤트 루프 · 드라이버 호환성 등 <strong>언어 수준 한계를 해소하기 위해 거래 실행 엔진을 Python → Rust로 무중단 마이그레이션</strong>.<span style="display:block;margin-top:5px">· Strangler Fig + Feature Flag 기반 점진 전환 / 13-crate Cargo workspace 설계 / <strong>거래소 어댑터 trait으로 4개 거래소 단일 계약 통일</strong></span><span style="display:block;margin-top:3px">· <strong>메모리 -95% · 이미지 -87% · 트레이딩 핵심 LOC -53%</strong> 실측</span></span></div>
+    <div class="proj-card-tags">
+      <span class="tag">RabbitMQ</span><span class="tag">FastAPI · Celery</span><span class="tag">asyncio</span><span class="tag">Rust · tokio · sqlx · lapin</span><span class="tag">axum</span><span class="tag">3-Stage Docker</span><span class="tag">ML 서빙 (학습→예측→재학습)</span>
+    </div>
+  </div>
+      <div class="proj-card">
+    <div class="proj-card-head">
+      <span class="proj-card-title">3. 데이터 파이프라인 · Airflow 현대화 — 레거시 재설계 및 무중단 전환</span>
+      <span class="proj-card-meta">STOA · 2026.03 · 진단·재설계·전환</span>
     </div>
     <div class="proj-card-row"><span class="proj-card-label">문제</span><span>3년간 유지보수하며 축적된 구조적 한계(스케줄러 SPOF · DAG 의존성 부재 · 관심사 미분리 · 관측성 부재)가 장기 장애로 표면화. 개별 수정이 아닌 아키텍처 재설계가 필요한 시점</span></div>
     <div class="proj-card-row"><span class="proj-card-label">설계</span><span>Airflow 기반 통합 플랫폼으로 이관. 모든 기술 선택은 <strong>"더 좋은 도구"가 아니라 "현재 규모·제약에 맞는 최소 복잡도"</strong> 기준으로 대안 대비 트레이드오프 명시 후 결정</span></div>
     <div class="proj-card-row"><span class="proj-card-label">성과</span><span>프로덕션 전환 완료, <strong>레거시 2종 완전 폐기</strong>. 장애 복구·백필·회귀 검증 자동화</span></div>
     <div class="proj-card-tags">
       <span class="tag">Apache Airflow</span><span class="tag">SQLAlchemy</span><span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
-    </div>
-  </div>
-
-  <div class="proj-card">
-    <div class="proj-card-head">
-      <span class="proj-card-title">3. 퀀터스 프라임 — 글로벌 올웨더 액티브 전략</span>
-      <span class="proj-card-meta">STOA · 2024 – 현재 · 기획·구현·전략 설계·운용</span>
-    </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>플랫폼 학습 곡선이 높아 라이트·신규 유저 이탈. 기관급 올웨더 프레임워크를 개인 투자자가 바로 운용하기 어려워 실전 운용 가능한 형태로 재설계 필요</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>3-클릭 구독형 B2C 서비스 기획·구현. 거시 레짐 자동 감지, 포트폴리오 최적화 개선(소수 자산 집중 문제 해소), 꼬리 위험 오버레이로 <strong>실전 운용 가능한 올웨더</strong>로 재구성</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>단일 전략 AUM 50억 돌파</strong> · 수익률 <strong>16.8%</strong> (2024-12 ~ 2026-01, S&P500 +17.0%와 유사) · Sharpe <strong>1.5</strong> (벤치마크 0.88) · MDD <strong>-8.0%</strong> (벤치마크 -18.9%) · 서비스 전체로 <strong>매출 40% 기여</strong></span></div>
-    <div class="proj-card-tags">
-      <span class="tag">Portfolio Optimization</span><span class="tag">Regime Detection</span><span class="tag">Risk Overlay</span><span class="tag">Feature Engineering</span>
     </div>
   </div>
 </section>
