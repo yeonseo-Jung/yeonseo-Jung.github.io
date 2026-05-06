@@ -109,21 +109,6 @@ section { padding-top: 40px; }
 .gap-card-title { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
 .gap-card-body { font-size: 12.5px; color: var(--text-sub); line-height: 1.7; }
 
-@media (max-width: 768px) {
-  body { padding: 28px 20px 40px; }
-  .contact-row { gap: 12px 16px; }
-  .summary { font-size: 14px; line-height: 1.75; }
-  .role-card { display: block; }
-  .role-card-label { display: block; min-width: 0; margin-bottom: 4px; }
-  .skills-layout { grid-template-columns: 1fr; gap: 24px; }
-  .exp-head { display: block; }
-  .exp-period { margin-left: 0; margin-top: 4px; display: block; }
-  .proj-card { padding: 18px 16px; }
-  .proj-card-head { display: block; }
-  .proj-card-meta { display: block; margin-top: 4px; }
-  .proj-card-row { grid-template-columns: 1fr; gap: 2px; }
-}
-
 @media print {
   @page { margin: 14mm 12mm 14mm 12mm; }
   body { padding: 10px 20px 20px; font-size: 10.5px; }
@@ -193,7 +178,7 @@ section { padding-top: 40px; }
   </div>
 
   <div class="summary">
-    <strong>비즈니스 문제를 기술로 풀어 실질적 가치로 연결</strong>하는 데 집중하는 소프트웨어 엔지니어입니다. 분산 시스템을 중심으로 <strong>1,600+ 계좌가 동작하는 24/7 운용 환경</strong>에서 시스템 신뢰성·메시징·관측성·장애 대응 구조를 설계·운영해왔으며, <strong>메시징 신뢰성 패턴 설계 · 무중단 언어 마이그레이션 · 레거시 아키텍처 재설계</strong> 같은 시스템 수준 의사결정을 직접 책임진 경험을 보유하고 있습니다.<br>
+    <strong>비즈니스 문제를 기술로 풀어 실질적 가치로 연결</strong>하는 데 집중하는 소프트웨어 엔지니어입니다. 분산 시스템을 중심으로 <strong>1,600+ 계좌가 동작하는 24/7 운용 환경</strong>에서 시스템 신뢰성·메시징·관측성·운영 자동화 구조를 설계·운영해왔으며, <strong>메시징 신뢰성 패턴 설계 · 점진적 언어 마이그레이션 · 레거시 아키텍처 재설계</strong> 같은 시스템 수준 의사결정을 직접 책임진 경험을 보유하고 있습니다.<br>
     특정 스택에 종속되기보다 <strong>문제에 맞는 도구를 빠르게 검증하고 운영 환경에 적용 가능한 수준까지 내재화</strong>합니다. 설계 결정을 <strong>성능 · 안정성 · 비용 · 복잡도의 트레이드오프</strong>로 해석하며, 도메인이 바뀌어도 재사용 가능한 구조적 사고를 지향합니다.
   </div>
 
@@ -235,7 +220,7 @@ section { padding-top: 40px; }
         <div class="edu-block">
           <div class="edu-school">서울시립대학교</div>
           <div class="edu-dept">신소재공학과 · 4학년 중퇴</div>
-          <div class="edu-supplement">이후 5년간 데이터 엔지니어 및 백엔드 개발자로 실무 + CS 자기 학습 (분산 시스템 · 비동기 런타임 · 메시징 패턴 · DB · 시스템 설계 · Rust 생태계)</div>
+          <div class="edu-supplement">실무 기반으로 분산 시스템 · 비동기 런타임 · 메시징 패턴 · DB · 시스템 설계를 지속 학습</div>
         </div>
       </div>
     </div>
@@ -244,7 +229,7 @@ section { padding-top: 40px; }
         <span class="tg-title">분산 시스템 · 메시징</span>
         <div class="tag-cloud">
           <span class="tag">pub/sub · Fanout</span><span class="tag">DLQ · 멱등성</span>
-          <span class="tag">Bulkhead · Strangler Fig</span><span class="tag">Feature Flag · 무중단 배포</span>
+          <span class="tag">Bulkhead · Strangler Fig</span><span class="tag">Feature Flag · 점진 배포</span>
           <span class="tag">서킷 브레이커 · 백프레셔</span>
         </div>
       </div>
@@ -292,11 +277,11 @@ section { padding-top: 40px; }
       초기 멤버로 합류해 백엔드 · 데이터 파이프라인 · 인프라 · 배포 · 운영을 기획부터 고도화까지 전담으로 담당해왔습니다. 주요 프로젝트는 아래와 같고, 각각의 문제 정의와 해결 과정은 Core Projects와 포트폴리오에서 다룹니다.
     </div>
     <ul class="blist">
-      <li class="priority"><span class="bullet">→</span><span><strong>분산 트레이딩 · 주문 집행 엔진 Zero-to-One 설계 · 운영</strong> — <strong>시그널 생성부와 집행부를 pub/sub 1:N 구조로 물리적 분리</strong>해 부분 장애가 전체로 확산되지 않는 구조를 확보. 메시징 신뢰성 패턴(DLQ 격리 · 시간 슬롯 멱등성 · Bulkhead) 직접 설계.<span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌</span><span class="result-badge">6개 외부 시스템 통합</span><span class="result-badge">24/7 무중단 · 메시지 유실 0건</span><span class="result-badge">월평균 거래대금 5천억</span></span></span></li>
-      <li class="priority"><span class="bullet">→</span><span><strong>거래 실행 엔진 Python → Rust 무중단 마이그레이션</strong> — 운영 중인 시스템의 <strong>GIL · 이벤트 루프 · 드라이버 호환성을 언어 수준에서 해소</strong>하기 위해 전담 마이그레이션. Strangler Fig + Feature Flag 기반 점진 전환으로 무중단·즉시 롤백 보장. 메모리·이미지·LOC 모두 실측 검증. (상세: Core Project 2)<span style="display:block;margin-top:6px"><span class="result-badge">메모리 -95% (4.3GB → 193MB)</span><span class="result-badge">이미지 -87% (1.2GB → 160MB)</span><span class="result-badge">트레이딩 핵심 LOC -53%</span></span></span></li>
-      <li><span class="bullet">→</span><span><strong>자산배분형 액티브 전략 엔진 전담 설계·구현·운용</strong> — <strong>시장 상태 분류 (regime detection) · 자산별 리스크 가중 배분 (risk parity) · 동적 비중 조절 · 꼬리 위험 자동 차단 (tail-risk hedging) · 추세 신호 반영</strong>의 5개 알고리즘 모듈을 단일 엔진에 결합하고, 백테스팅 시뮬레이터부터 라이브 운용 파이프라인까지 직접 구축.<span style="display:block;margin-top:5px">· 전략 버전 진화(자산 구성 정제 · 신규 자산군 편입)를 무중단 배포로 반영하는 운영 파이프라인까지 직접 책임</span><span style="display:block;margin-top:3px">· 설계 결정은 walk-forward (시간순 점진 검증) · leave-one-out · 모듈 분리 민감도 · 시뮬레이션↔라이브 일관성의 4단계 검증으로 사후 입증</span><span style="display:block;margin-top:6px"><span class="result-badge">시뮬레이션 4.15y · 라이브 1.36y · 정합 검증</span><span class="result-badge">1,600+ 계좌 라이브 운용 무사고</span><span class="result-badge">매출 40% 기여 · 단일 전략 최대 운용 자산(AUM) 50억</span></span></span></li>
+      <li class="priority"><span class="bullet">→</span><span><strong>분산 트레이딩 · 주문 집행 엔진 Zero-to-One 설계 · 운영</strong> — <strong>시그널 생성부와 집행부를 pub/sub 1:N 구조로 물리적 분리</strong>해 특정 계좌·외부 시스템 이슈가 전체 집행으로 확산되지 않는 구조를 확보. 메시징 신뢰성 패턴(DLQ 격리 · 시간 슬롯 멱등성 · Bulkhead) 직접 설계.<span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌</span><span class="result-badge">6개 외부 시스템 통합</span><span class="result-badge">24/7 운영 · 관측된 메시지 유실 0건</span><span class="result-badge">월평균 거래대금 5천억</span></span></span></li>
+      <li class="priority"><span class="bullet">→</span><span><strong>거래 실행 엔진 Python → Rust 점진 마이그레이션</strong> — 운영 중인 시스템의 <strong>GIL · 이벤트 루프 · 드라이버 호환성을 언어 수준에서 해소</strong>하기 위해 전담 마이그레이션. Strangler Fig + Feature Flag 기반 점진 전환으로 단계적 롤백 가능성을 확보. 메모리·이미지·LOC 모두 실측 검증. (상세: Core Project 2)<span style="display:block;margin-top:6px"><span class="result-badge">메모리 -95% (4.3GB → 193MB)</span><span class="result-badge">이미지 -87% (1.2GB → 160MB)</span><span class="result-badge">트레이딩 핵심 LOC -53%</span></span></span></li>
+      <li><span class="bullet">→</span><span><strong>자산배분형 액티브 포트폴리오 상품화 · 운용 엔진 전담 설계</strong> — 투자 경험이 낮은 유저도 기관형 자산배분 전략을 쉽게 선택·구독할 수 있도록, <strong>비즈니스 문제(학습 곡선·전략 선택 부담)를 운용 가능한 상품 구조와 시스템으로 전환</strong>.<span style="display:block;margin-top:5px">· 거시 레짐 · 공분산 전처리 · 리스크 예산 · 꼬리 위험 오버레이를 결합해 전략 엔진을 구성하고, 백테스트↔라이브 정합성 검증으로 실서비스 적용 가능성을 확인</span><span style="display:block;margin-top:3px">· 자산 구성 정제와 신규 자산군 편입은 운용 데이터, 상관구조, 성과 기여도, 리스크 기여도 분석을 기반으로 점진 반영</span><span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌 라이브 운용</span><span class="result-badge">AUM 50억+</span><span class="result-badge">서비스 매출 40% 기여</span></span></span></li>
       <li><span class="bullet">→</span><span><strong>다중 전략 라인업 개발·운용</strong> — 동일한 시뮬레이션·라이브 인프라 위에 입력 신호와 자산 구성이 서로 다른 전략들을 시리즈로 확장.<span style="display:block;margin-top:5px">· <strong>추세 신호 기반 비중 조절 전략군</strong>(지수·섹터·개별주 13종) · <strong>자산 페어 간 동적 비중 스위칭 전략</strong>(2종) 추가 운용</span><span style="display:block;margin-top:3px">· 각 전략은 가설 정의 → 하이퍼파라미터 walk-forward 최적화 → out-of-sample 일반화 검증 → 라이브 진입의 동일한 파이프라인을 통해 출시</span></span></li>
-      <li><span class="bullet">→</span><span><strong>레거시 데이터 파이프라인 Airflow 기반 현대화</strong> — 3년간 직접 유지보수하며 누적된 구조적 부채(오케스트레이션 · 의존성 관리 · 관측성 · 관심사 분리)를 아키텍처 차원에서 진단하고 <strong>Airflow 기반 통합 플랫폼으로 전담 재설계</strong>. 금융 도메인 특수성(거래 세션 · 외부 API 제약)을 스케줄링 계층에 명시 반영, 무중단 전환 후 레거시 2종 완전 폐기.</span></li>
+      <li><span class="bullet">→</span><span><strong>레거시 데이터 파이프라인 Airflow 기반 현대화</strong> — 3년간 직접 유지보수하며 누적된 구조적 한계(오케스트레이션 · 의존성 관리 · 관측성 · 관심사 분리)를 아키텍처 차원에서 진단하고 <strong>Airflow 기반 통합 플랫폼으로 전담 재설계</strong>. 금융 도메인 특수성(거래 세션 · 외부 API 제약)을 스케줄링 계층에 명시 반영하고, 단계적 전환 후 레거시 2종을 완전 폐기.</span></li>
       <li><span class="bullet">→</span><span><strong>Django · FastAPI 기반 백엔드 서버 개발 및 운영</strong> — 핀테크 플랫폼의 RESTful API 서버를 전담 설계·구현·운영.<span style="display:block;margin-top:5px">· <strong>동기·비동기 워크로드를 명세별로 분리</strong> — Django DRF로 동기 처리 / FastAPI + asyncio로 비동기 처리를 담당시키고, Celery 기반 백그라운드 잡 큐와 SQLAlchemy 커넥션 풀을 표준화</span><span style="display:block;margin-top:3px">· 고부하 환경에서의 <strong>안정성 · 관측성 · 롤백 가능성</strong>을 갖춘 운영 체계 확립</span></span></li>
     </ul>
     <div class="tag-row">
@@ -334,48 +319,49 @@ section { padding-top: 40px; }
 <section id="projects">
   <span class="sec-label">Core Projects</span>
   <div class="exp-quote" style="border-left:none;padding-left:0;font-size:12.5px;margin-bottom:18px">
-    아래는 각 프로젝트의 핵심 요약입니다. <strong>아키텍처 다이어그램 · 대안 비교 트레이드오프 · 설계 결정 근거 · 솔직한 한계</strong> 등 상세 분석은 포트폴리오에서 다룹니다 → <a href="https://yeonseo-jung.github.io/portfolio/swe" style="font-weight:500">yeonseo-jung.github.io/portfolio/swe</a>
+    아래는 각 프로젝트의 핵심 요약입니다. <strong>아키텍처 다이어그램 · 대안 비교 트레이드오프 · 설계 결정 근거 · 운영 한계</strong> 등 상세 분석은 포트폴리오에서 다룹니다 → <a href="https://yeonseo-jung.github.io/portfolio/swe" style="font-weight:500">yeonseo-jung.github.io/portfolio/swe</a>
   </div>
 
   <div class="proj-card">
     <div class="proj-card-head">
-      <span class="proj-card-title">1. 핀테크 플랫폼 — 액티브 포트폴리오 운용 시스템 전담 구축</span>
-      <span class="proj-card-meta">STOA · 2024 – 현재 · 기획·설계·운영</span>
-    </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>플랫폼 학습 곡선이 높아 라이트·신규 유저 이탈. 기관급 올웨더 프레임워크 (all-weather portfolio)를 개인 투자자가 바로 운용하기 어려워 실전 운용 가능한 형태로 재설계 필요</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>3-클릭 구독형 B2C 서비스 기획·구현</strong> — 5개 알고리즘 모듈을 단일 엔진에 결합한 <strong>자산배분 운용 시스템</strong>으로 재구성.<span style="display:block;margin-top:5px">· 시장 상태 분류 (regime detection) · 자산별 리스크 가중 배분 (risk parity) · 꼬리 위험 자동 차단 (tail-risk hedging) · 추세 신호 반영</span><span style="display:block;margin-top:3px">· 전략 버전 진화(자산 구성 정제 · 신규 자산군 편입)를 <strong>무중단 배포</strong>로 반영하는 운영 파이프라인까지 일관 구축</span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 라이브 운용 1.36년 무사고 · 시뮬레이션↔라이브 risk-adjusted 지표 일관 검증 · 단일 전략 최대 운용 자산(AUM) 50억 · 서비스 전체 매출 40% 기여</strong><span style="display:block;margin-top:5px">· 시뮬레이션 (5.94y / 4.15y) — risk-adjusted 지표에서 벤치마크 대비 일관 우위, drawdown 약 70% 감소</span><span style="display:block;margin-top:3px">· 라이브 운용 (1.36y) — drawdown 약 44% 감소 + 시뮬레이션↔라이브 out-of-sample 일관성 검증 (정량 수치는 포트폴리오 문서 참조)</span></span></div>
-    <div class="proj-card-tags">
-      <span class="tag">Portfolio Optimization</span><span class="tag">Regime Detection</span><span class="tag">Risk Overlay</span><span class="tag">Feature Engineering</span>
-    </div>
-  </div>
-      <div class="proj-card">
-    <div class="proj-card-head">
-      <span class="proj-card-title">2. 분산 트레이딩 시스템 — Zero-to-One 구축 + Rust 마이그레이션</span>
+      <span class="proj-card-title">1. 분산 트레이딩 시스템 — Zero-to-One 구축 + Rust 마이그레이션</span>
       <span class="proj-card-meta">STOA · 2023 – 현재 · 설계·구현·운영</span>
     </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>① 계좌 수 증가로 <strong>시그널 생성과 주문 집행이 동일 프로세스에 묶여 장애 파급이 광범위</strong>.<span style="display:block;margin-top:3px">② 24/7 이벤트 매매 코인과 장 세션 · 리밸런싱 기반 주식을 <strong>단일 엔진으로 처리하기 어려움</strong></span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>시그널 생성부와 주문 집행부를 pub/sub 1:N 구조로 물리적 분리</strong>.<span style="display:block;margin-top:5px">· 집행부는 공통 Celery 인프라 위에서 <strong>코인 = 이벤트 기반 / 주식 = 요청 기반 TWAP (Time-Weighted Average Price)</strong>으로 오케스트레이션 이원화</span><span style="display:block;margin-top:3px">· ML 서빙(학습 → 예측 → 재학습)을 시그널 파이프라인에 통합</span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 · 6개 거래소/증권사 · 24/7 무중단 · 메시지 유실 0건</strong><span style="display:block;margin-top:3px">· 월평균 거래대금 약 5천억 규모 운용</span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">진화</span><span>운영 중 노출된 GIL · 이벤트 루프 · 드라이버 호환성 등 <strong>언어 수준 한계를 해소하기 위해 거래 실행 엔진을 Python → Rust로 무중단 마이그레이션</strong>.<span style="display:block;margin-top:5px">· Strangler Fig + Feature Flag 기반 점진 전환 / 13-crate Cargo workspace 설계 / <strong>거래소 어댑터 trait으로 4개 거래소 단일 계약 통일</strong></span><span style="display:block;margin-top:3px">· <strong>메모리 -95% · 이미지 -87% · 트레이딩 핵심 LOC -53%</strong> 실측</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>계좌 수 증가로 시그널 생성과 주문 집행이 동일 프로세스에 묶이며 확장성과 격리성이 약해짐. 24/7 이벤트 매매 코인과 장 세션·리밸런싱 기반 주식을 동일 실행 모델로 처리하기 어려운 구조적 제약 존재</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>시그널 생성부와 주문 집행부를 pub/sub 1:N 구조로 물리적 분리</strong>.<span style="display:block;margin-top:5px">· RabbitMQ broadcast, DLQ, manual ACK, 시간 슬롯 멱등성, 계좌 단위 Bulkhead로 주문 side effect를 execution layer에 격리</span><span style="display:block;margin-top:3px">· 집행부는 <strong>코인 = 이벤트 기반 / 주식 = 요청 기반 TWAP</strong>으로 오케스트레이션 이원화하고, ML 서빙(학습 → 예측 → 재학습)을 시그널 파이프라인에 통합</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 · 6개 거래소/증권사 · 24/7 운영 · 관측된 메시지 유실 0건</strong><span style="display:block;margin-top:3px">· 월평균 거래대금 약 5천억 규모 운용</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">진화</span><span>GIL · 이벤트 루프 · 드라이버 호환성 등 Python 실행 계층의 한계를 줄이기 위해 거래 실행 엔진을 Rust 기반으로 점진 전환.<span style="display:block;margin-top:5px">· Strangler Fig + Feature Flag 기반 단계적 전환 / 13-crate Cargo workspace 설계 / <strong>거래소 어댑터 trait으로 4개 거래소 단일 계약 통일</strong></span><span style="display:block;margin-top:3px">· <strong>메모리 -95% · 이미지 -87% · 트레이딩 핵심 LOC -53%</strong> 실측</span></span></div>
     <div class="proj-card-tags">
       <span class="tag">RabbitMQ</span><span class="tag">FastAPI · Celery</span><span class="tag">asyncio</span><span class="tag">Rust · tokio · sqlx · lapin</span><span class="tag">axum</span><span class="tag">3-Stage Docker</span><span class="tag">ML 서빙 (학습→예측→재학습)</span>
     </div>
   </div>
-      <div class="proj-card">
+
+  <div class="proj-card">
     <div class="proj-card-head">
-      <span class="proj-card-title">3. 데이터 파이프라인 · Airflow 현대화 — 레거시 재설계 및 무중단 전환</span>
+      <span class="proj-card-title">2. 데이터 파이프라인 · Airflow 현대화 — 레거시 재설계 및 단계적 전환</span>
       <span class="proj-card-meta">STOA · 2026.03 · 진단·재설계·전환</span>
     </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>3년간 유지보수하며 축적된 구조적 한계(스케줄러 SPOF · DAG 의존성 부재 · 관심사 미분리 · 관측성 부재)가 장기 장애로 표면화. 개별 수정이 아닌 아키텍처 재설계가 필요한 시점</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>Airflow 기반 통합 플랫폼으로 이관. 모든 기술 선택은 <strong>"더 좋은 도구"가 아니라 "현재 규모·제약에 맞는 최소 복잡도"</strong> 기준으로 대안 대비 트레이드오프 명시 후 결정</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span>프로덕션 전환 완료, <strong>레거시 2종 완전 폐기</strong>. 장애 복구·백필·회귀 검증 자동화</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>3년간 확장된 데이터 작업이 개별 스케줄러와 스크립트 중심으로 누적되며, DAG 의존성·재실행·백필·관측성·데이터 품질 검증을 일관된 방식으로 관리하기 어려운 상태</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>Airflow 기반 통합 오케스트레이션 플랫폼으로 이관. Sensor, TaskGroup, 데이터 품질 게이트, 백필 경로를 명시해 <strong>외부 API 수집 → 정제 → 적재 → 검증</strong> 흐름을 재현 가능한 DAG로 표준화</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">성과</span><span>프로덕션 전환 완료, <strong>레거시 2종 완전 폐기</strong>. 금융 도메인 특수성(거래 세션·휴장일·외부 API 제약)을 스케줄링 계층에 반영해 데이터 파이프라인 운영 기준을 통합</span></div>
     <div class="proj-card-tags">
-      <span class="tag">Apache Airflow</span><span class="tag">SQLAlchemy</span><span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
+      <span class="tag">Apache Airflow</span><span class="tag">Sensor · TaskGroup</span><span class="tag">SQLAlchemy</span><span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
+    </div>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-card-head">
+      <span class="proj-card-title">3. 핀테크 플랫폼 — 액티브 포트폴리오 운용 시스템 전담 구축</span>
+      <span class="proj-card-meta">STOA · 2024 – 현재 · 기획·설계·운영</span>
+    </div>
+    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>B2C 투자 플랫폼에서 신규·라이트 유저는 전략 선택과 운용 방법의 학습 곡선이 높아 이탈 가능성이 큼. 기관형 자산배분 프레임워크를 개인 투자자가 바로 구독·운용할 수 있는 상품 구조로 재설계할 필요</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>3-클릭 구독형 B2C 서비스와 자산배분 운용 엔진을 함께 설계</strong>.<span style="display:block;margin-top:5px">· 거시 레짐, 공분산 전처리, 자산군별 리스크 예산, 꼬리 위험 오버레이, 추세 신호를 결합해 전략 엔진 구성</span><span style="display:block;margin-top:3px">· 운용 데이터 기반으로 자산군 상관구조, 성과 기여도, 리스크 기여도를 분석하고 자산 구성 정제·신규 자산군 편입을 점진 반영</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 라이브 운용 · AUM 50억+ · 서비스 전체 매출 40% 기여</strong><span style="display:block;margin-top:5px">· 시뮬레이션↔라이브 risk-adjusted 지표 일관성 검증을 통해 전략의 상품화 가능성과 운용 안정성을 확인</span><span style="display:block;margin-top:3px">· 금융통계 가설을 시스템 요구사항으로 전환하고, 검증 결과를 서비스 라인업과 수익 모델에 연결</span></span></div>
+    <div class="proj-card-tags">
+      <span class="tag">Portfolio Optimization</span><span class="tag">Regime Detection</span><span class="tag">Risk Overlay</span><span class="tag">Feature Engineering</span><span class="tag">Productization</span>
     </div>
   </div>
 </section>
-
 
 
 </body>
