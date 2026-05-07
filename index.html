@@ -157,32 +157,6 @@ strong { font-weight: 600; }
   line-height: 1.65;
 }
 
-.variant-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.variant-link {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 11.5px;
-  color: var(--text-sub);
-  background: var(--surface);
-}
-
-.variant-link:hover {
-  color: var(--accent);
-  border-color: var(--border2);
-}
-
 .card-foot {
   position: relative;
   z-index: 2;
@@ -265,7 +239,6 @@ strong { font-weight: 600; }
   .contact-row { gap: 14px; font-size: 12.5px; }
   .summary { font-size: 13.5px; }
   .divider { margin: 32px 0; }
-  .variant-links { gap: 6px; }
   .skill-row {
     grid-template-columns: 1fr;
     gap: 3px;
@@ -286,7 +259,7 @@ strong { font-weight: 600; }
 
   <header>
     <div class="name">정연서</div>
-    <div class="title-line">Software Engineer</div>
+    <div class="title-line">Software Engineer · Backend · Distributed Systems · Data Platform</div>
 
     <div class="contact-row">
       <div class="contact-item">
@@ -308,8 +281,9 @@ strong { font-weight: 600; }
     </div>
 
     <div class="summary">
-      <p>회사의 사업 방향과 도메인에 대한 깊은 탐구를 바탕으로 비즈니스 문제를 정의하고, 실질적인 수익과 가치를 만드는 일에 집중합니다. 공학적 지식과 개발자로서 습득한 기술을 목적이 아닌 '해결의 도구'로 적재적소에 활용합니다.</p>
-      <p>때로는 백엔드 개발자, 때로는 데브옵스, 데이터/ML 엔지니어, 그리고 퀀트까지. 포지션의 경계를 넘나들며 문제를 해결하기 위한 명확한 로드맵을 설계합니다. 가설을 세우고, 검증하고, 실패 속에서 보완하여 다시 실행하는 반복의 과정을 통해 성과를 만들어냅니다.</p>
+      <p><strong>복잡한 도메인 문제를 백엔드·데이터·분산 시스템으로 구조화하고, 실제 운영 가능한 서비스로 연결하는 Software Engineer</strong>입니다. 1,600+ 계좌가 동작하는 24/7 운용 환경에서 API 서버, 메시징 인프라, 데이터 파이프라인, 실행 엔진, 운영 자동화를 설계·운영했습니다.</p>
+      <p>단순 기능 구현에 그치지 않고, 사용자 문제와 비즈니스 제약을 이해한 뒤 데이터 검증·시스템 설계·라이브 운영을 통해 <strong>1,600+ 계좌 라이브 운용, AUM 50억+, 서비스 매출 40% 기여</strong>로 연결했습니다.</p>
+      <p>특정 스택에 종속되기보다 문제에 맞는 도구를 빠르게 학습하고 적용합니다. 설계 결정은 <strong>안정성, 성능, 비용, 확장성, 운영 복잡도</strong>의 트레이드오프로 판단합니다.</p>
     </div>
   </header>
 
@@ -321,40 +295,48 @@ strong { font-weight: 600; }
     <div class="skill-group">
       <div class="skill-group-title">Core Development</div>
       <div class="skill-row">
-        <span class="skill-row-label">Language</span>
-        <span class="skill-row-text">Python (FastAPI · Celery · asyncio · SQLAlchemy · Django) · Rust (tokio · axum · sqlx · lapin · Cargo workspace)</span>
+        <span class="skill-row-label">Language / Runtime</span>
+        <span class="skill-row-text">Python · Rust</span>
       </div>
       <div class="skill-row">
-        <span class="skill-row-label">Database</span>
-        <span class="skill-row-text">MySQL · Redis · PostgreSQL · PyArrow / Parquet</span>
+        <span class="skill-row-label">Backend / API</span>
+        <span class="skill-row-text">FastAPI · Django DRF · SQLAlchemy · asyncio</span>
       </div>
       <div class="skill-row">
         <span class="skill-row-label">Messaging</span>
-        <span class="skill-row-text">RabbitMQ · NATS JetStream (대안 평가 · 재평가 조건 운영)</span>
+        <span class="skill-row-text">RabbitMQ · Celery · pub/sub · DLQ · Idempotency</span>
       </div>
       <div class="skill-row">
-        <span class="skill-row-label">Infra</span>
-        <span class="skill-row-text">Docker · AWS (S3, Lambda, EC2) · Azure VM</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-title">ML & Data Engineering</div>
-      <div class="skill-row">
-        <span class="skill-row-label">ML / Stats</span>
-        <span class="skill-row-text">Scikit-learn · XGBoost · LightGBM · statsmodels (HMM, GARCH)</span>
-      </div>
-      <div class="skill-row">
-        <span class="skill-row-label">Data Pipeline</span>
-        <span class="skill-row-text">대규모 데이터 ETL 자동화 · 분산 작업 큐 설계 · Apache Airflow · Prometheus / Grafana 모니터링</span>
+        <span class="skill-row-label">Data / Infra</span>
+        <span class="skill-row-text">MySQL · Redis · Apache Airflow · Docker · AWS</span>
       </div>
     </div>
 
     <div class="skill-group">
-      <div class="skill-group-title">Domain Expertise</div>
+      <div class="skill-group-title">Systems &amp; Operations</div>
       <div class="skill-row">
-        <span class="skill-row-label">Quant</span>
-        <span class="skill-row-text">포트폴리오 최적화 (HRP, HRB) · 실시간 자산 배분 알고리즘 설계 · Crypto CTA 전략 설계</span>
+        <span class="skill-row-label">Runtime / Migration</span>
+        <span class="skill-row-text">tokio · axum · sqlx · lapin · Strangler Fig · Feature Flag</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row-label">Data Platform</span>
+        <span class="skill-row-text">Data Quality Gate · Metadata Tracking · Backfill · S3 · Azure Blob</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row-label">Observability</span>
+        <span class="skill-row-text">Prometheus · Grafana</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">Working Style</div>
+      <div class="skill-row">
+        <span class="skill-row-label">Approach</span>
+        <span class="skill-row-text">Domain-Driven Design · Data-Informed Engineering · End-to-End Ownership</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-row-label">Execution</span>
+        <span class="skill-row-text">AI-Augmented Execution · 운영 가능한 시스템 설계 · 라이브 운영 기준 검증</span>
       </div>
     </div>
   </section>
@@ -366,31 +348,27 @@ strong { font-weight: 600; }
     <article class="card">
       <h2 class="card-title"><a class="card-link" href="resume/">Resume</a></h2>
       <div class="card-meta">경력 · Skills · Core Projects</div>
-      <div class="variant-links">
-        <a class="variant-link" href="resume/">Software Engineer</a>
-        <a class="variant-link" href="resume/gde/">Growth Data Engineer</a>
-      </div>
+      <!-- PDF 업데이트 후 다시 노출 예정
       <div class="card-foot">
         <a class="pdf-link" href="resume.pdf" download>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download PDF
         </a>
       </div>
+      -->
     </article>
 
     <article class="card">
       <h2 class="card-title"><a class="card-link" href="portfolio/">Portfolio</a></h2>
       <div class="card-meta">프로젝트 상세 분석</div>
-      <div class="variant-links">
-        <a class="variant-link" href="portfolio/">Software Engineer</a>
-        <a class="variant-link" href="portfolio/gde/">Growth Data Engineer</a>
-      </div>
+      <!-- PDF 업데이트 후 다시 노출 예정
       <div class="card-foot">
         <a class="pdf-link" href="portfolio.pdf" download>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download PDF
         </a>
       </div>
+      -->
     </article>
 
   </section>

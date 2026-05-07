@@ -109,7 +109,7 @@ code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:v
 <div class="cover">
   <div class="cover-sub">P O R T F O L I O</div>
   <div class="cover-name">정연서</div>
-  <div class="cover-role">Software Engineer</div>
+  <div class="cover-role">Software Engineer · Backend · Distributed Systems · Data Platform · Product Impact</div>
   <div class="cover-divider"></div>
   <div class="cover-contact">010-6632-0568 · github.com/yeonseo-Jung · linkedin.com/in/yeonseo-jung · yeonseo-jung.github.io</div>
 </div>
@@ -118,29 +118,210 @@ code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:v
   <div class="toc-grid">
     <div class="toc-card featured">
       <div class="toc-num">01</div>
-      <div class="toc-title">분산 트레이딩 시스템<br>주문 집행 엔진 + Rust 전환</div>
-      <div class="toc-desc">pub/sub 1:N 분산 · 1,600+ 계좌 · 관측 유실 0건 · 월평균 거래대금 약 5천억 · Python→Rust 점진 전환</div>
+      <div class="toc-title">액티브 포트폴리오<br>상품화 시스템·라이브 운영</div>
+      <div class="toc-desc">전략 엔진 · 백테스팅(데이터 검증) · 라이브 운영 · AUM 50억+ · 서비스 매출 40% 기여</div>
     </div>
     <div class="toc-card">
       <div class="toc-num">02</div>
-      <div class="toc-title">데이터 파이프라인<br>Airflow 현대화</div>
-      <div class="toc-desc">레거시 2종 통합 · DAG 오케스트레이션 · 데이터 품질 게이트 · 스토리지 전환 표준화</div>
+      <div class="toc-title">분산 주문 실행 인프라<br>전략·모델 서빙·Rust 전환</div>
+      <div class="toc-desc">전략 및 모델 서빙 · 주문 집행 엔진 설계·운영 · 메시징 신뢰성 · 월평균 거래대금 약 5천억</div>
     </div>
     <div class="toc-card">
       <div class="toc-num">03</div>
-      <div class="toc-title">액티브 포트폴리오<br>전략 엔진·백테스팅·라이브 운용</div>
-      <div class="toc-desc">도메인 가설을 실서비스 상품으로 전환 · 1,600+ 계좌 인프라 · AUM 50억+ · 데이터 기반 운용 엔진</div>
+      <div class="toc-title">데이터 파이프라인<br>수집·적재 현대화</div>
+      <div class="toc-desc">데이터 플랫폼 확장을 위한 수집·적재 파이프라인 · Airflow 실행 표준화 · 품질 게이트 · 백필</div>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     PROJECT 01 — 분산 트레이딩 시스템
+     PROJECT 01 — 액티브 포트폴리오 상품화 시스템
      ═══════════════════════════════════════════════════════ -->
 <div class="project-section">
   <div class="proj-num">PROJECT 01</div>
-  <div class="proj-title">분산 트레이딩 시스템 — 주문 집행 엔진 설계·운영 + Rust 마이그레이션</div>
-  <div class="proj-subtitle">STOA Investment · 2023 – 현재 · 설계·구현·운영·고도화 주도</div>
+  <div class="proj-title">액티브 포트폴리오 상품화 시스템 — 전략 엔진·백테스팅(데이터 검증)·라이브 운영</div>
+  <div class="proj-subtitle">STOA Investment · 2024 – 현재 · 문제 정의·전략 엔진·백테스팅·라이브 운영 전담</div>
+  <div class="proj-tags">
+    <span class="tag">Portfolio Engine</span><span class="tag">Regime Detection</span>
+    <span class="tag">Risk Budgeting</span><span class="tag">Tail Risk Overlay</span>
+    <span class="tag">Point-in-Time Data</span><span class="tag">Live Trading</span>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="sub-h">비즈니스 문제 — 복잡한 운용 전략을 매출 가능한 상품으로 전환</div>
+  <p class="body-text">
+    B2C 핀테크 플랫폼의 핵심 병목은 전략의 부재가 아니라 <strong>사용자가 전략을 이해하고 설정하기까지의 학습 비용</strong>이었습니다. 라이트 유저는 자산군 선택, 리밸런싱, 리스크 조절, 시장 국면 해석을 직접 수행하기 어렵고, 그 결과 서비스 탐색 후 실제 운용 전환까지 이어지는 비율이 낮아집니다. 이 문제를 해결하기 위해 기관형 자산배분 프레임워크를 <strong>3-클릭 구독형 운용 상품</strong>으로 재구성했습니다.
+  </p>
+  <p class="body-text">
+    이 프로젝트의 핵심은 단순히 백테스트 수익률을 높이는 것이 아니라, <strong>도메인 가설 → 데이터 검증 → 포트폴리오 산출 → 리스크 오버레이 → 주문 위임 → 라이브 모니터링</strong>까지 이어지는 제품형 운용 엔진을 만드는 것이었습니다. 결과적으로 1,600+ 계좌 운용 인프라 내에서 라이브 적용되었고, 구독형 운용 상품의 AUM 50억+ 달성에 기여했습니다.
+  </p>
+
+  <div class="kpi-row">
+    <span class="kpi-chip highlight">1,600+ 계좌 운용 인프라 내 라이브 적용</span>
+    <span class="kpi-chip highlight">AUM 50억+</span>
+    <span class="kpi-chip">3-클릭 구독형 운용 UX</span>
+    <span class="kpi-chip">시뮬레이션 4.15y · 라이브 1.36y 정합 검증</span>
+  </div>
+
+  <div class="sub-h">문제 해결 과정 — 문제 정의에서 회고까지</div>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td><strong>문제 정의</strong></td>
+        <td>신규·라이트 유저는 전략을 직접 설계하고 운용 규칙을 이해하는 데 높은 학습 비용을 겪었고, 이는 서비스 탐색 후 실제 운용 전환을 막는 병목이었습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>가설 수립</strong></td>
+        <td>기관형 자산배분 프레임워크를 사용자가 이해 가능한 구독형 상품 구조로 추상화하면, 전략 설계 부담을 낮추고 실제 운용 전환과 유지율을 높일 수 있다고 판단했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>실험 설계</strong></td>
+        <td>거시 레짐, 공분산 전처리, 리스크 예산, 꼬리 위험 오버레이를 결합한 운용 엔진을 만들고, 백테스트와 라이브 운용 흐름을 동일한 데이터 기준으로 검증했습니다. 전략 산출물은 주문 실행 인프라로 위임해 실제 계좌 운용까지 연결했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>성과 측정</strong></td>
+        <td>1,600+ 계좌 라이브 운용 환경에서 적용되었고, 구독형 운용 상품 AUM 50억+ 및 서비스 매출 40% 기여로 이어졌습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>회고 및 개선</strong></td>
+        <td>단기 수익률이 높은 전략보다 사용자가 이해하고 지속 운용할 수 있는 설명 가능성, 리스크 안정성, 라이브 재현성이 더 중요하다고 판단했습니다. 이후 운용 데이터 기반으로 자산군 상관구조, 성과 기여도, 리스크 기여도를 분석하며 자산 구성과 상품 구조를 점진 개선했습니다.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-h">문제 해결 방법론 — 금융 가설을 시스템 모듈로 변환</div>
+  <ul class="blist">
+    <li><span class="bullet">→</span><span><strong>H1. 시장 상태 조건부 성과</strong> — 자산의 기대수익은 무조건부 평균이 아니라 성장·인플레 국면에 따라 다른 조건부 분포로 나타난다고 가정했습니다. 이를 Regime Detector 모듈로 분리해 포트폴리오 가중치의 입력으로 사용했습니다.</span></li>
+    <li><span class="bullet">→</span><span><strong>H2. 자본 비중 균등 ≠ 리스크 균등</strong> — 동일 자본 비중이라도 변동성과 상관구조에 따라 자산별 리스크 기여도가 크게 달라집니다. 따라서 자산군 간 리스크 예산을 먼저 맞추고, 자산군 내부에서는 효율성 신호로 tilt하는 2단계 배분 구조를 채택했습니다.</span></li>
+    <li><span class="bullet">→</span><span><strong>H3. 최적화 품질은 입력 행렬 품질에 종속</strong> — 자산 수 대비 관측 기간이 제한된 환경에서는 공분산 행렬이 노이즈에 민감합니다. EWM·Shrinkage·RMT·PD 보정을 거치는 입력 전처리 파이프라인을 별도 모듈로 두었습니다.</span></li>
+    <li><span class="bullet">→</span><span><strong>H4. 상시 헤지보다 조건부 노출 축소</strong> — 전 기간 헤지는 비용 누적 문제가 있어, 꼬리 위험 임계 초과 시에만 노출을 낮추는 risk overlay를 적용했습니다.</span></li>
+    <li><span class="bullet">→</span><span><strong>H5. 데이터 최적해와 전략적 prior 결합</strong> — 단일 표본의 극단 비중을 완화하기 위해 데이터 기반 산출값과 전략적 사전을 볼록결합해 실서비스에서 설명 가능한 비중 변화를 유도했습니다.</span></li>
+  </ul>
+
+  <div class="sub-h">아키텍처 — 전략 엔진과 실행 시스템의 경계 분리</div>
+  <div class="arch-diagram">
+    <svg viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
+      <defs>
+        <marker id="arrP" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0 0 L6 3 L0 6" fill="none" stroke="#ADB5BD" stroke-width="1"/>
+        </marker>
+      </defs>
+
+      <text x="10" y="22" font-size="10" font-weight="700" fill="#6B7684" letter-spacing="1">POINT-IN-TIME DATA</text>
+      <rect x="10" y="34" width="800" height="42" rx="4" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <text x="30" y="59" font-size="9" fill="#191F28">가격 · 수정주가 · 거시지표 · VIX · 실질금리 · 장단기 금리차</text>
+      <text x="520" y="59" font-size="8.5" fill="#6B7684">release date 기준 available-at 처리</text>
+
+      <text x="10" y="108" font-size="10" font-weight="700" fill="#0064FF" letter-spacing="1">STRATEGY ENGINE</text>
+      <rect x="10" y="120" width="800" height="92" rx="6" fill="#EBF3FF" stroke="#C5DBFF"/>
+      <rect x="24" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="98" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Regime Detector</text>
+      <text x="98" y="173" text-anchor="middle" font-size="8" fill="#6B7684">성장·인플레 축</text>
+      <rect x="184" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="258" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Covariance Pipeline</text>
+      <text x="258" y="173" text-anchor="middle" font-size="8" fill="#6B7684">EWM · LW · RMT · PD</text>
+      <rect x="344" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="418" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Risk Budgeting</text>
+      <text x="418" y="173" text-anchor="middle" font-size="8" fill="#6B7684">Inter/Intra Class</text>
+      <rect x="504" y="140" width="148" height="50" rx="4" fill="#FFF8E6" stroke="#F0D88C"/>
+      <text x="578" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#D97706">Prior Anchor</text>
+      <text x="578" y="173" text-anchor="middle" font-size="8" fill="#6B7684">전략적 사전 결합</text>
+      <rect x="664" y="140" width="124" height="50" rx="4" fill="#FFF8E6" stroke="#F0D88C"/>
+      <text x="726" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#D97706">Risk Overlay</text>
+      <text x="726" y="173" text-anchor="middle" font-size="8" fill="#6B7684">조건부 노출 축소</text>
+      <path d="M410 76 L410 116" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+      <path d="M172 165 L184 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+      <path d="M332 165 L344 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+      <path d="M492 165 L504 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+      <path d="M652 165 L664 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+
+      <text x="10" y="252" font-size="10" font-weight="700" fill="#00835F" letter-spacing="1">VALIDATION · PRODUCTIZATION · EXECUTION BOUNDARY</text>
+      <rect x="10" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="135" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Backtest / Live Consistency</text>
+      <text x="135" y="304" text-anchor="middle" font-size="8" fill="#6B7684">동일 시그널 함수 · t+1 체결 · 상태 분리</text>
+      <rect x="285" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="410" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Subscription Product</text>
+      <text x="410" y="304" text-anchor="middle" font-size="8" fill="#6B7684">3-클릭 운용 UX · 전략 라인업 패키징</text>
+      <rect x="560" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="685" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Execution Delegation</text>
+      <text x="685" y="304" text-anchor="middle" font-size="8" fill="#6B7684">Project 02 주문 실행 계층으로 위임</text>
+      <path d="M410 212 L410 262" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+    </svg>
+    <div class="arch-caption">전략 엔진은 비중 산출·검증·리스크 제어에 집중하고, 실제 주문 side effect는 Project 02 실행 계층으로 위임해 책임 경계를 분리했습니다.</div>
+  </div>
+
+  <div class="sub-h">핵심 설계 판단</div>
+  <div class="decision-box">
+    <div class="decision-label">해석 가능한 레짐 감지 — 서비스 신뢰성 우선</div>
+    <div class="decision-body">
+      HMM·GMM 같은 비지도 방식은 연구 단계에서 유용하지만, 출력 클러스터에 경제적 의미를 사후 부여해야 합니다. 사용자가 이해할 수 있는 운용 상품에서는 설명 가능성이 중요하므로, 성장·인플레 축을 설계 단계에서 직접 반영한 규칙 기반 레짐 감지를 우선 적용했습니다. 이는 투자 설명, 운영 모니터링, 파라미터 변경 승인 과정에서 모두 재사용 가능한 의사결정 언어를 제공합니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">공분산 입력 품질 — 4단계 전처리</div>
+    <div class="decision-body">
+      최적화 알고리즘 자체보다 입력 행렬의 품질이 최종 비중 안정성에 더 큰 영향을 준다고 판단했습니다. 최근성 반영을 위한 EWM, 표본 불안정성 완화를 위한 Ledoit-Wolf shrinkage, 무작위 행렬 이론 기반 노이즈 제거, 솔버 조건을 만족시키는 positive definite 보정을 순차 적용했습니다. 각 단계는 서로 다른 문제를 해결하도록 분리되어, 입력 추정 방식만 교체해도 전체 엔진은 유지됩니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">리스크 예산 — 자산군 간 균형과 내부 효율성 분리</div>
+    <div class="decision-body">
+      자산군 간에는 리스크 기여도를 기준으로 균형을 맞추고, 자산군 내부에서는 Sharpe·모멘텀·상관 구조를 반영해 효율성이 높은 자산으로 일부 tilt했습니다. 이 구조는 1/N 자본 배분의 단순함과 평균-분산 최적화의 과민성을 모두 피하면서, 상품 설명 가능성과 실전 운용 안정성을 동시에 확보하기 위한 절충입니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">백테스트↔라이브 정합성 — 상태 3계층 분리</div>
+    <div class="decision-body">
+      최신 최적화 산출물, 직전 승인 비중, 실제 포지션 상태를 분리해 저장했습니다. 매일 최적화는 수행하되, 직전 승인 비중 대비 편차가 임계값 이하이면 리밸런싱을 보류하는 deadband를 두어 turnover를 관리했습니다. 외부 지표는 발표일 기준으로 available-at 시점을 맞췄고, 시그널 생성 후 다음 거래일 체결 원칙을 적용해 시뮬레이션과 라이브의 데이터 흐름을 일치시켰습니다.
+    </div>
+  </div>
+
+  <div class="sub-h">성과와 실서비스 연결</div>
+  <table class="data-table">
+    <thead>
+      <tr><th>항목</th><th>구현 내용</th><th>비즈니스/운영 효과</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>상품화</strong></td>
+        <td>기관형 자산배분 프레임워크를 3-클릭 구독형 운용 상품으로 재구성</td>
+        <td class="new">복잡한 전략 설정 과정을 낮춰 실제 운용 전환 경로를 단순화</td>
+      </tr>
+      <tr>
+        <td><strong>운용 규모</strong></td>
+        <td>1,600+ 계좌 운용 인프라 내 라이브 적용 · AUM 50억+</td>
+        <td class="new">도메인 가설이 연구 코드가 아니라 매출 가능한 실서비스 상품으로 연결</td>
+      </tr>
+      <tr>
+        <td><strong>데이터 기반 개선</strong></td>
+        <td>자산 유니버스, 리스크 예산, 리밸런싱 deadband를 운용 데이터 기반으로 조정</td>
+        <td>시장 국면·자산 상관구조 변화에 대응 가능한 제품 운영 체계 확보</td>
+      </tr>
+      <tr>
+        <td><strong>실행 경계</strong></td>
+        <td>전략 엔진은 비중 산출에 집중하고 주문 실행은 Project 02 시스템으로 위임</td>
+        <td>전략 변경과 주문 인프라 변경의 영향 범위를 분리</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight-box">
+    <strong>포트폴리오에서의 의미:</strong> 이 프로젝트는 금융 도메인 이해, 사용자 문제 정의, 통계적 가설 설정, 데이터 기반 검증, 제품화, 라이브 운용까지 연결한 사례입니다. 단순 백엔드 구현이 아니라 <strong>도메인 문제를 제품 구조와 운영 가능한 시스템 설계로 연결</strong>한 점이 핵심 경쟁력입니다.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PROJECT 02 — 분산 주문 실행 인프라
+     ═══════════════════════════════════════════════════════ -->
+<div class="project-section">
+  <div class="proj-num">PROJECT 02</div>
+  <div class="proj-title">분산 주문 실행 인프라 — 전략 및 모델 서빙, 주문 집행 엔진 설계·운영, Rust 마이그레이션</div>
+  <div class="proj-subtitle">STOA Investment · 2023 – 현재 · 전략·모델 서빙, 실행 계층 설계·구현·운영·고도화 주도</div>
   <div class="proj-tags">
     <span class="tag">Python</span><span class="tag">Rust</span><span class="tag">RabbitMQ</span><span class="tag">Celery</span><span class="tag">tokio</span>
     <span class="tag">sqlx</span><span class="tag">XGBoost · LightGBM</span><span class="tag">pytest</span>
@@ -162,6 +343,32 @@ code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:v
     <span class="kpi-chip">6개 거래소/증권사 연동</span>
     <span class="kpi-chip">관측 메시지 유실 0건</span>
   </div>
+
+  <div class="sub-h">문제 해결 관점 — 실행 신뢰성과 확장성 확보</div>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td><strong>문제</strong></td>
+        <td>계좌 수가 증가하면서 시그널 생성, 계좌별 주문 판단, 외부 거래 채널 연동, 주문·체결 상태 기록이 같은 실행 흐름에 묶여 확장성과 장애 격리성이 약해졌습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>설계 판단</strong></td>
+        <td>시그널 생성은 stateless하게 유지하고, 주문 side effect와 계좌 상태는 execution layer에서만 관리하도록 경계를 분리했습니다. 이를 통해 전략 추가, 계좌 확장, 거래소 연동을 실행 계층의 재설계 없이 처리할 수 있다고 판단했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>구현</strong></td>
+        <td>RabbitMQ 기반 pub/sub 1:N 구조로 시그널을 fanout하고, manual ACK, DLQ, 시간 슬롯 멱등성, 계좌 단위 Bulkhead를 적용했습니다. 자산군별 실행 특성은 별도 정책으로 분리했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>운영 성과</strong></td>
+        <td>1,600+ 계좌, 6개 외부 거래 채널 기준으로 운용되었고, 주문 집행 영역에서 운영 로그 기준 관측 메시지 유실 0건, 월평균 거래대금 약 5천억 규모를 처리했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>개선</strong></td>
+        <td>초기 Python 실행 계층은 빠른 제품화에는 유리했지만, 고빈도 코인 주문 영역에서는 런타임 일관성, 메모리, 배포 이미지 크기 문제가 커졌습니다. 이후 Rust 기반 실행 계층을 Strangler Fig 방식으로 점진 전환해 운영 비용과 타입 안정성을 개선했습니다.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="sub-h">아키텍처 — Signal Layer와 Execution Layer 분리</div>
   <div class="arch-diagram">
@@ -296,13 +503,15 @@ code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:v
   </div>
 </div>
 
+
+
 <!-- ═══════════════════════════════════════════════════════
-     PROJECT 02 — 데이터 파이프라인 · Airflow 현대화
+     PROJECT 03 — 데이터 파이프라인
      ═══════════════════════════════════════════════════════ -->
 <div class="project-section">
-  <div class="proj-num">PROJECT 02</div>
-  <div class="proj-title">데이터 파이프라인 · Airflow 현대화 — 레거시 통합 및 운영 표준화</div>
-  <div class="proj-subtitle">STOA Investment · 2026.03 프로덕션 전환 · 설계·구현·전환 전담</div>
+  <div class="proj-num">PROJECT 03</div>
+  <div class="proj-title">데이터 파이프라인 — 데이터 플랫폼 확장을 위한 수집·적재 파이프라인 현대화</div>
+  <div class="proj-subtitle">STOA Investment · 2026.03 프로덕션 전환 · 데이터 수집·적재·품질 검증·전환 전담</div>
   <div class="proj-tags">
     <span class="tag">Apache Airflow</span><span class="tag">SQLAlchemy</span>
     <span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
@@ -318,6 +527,32 @@ code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:v
   <p class="body-text">
     이를 Airflow 기반 데이터 플랫폼으로 통합하면서, 단순 배치 스크립트를 <strong>DAG 기반 오케스트레이션 · 중앙화된 DB 세션 관리 · 스토리지 추상화 · 데이터 품질 게이트</strong>로 재구성했습니다. 목표는 특정 배치를 고치는 것이 아니라, 향후 데이터 마켓·피처 스토어로 확장 가능한 표준 실행 계층을 만드는 것이었습니다.
   </p>
+
+  <div class="sub-h">문제 해결 관점 — 데이터 플랫폼 확장 기반 구축</div>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td><strong>문제</strong></td>
+        <td>실시간 데이터와 외부 API 기반 정형 데이터 수집·적재 로직이 레거시 코드에 분산되어 있어, 신규 데이터 소스 추가, 백필, 품질 검증, 스토리지 전환이 매번 높은 운영 비용을 만들었습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>구조적 판단</strong></td>
+        <td>수집·검증·저장·메타데이터 추적 책임을 공통 실행 계층으로 분리하면, 데이터 소스가 늘어나도 재현 가능한 방식으로 운영할 수 있고 추후 피처 스토어/데이터 마켓 확장 기반을 만들 수 있다고 판단했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>실행 설계</strong></td>
+        <td>Airflow DAG, Sensor, TaskGroup, SQLAlchemy 세션 팩토리, Storage Adapter, Data Quality Gate를 도입해 외부 API 수집 → 정제 → 적재 → 검증 → 산출물 추적 흐름을 표준화했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>운영 성과</strong></td>
+        <td>프로덕션 전환 후 레거시 파이프라인 2종을 폐기했고, 데이터 품질 게이트, 백필 경로, 스토리지 전환 기준을 공통화했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>확장 방향</strong></td>
+        <td>단순히 Airflow로 이관하는 것보다 데이터 소스·실행 시각·산출물 위치·검증 결과를 메타데이터로 남기는 구조를 우선했습니다. 이를 기반으로 추후 데이터 마켓/피처 스토어로 확장 가능한 실행 표준을 마련했습니다.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="sub-h">Before / After 아키텍처</div>
   <div class="arch-diagram">
@@ -411,159 +646,6 @@ code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:v
   </table>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════
-     PROJECT 03 — 액티브 포트폴리오 운용 시스템
-     ═══════════════════════════════════════════════════════ -->
-<div class="project-section">
-  <div class="proj-num">PROJECT 03</div>
-  <div class="proj-title">액티브 포트폴리오 운용 시스템 — 전략 엔진·백테스팅·라이브 운용 파이프라인</div>
-  <div class="proj-subtitle">STOA Investment · 2024 – 현재 · 서비스 기획·전략 엔진·시뮬레이션·라이브 운용 전담</div>
-  <div class="proj-tags">
-    <span class="tag">Portfolio Engine</span><span class="tag">Regime Detection</span>
-    <span class="tag">Risk Budgeting</span><span class="tag">Tail Risk Overlay</span>
-    <span class="tag">Point-in-Time Data</span><span class="tag">Live Trading</span>
-  </div>
-
-  <hr class="section-divider">
-
-  <div class="sub-h">비즈니스 문제 — 복잡한 운용 전략을 매출 가능한 상품으로 전환</div>
-  <p class="body-text">
-    B2C 핀테크 플랫폼의 핵심 병목은 전략의 부재가 아니라 <strong>사용자가 전략을 이해하고 설정하기까지의 학습 비용</strong>이었습니다. 라이트 유저는 자산군 선택, 리밸런싱, 리스크 조절, 시장 국면 해석을 직접 수행하기 어렵고, 그 결과 서비스 탐색 후 실제 운용 전환까지 이어지는 비율이 낮아집니다. 이 문제를 해결하기 위해 기관형 자산배분 프레임워크를 <strong>3-클릭 구독형 운용 상품</strong>으로 재구성했습니다.
-  </p>
-  <p class="body-text">
-    이 프로젝트의 핵심은 단순히 백테스트 수익률을 높이는 것이 아니라, <strong>도메인 가설 → 데이터 검증 → 포트폴리오 산출 → 리스크 오버레이 → 주문 위임 → 라이브 모니터링</strong>까지 이어지는 제품형 운용 엔진을 만드는 것이었습니다. 결과적으로 1,600+ 계좌 운용 인프라 내에서 라이브 적용되었고, 구독형 운용 상품의 AUM 50억+ 달성에 기여했습니다.
-  </p>
-
-  <div class="kpi-row">
-    <span class="kpi-chip highlight">1,600+ 계좌 운용 인프라 내 라이브 적용</span>
-    <span class="kpi-chip highlight">AUM 50억+</span>
-    <span class="kpi-chip">3-클릭 구독형 운용 UX</span>
-    <span class="kpi-chip">시뮬레이션 4.15y · 라이브 1.36y 정합 검증</span>
-  </div>
-
-  <div class="sub-h">문제 해결 방법론 — 금융 가설을 시스템 모듈로 변환</div>
-  <ul class="blist">
-    <li><span class="bullet">→</span><span><strong>H1. 시장 상태 조건부 성과</strong> — 자산의 기대수익은 무조건부 평균이 아니라 성장·인플레 국면에 따라 다른 조건부 분포로 나타난다고 가정했습니다. 이를 Regime Detector 모듈로 분리해 포트폴리오 가중치의 입력으로 사용했습니다.</span></li>
-    <li><span class="bullet">→</span><span><strong>H2. 자본 비중 균등 ≠ 리스크 균등</strong> — 동일 자본 비중이라도 변동성과 상관구조에 따라 자산별 리스크 기여도가 크게 달라집니다. 따라서 자산군 간 리스크 예산을 먼저 맞추고, 자산군 내부에서는 효율성 신호로 tilt하는 2단계 배분 구조를 채택했습니다.</span></li>
-    <li><span class="bullet">→</span><span><strong>H3. 최적화 품질은 입력 행렬 품질에 종속</strong> — 자산 수 대비 관측 기간이 제한된 환경에서는 공분산 행렬이 노이즈에 민감합니다. EWM·Shrinkage·RMT·PD 보정을 거치는 입력 전처리 파이프라인을 별도 모듈로 두었습니다.</span></li>
-    <li><span class="bullet">→</span><span><strong>H4. 상시 헤지보다 조건부 노출 축소</strong> — 전 기간 헤지는 비용 누적 문제가 있어, 꼬리 위험 임계 초과 시에만 노출을 낮추는 risk overlay를 적용했습니다.</span></li>
-    <li><span class="bullet">→</span><span><strong>H5. 데이터 최적해와 전략적 prior 결합</strong> — 단일 표본의 극단 비중을 완화하기 위해 데이터 기반 산출값과 전략적 사전을 볼록결합해 실서비스에서 설명 가능한 비중 변화를 유도했습니다.</span></li>
-  </ul>
-
-  <div class="sub-h">아키텍처 — 전략 엔진과 실행 시스템의 경계 분리</div>
-  <div class="arch-diagram">
-    <svg viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
-      <defs>
-        <marker id="arrP" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-          <path d="M0 0 L6 3 L0 6" fill="none" stroke="#ADB5BD" stroke-width="1"/>
-        </marker>
-      </defs>
-
-      <text x="10" y="22" font-size="10" font-weight="700" fill="#6B7684" letter-spacing="1">POINT-IN-TIME DATA</text>
-      <rect x="10" y="34" width="800" height="42" rx="4" fill="#F9FAFB" stroke="#E5E8EB"/>
-      <text x="30" y="59" font-size="9" fill="#191F28">가격 · 수정주가 · 거시지표 · VIX · 실질금리 · 장단기 금리차</text>
-      <text x="520" y="59" font-size="8.5" fill="#6B7684">release date 기준 available-at 처리</text>
-
-      <text x="10" y="108" font-size="10" font-weight="700" fill="#0064FF" letter-spacing="1">STRATEGY ENGINE</text>
-      <rect x="10" y="120" width="800" height="92" rx="6" fill="#EBF3FF" stroke="#C5DBFF"/>
-      <rect x="24" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
-      <text x="98" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Regime Detector</text>
-      <text x="98" y="173" text-anchor="middle" font-size="8" fill="#6B7684">성장·인플레 축</text>
-      <rect x="184" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
-      <text x="258" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Covariance Pipeline</text>
-      <text x="258" y="173" text-anchor="middle" font-size="8" fill="#6B7684">EWM · LW · RMT · PD</text>
-      <rect x="344" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
-      <text x="418" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Risk Budgeting</text>
-      <text x="418" y="173" text-anchor="middle" font-size="8" fill="#6B7684">Inter/Intra Class</text>
-      <rect x="504" y="140" width="148" height="50" rx="4" fill="#FFF8E6" stroke="#F0D88C"/>
-      <text x="578" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#D97706">Prior Anchor</text>
-      <text x="578" y="173" text-anchor="middle" font-size="8" fill="#6B7684">전략적 사전 결합</text>
-      <rect x="664" y="140" width="124" height="50" rx="4" fill="#FFF8E6" stroke="#F0D88C"/>
-      <text x="726" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#D97706">Risk Overlay</text>
-      <text x="726" y="173" text-anchor="middle" font-size="8" fill="#6B7684">조건부 노출 축소</text>
-      <path d="M410 76 L410 116" stroke="#ADB5BD" marker-end="url(#arrP)"/>
-      <path d="M172 165 L184 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
-      <path d="M332 165 L344 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
-      <path d="M492 165 L504 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
-      <path d="M652 165 L664 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
-
-      <text x="10" y="252" font-size="10" font-weight="700" fill="#00835F" letter-spacing="1">VALIDATION · PRODUCTIZATION · EXECUTION BOUNDARY</text>
-      <rect x="10" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
-      <text x="135" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Backtest / Live Consistency</text>
-      <text x="135" y="304" text-anchor="middle" font-size="8" fill="#6B7684">동일 시그널 함수 · t+1 체결 · 상태 분리</text>
-      <rect x="285" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
-      <text x="410" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Subscription Product</text>
-      <text x="410" y="304" text-anchor="middle" font-size="8" fill="#6B7684">3-클릭 운용 UX · 전략 라인업 패키징</text>
-      <rect x="560" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
-      <text x="685" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Execution Delegation</text>
-      <text x="685" y="304" text-anchor="middle" font-size="8" fill="#6B7684">Project 01 주문 실행 계층으로 위임</text>
-      <path d="M410 212 L410 262" stroke="#ADB5BD" marker-end="url(#arrP)"/>
-    </svg>
-    <div class="arch-caption">전략 엔진은 비중 산출·검증·리스크 제어에 집중하고, 실제 주문 side effect는 Project 01 실행 계층으로 위임해 책임 경계를 분리했습니다.</div>
-  </div>
-
-  <div class="sub-h">핵심 설계 판단</div>
-  <div class="decision-box">
-    <div class="decision-label">해석 가능한 레짐 감지 — 서비스 신뢰성 우선</div>
-    <div class="decision-body">
-      HMM·GMM 같은 비지도 방식은 연구 단계에서 유용하지만, 출력 클러스터에 경제적 의미를 사후 부여해야 합니다. 사용자가 이해할 수 있는 운용 상품에서는 설명 가능성이 중요하므로, 성장·인플레 축을 설계 단계에서 직접 반영한 규칙 기반 레짐 감지를 우선 적용했습니다. 이는 투자 설명, 운영 모니터링, 파라미터 변경 승인 과정에서 모두 재사용 가능한 의사결정 언어를 제공합니다.
-    </div>
-  </div>
-
-  <div class="decision-box">
-    <div class="decision-label">공분산 입력 품질 — 4단계 전처리</div>
-    <div class="decision-body">
-      최적화 알고리즘 자체보다 입력 행렬의 품질이 최종 비중 안정성에 더 큰 영향을 준다고 판단했습니다. 최근성 반영을 위한 EWM, 표본 불안정성 완화를 위한 Ledoit-Wolf shrinkage, 무작위 행렬 이론 기반 노이즈 제거, 솔버 조건을 만족시키는 positive definite 보정을 순차 적용했습니다. 각 단계는 서로 다른 문제를 해결하도록 분리되어, 입력 추정 방식만 교체해도 전체 엔진은 유지됩니다.
-    </div>
-  </div>
-
-  <div class="decision-box">
-    <div class="decision-label">리스크 예산 — 자산군 간 균형과 내부 효율성 분리</div>
-    <div class="decision-body">
-      자산군 간에는 리스크 기여도를 기준으로 균형을 맞추고, 자산군 내부에서는 Sharpe·모멘텀·상관 구조를 반영해 효율성이 높은 자산으로 일부 tilt했습니다. 이 구조는 1/N 자본 배분의 단순함과 평균-분산 최적화의 과민성을 모두 피하면서, 상품 설명 가능성과 실전 운용 안정성을 동시에 확보하기 위한 절충입니다.
-    </div>
-  </div>
-
-  <div class="decision-box">
-    <div class="decision-label">백테스트↔라이브 정합성 — 상태 3계층 분리</div>
-    <div class="decision-body">
-      최신 최적화 산출물, 직전 승인 비중, 실제 포지션 상태를 분리해 저장했습니다. 매일 최적화는 수행하되, 직전 승인 비중 대비 편차가 임계값 이하이면 리밸런싱을 보류하는 deadband를 두어 turnover를 관리했습니다. 외부 지표는 발표일 기준으로 available-at 시점을 맞췄고, 시그널 생성 후 다음 거래일 체결 원칙을 적용해 시뮬레이션과 라이브의 데이터 흐름을 일치시켰습니다.
-    </div>
-  </div>
-
-  <div class="sub-h">성과와 실서비스 연결</div>
-  <table class="data-table">
-    <thead>
-      <tr><th>항목</th><th>구현 내용</th><th>비즈니스/운영 효과</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>상품화</strong></td>
-        <td>기관형 자산배분 프레임워크를 3-클릭 구독형 운용 상품으로 재구성</td>
-        <td class="new">복잡한 전략 설정 과정을 낮춰 실제 운용 전환 경로를 단순화</td>
-      </tr>
-      <tr>
-        <td><strong>운용 규모</strong></td>
-        <td>1,600+ 계좌 운용 인프라 내 라이브 적용 · AUM 50억+</td>
-        <td class="new">도메인 가설이 연구 코드가 아니라 매출 가능한 실서비스 상품으로 연결</td>
-      </tr>
-      <tr>
-        <td><strong>데이터 기반 개선</strong></td>
-        <td>자산 유니버스, 리스크 예산, 리밸런싱 deadband를 운용 데이터 기반으로 조정</td>
-        <td>시장 국면·자산 상관구조 변화에 대응 가능한 제품 운영 체계 확보</td>
-      </tr>
-      <tr>
-        <td><strong>실행 경계</strong></td>
-        <td>전략 엔진은 비중 산출에 집중하고 주문 실행은 Project 01 시스템으로 위임</td>
-        <td>전략 변경과 주문 인프라 변경의 영향 범위를 분리</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="insight-box">
-    <strong>포트폴리오에서의 의미:</strong> 이 프로젝트는 금융 도메인 이해, 통계적 가설 설정, 데이터 기반 검증, 제품화, 라이브 운용까지 연결한 사례입니다. 단순 백엔드 구현이 아니라 <strong>비즈니스 문제를 계량 가설과 운영 가능한 시스템 경계로 번역</strong>한 점이 핵심 경쟁력입니다.
-  </div>
-</div>
 
 </body>
 </html>

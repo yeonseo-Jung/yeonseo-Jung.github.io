@@ -48,10 +48,21 @@ em { font-style: italic; color: var(--text-sub); }
   padding-left: 16px; border-left: 2px solid var(--border2);
 }
 
-.role-cards { display: flex; flex-direction: column; gap: 6px; margin-top: 18px; }
-.role-card { display: flex; align-items: baseline; gap: 14px; font-size: 13.5px; line-height: 1.6; }
-.role-card-label { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; color: var(--text-muted); white-space: nowrap; min-width: 180px; }
-.role-card-text { color: var(--text-sub); }
+.growth-fit {
+  margin-top: 20px; padding: 18px 20px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--r2); background: var(--surface);
+}
+.growth-fit-label {
+  display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+}
+.growth-fit p {
+  font-size: 12.8px; line-height: 1.78; color: var(--text-sub); margin: 0 0 9px;
+}
+.growth-fit p:last-child { margin-bottom: 0; }
+
+.role-cards { display: flex; flex-direction: column; gap: 7px; margin-top: 18px; }
+.role-card { display: grid; grid-template-columns: 176px minmax(0, 1fr); align-items: start; gap: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); font-size: 12.8px; line-height: 1.55; }
+.role-card-label { font-size: 10.2px; font-weight: 700; letter-spacing: 0.35px; color: var(--accent); text-transform: uppercase; line-height: 1.35; overflow-wrap: anywhere; }
+.role-card-text { color: var(--text-sub); min-width: 0; }
 
 /* SECTIONS */
 section { padding-top: 40px; }
@@ -119,9 +130,14 @@ section { padding-top: 40px; }
   .title-line { font-size: 13px; }
   .contact-row { margin-top: 6px; gap: 12px; }
   .summary { margin: 8px 0; line-height: 1.55; font-size: 10.5px; }
-  .role-cards { margin: 10px 0; gap: 10px; }
-  .role-card { padding: 8px 10px; }
-  .role-card-text { font-size: 10px; line-height: 1.5; }
+
+  .growth-fit { margin: 8px 0 10px; padding: 8px 10px; page-break-inside: avoid; }
+  .growth-fit-label { font-size: 8.2px; margin-bottom: 4px; letter-spacing: 0.9px; }
+  .growth-fit p { font-size: 8.9px; line-height: 1.42; margin-bottom: 4px; }
+  .role-cards { margin: 10px 0; gap: 5px; }
+  .role-card { grid-template-columns: 140px minmax(0, 1fr); padding: 6px 8px; font-size: 9.7px; line-height: 1.42; }
+  .role-card-label { font-size: 8.3px; letter-spacing: 0.25px; line-height: 1.22; }
+  .role-card-text { font-size: 9.4px; line-height: 1.42; }
   .skills-layout { gap: 14px; margin-top: 6px; }
   .skill-row { padding: 3px 0; font-size: 10.5px; }
   .skill-group { padding: 8px; }
@@ -136,6 +152,7 @@ section { padding-top: 40px; }
   .proj-card { page-break-inside: avoid; margin-bottom: 14px; }
   .role-card { page-break-inside: avoid; }
   .summary { page-break-inside: avoid; }
+  .growth-fit { page-break-inside: avoid; }
   .blist > li { page-break-inside: avoid; }
   .tag-col > div { page-break-inside: avoid; }
   .skill-group { page-break-inside: avoid; }
@@ -147,7 +164,7 @@ section { padding-top: 40px; }
 <!-- ═══════════ HEADER ═══════════ -->
 <header>
   <div class="name">정연서</div>
-  <div class="title-line">Software Engineer</div>
+  <div class="title-line">Software Engineer · Backend · Distributed Systems · Data Platform · Product Impact</div>
 
   <div class="contact-row">
     <div class="contact-item">
@@ -178,22 +195,27 @@ section { padding-top: 40px; }
   </div>
 
   <div class="summary">
-    <strong>비즈니스 문제를 기술로 풀어 실질적 가치로 연결</strong>하는 데 집중하는 소프트웨어 엔지니어입니다. 분산 시스템을 중심으로 <strong>1,600+ 계좌가 동작하는 24/7 운용 환경</strong>에서 시스템 신뢰성·메시징·관측성·운영 자동화 구조를 설계·운영해왔으며, <strong>메시징 신뢰성 패턴 설계 · 점진적 언어 마이그레이션 · 레거시 아키텍처 재설계</strong> 같은 시스템 수준 의사결정을 직접 책임진 경험을 보유하고 있습니다.<br>
-    특정 스택에 종속되기보다 <strong>문제에 맞는 도구를 빠르게 검증하고 운영 환경에 적용 가능한 수준까지 내재화</strong>합니다. 설계 결정을 <strong>성능 · 안정성 · 비용 · 복잡도의 트레이드오프</strong>로 해석하며, 도메인이 바뀌어도 재사용 가능한 구조적 사고를 지향합니다.
+    <strong>복잡한 도메인 문제를 백엔드·데이터·분산 시스템으로 구조화하고, 실제 운영 가능한 서비스로 연결하는 Software Engineer</strong>입니다. 1,600+ 계좌가 동작하는 24/7 운용 환경에서 API 서버, 메시징 인프라, 데이터 파이프라인, 실행 엔진, 운영 자동화를 설계·운영했습니다.<br>
+    단순 기능 구현에 그치지 않고, 사용자 문제와 비즈니스 제약을 이해한 뒤 데이터 검증·시스템 설계·라이브 운영을 통해 <strong>1,600+ 계좌 라이브 운용, AUM 50억+, 서비스 매출 40% 기여</strong>로 연결했습니다.<br>
+    특정 스택에 종속되기보다 문제에 맞는 도구를 빠르게 학습하고 적용합니다. 설계 결정은 <strong>안정성, 성능, 비용, 확장성, 운영 복잡도</strong>의 트레이드오프로 판단합니다.
   </div>
 
   <div class="role-cards">
     <div class="role-card">
-      <span class="role-card-label">Problem-First Design</span>
-      <span class="role-card-text">도메인의 핵심 모델과 제약 조건을 먼저 정의한 뒤, 이를 시스템 경계와 데이터 흐름에 반영합니다.</span>
+      <span class="role-card-label">Domain-Driven Design</span>
+      <span class="role-card-text">도메인의 핵심 모델과 운영 제약을 먼저 이해하고, 이를 데이터 모델·시스템 경계·실행 흐름으로 구조화합니다.</span>
+    </div>
+    <div class="role-card">
+      <span class="role-card-label">Data-Informed Engineering</span>
+      <span class="role-card-text">직관이나 관성보다 데이터와 운영 지표를 우선합니다. 성과·리스크·비용·재현성을 함께 검증해 설계와 제품 판단에 반영합니다.</span>
+    </div>
+    <div class="role-card">
+      <span class="role-card-label">AI-Augmented Execution</span>
+      <span class="role-card-text">AI를 문제 정의, 코드 작성, 실험 설계, 문서화의 실행 레버리지로 활용해 학습과 검증 속도를 높입니다.</span>
     </div>
     <div class="role-card">
       <span class="role-card-label">End-to-End Ownership</span>
-      <span class="role-card-text">운영 중 발견한 비효율과 리스크를 개선 과제로 전환하고, 합의된 항목은 설계부터 배포까지 책임지고 추진합니다.</span>
-    </div>
-    <div class="role-card">
-      <span class="role-card-label">Evidence-Based Decision</span>
-      <span class="role-card-text">관성적으로 사용되던 로직도 데이터와 통계 검정으로 재평가하고, 유효성이 낮은 경우 제품 요구사항과 시스템 구조를 함께 재설계합니다.</span>
+      <span class="role-card-text">문제 정의에서 끝나지 않고, 백엔드 구현·데이터 파이프라인·운영 모니터링까지 연결해 실제로 동작하는 개선안으로 만듭니다.</span>
     </div>
   </div>
 </header>
@@ -209,10 +231,11 @@ section { padding-top: 40px; }
         <span class="sg-title">핵심 기술</span>
         <div class="skill-row"><span>Python</span><span class="skill-level expert">Expert</span></div>
         <div class="skill-row"><span>Rust</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>Apache Airflow</span><span class="skill-level advanced">Advanced</span></div>
         <div class="skill-row"><span>FastAPI / Django</span><span class="skill-level advanced">Advanced</span></div>
         <div class="skill-row"><span>RabbitMQ / Celery</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>MySQL / Redis</span><span class="skill-level advanced">Advanced</span></div>
+        <div class="skill-row"><span>SQL / MySQL</span><span class="skill-level advanced">Advanced</span></div>
+        <div class="skill-row"><span>Redis</span><span class="skill-level advanced">Advanced</span></div>
+        <div class="skill-row"><span>Apache Airflow</span><span class="skill-level advanced">Advanced</span></div>
         <div class="skill-row"><span>Docker / AWS</span><span class="skill-level advanced">Advanced</span></div>
       </div>
       <div class="skill-group">
@@ -220,41 +243,42 @@ section { padding-top: 40px; }
         <div class="edu-block">
           <div class="edu-school">서울시립대학교</div>
           <div class="edu-dept">신소재공학과 · 4학년 중퇴</div>
-          <div class="edu-supplement">실무 기반으로 분산 시스템 · 비동기 런타임 · 메시징 패턴 · DB · 시스템 설계를 지속 학습</div>
+          <div class="edu-supplement">실무 기반으로 백엔드 시스템 · 분산 실행 구조 · 데이터 플랫폼 · Rust 비동기 런타임을 지속 학습</div>
         </div>
       </div>
     </div>
     <div class="tag-col">
       <div>
-        <span class="tg-title">분산 시스템 · 메시징</span>
+        <span class="tg-title">Backend · API</span>
         <div class="tag-cloud">
-          <span class="tag">pub/sub · Fanout</span><span class="tag">DLQ · 멱등성</span>
-          <span class="tag">Bulkhead · Strangler Fig</span><span class="tag">Feature Flag · 점진 배포</span>
-          <span class="tag">서킷 브레이커 · 백프레셔</span>
+          <span class="tag">FastAPI</span><span class="tag">Django DRF</span>
+          <span class="tag">RESTful API</span><span class="tag">SQLAlchemy</span>
+          <span class="tag">asyncio</span><span class="tag">Connection Pool</span>
         </div>
       </div>
       <div>
-        <span class="tg-title">백엔드 · API</span>
+        <span class="tg-title">Distributed Systems · Messaging</span>
         <div class="tag-cloud">
-          <span class="tag">FastAPI</span><span class="tag">Django</span>
-          <span class="tag">Celery</span>
-          <span class="tag">RESTful API 설계</span>
+          <span class="tag">RabbitMQ / Celery</span><span class="tag">pub/sub · Fanout</span>
+          <span class="tag">manual ACK</span><span class="tag">DLQ · Idempotency</span>
+          <span class="tag">Bulkhead</span><span class="tag">Backpressure</span>
         </div>
       </div>
       <div>
-        <span class="tg-title">Rust 생태계</span>
+        <span class="tg-title">Rust Runtime · Migration</span>
         <div class="tag-cloud">
-          <span class="tag">tokio (async runtime)</span><span class="tag">axum (HTTP)</span>
-          <span class="tag">sqlx (async DB)</span><span class="tag">lapin (AMQP)</span>
-          <span class="tag">Cargo workspace</span>
+          <span class="tag">Rust · tokio</span><span class="tag">axum</span>
+          <span class="tag">sqlx</span><span class="tag">lapin</span>
+          <span class="tag">trait-based adapter</span><span class="tag">Strangler Fig</span>
         </div>
       </div>
       <div>
-        <span class="tg-title">DevOps · 관측성</span>
+        <span class="tg-title">Data Platform · Operations</span>
         <div class="tag-cloud">
-          <span class="tag">Docker Compose</span>
+          <span class="tag">Apache Airflow</span><span class="tag">Data Quality Gate</span>
+          <span class="tag">Metadata Tracking</span><span class="tag">Backfill</span>
+          <span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
           <span class="tag">Prometheus · Grafana</span>
-          <span class="tag">GitHub Actions</span>
         </div>
       </div>
     </div>
@@ -272,24 +296,26 @@ section { padding-top: 40px; }
       <span class="exp-company">STOA Investment (퀀터스)</span>
       <span class="exp-period">2023.01 – 현재 · 3년 5개월</span>
     </div>
-    <div class="exp-role">백엔드 · 데이터 파이프라인 · ML 엔지니어링 · 퀀트 시스템</div>
+    <div class="exp-role">백엔드 · 분산 시스템 · 데이터 플랫폼 · 상품화 시스템</div>
     <div class="exp-quote">
-      초기 멤버로 합류해 백엔드 · 데이터 파이프라인 · 인프라 · 배포 · 운영을 기획부터 고도화까지 전담으로 담당해왔습니다. 주요 프로젝트는 아래와 같고, 각각의 문제 정의와 해결 과정은 Core Projects와 포트폴리오에서 다룹니다.
+      초기 멤버로 합류해 제품 요구사항, 백엔드 API, 데이터 파이프라인, 분산 실행 인프라, 배포·운영 체계를 폭넓게 설계·고도화했습니다.<br>
+      주요 프로젝트는 <strong>도메인 문제 정의 → 데이터 검증 → 시스템 설계 → 라이브 운영 → 성능·비용 개선</strong>의 흐름으로 진행했습니다.
     </div>
     <ul class="blist">
-      <li class="priority"><span class="bullet">→</span><span><strong>분산 트레이딩 · 주문 집행 엔진 Zero-to-One 설계 · 운영</strong> — <strong>시그널 생성부와 집행부를 pub/sub 1:N 구조로 물리적 분리</strong>해 특정 계좌·외부 시스템 이슈가 전체 집행으로 확산되지 않는 구조를 확보. 메시징 신뢰성 패턴(DLQ 격리 · 시간 슬롯 멱등성 · Bulkhead) 직접 설계.<span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌</span><span class="result-badge">6개 외부 시스템 통합</span><span class="result-badge">24/7 운영 · 관측된 메시지 유실 0건</span><span class="result-badge">월평균 거래대금 5천억</span></span></span></li>
-      <li class="priority"><span class="bullet">→</span><span><strong>거래 실행 엔진 Python → Rust 점진 마이그레이션</strong> — 운영 중인 시스템의 <strong>GIL · 이벤트 루프 · 드라이버 호환성을 언어 수준에서 해소</strong>하기 위해 전담 마이그레이션. Strangler Fig + Feature Flag 기반 점진 전환으로 단계적 롤백 가능성을 확보. 메모리·이미지·LOC 모두 실측 검증. (상세: Core Project 2)<span style="display:block;margin-top:6px"><span class="result-badge">메모리 -95% (4.3GB → 193MB)</span><span class="result-badge">이미지 -87% (1.2GB → 160MB)</span><span class="result-badge">트레이딩 핵심 LOC -53%</span></span></span></li>
-      <li><span class="bullet">→</span><span><strong>자산배분형 액티브 포트폴리오 상품화 · 운용 엔진 전담 설계</strong> — 투자 경험이 낮은 유저도 기관형 자산배분 전략을 쉽게 선택·구독할 수 있도록, <strong>비즈니스 문제(학습 곡선·전략 선택 부담)를 운용 가능한 상품 구조와 시스템으로 전환</strong>.<span style="display:block;margin-top:5px">· 거시 레짐 · 공분산 전처리 · 리스크 예산 · 꼬리 위험 오버레이를 결합해 전략 엔진을 구성하고, 백테스트↔라이브 정합성 검증으로 실서비스 적용 가능성을 확인</span><span style="display:block;margin-top:3px">· 자산 구성 정제와 신규 자산군 편입은 운용 데이터, 상관구조, 성과 기여도, 리스크 기여도 분석을 기반으로 점진 반영</span><span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌 라이브 운용</span><span class="result-badge">AUM 50억+</span><span class="result-badge">서비스 매출 40% 기여</span></span></span></li>
-      <li><span class="bullet">→</span><span><strong>다중 전략 라인업 개발·운용</strong> — 동일한 시뮬레이션·라이브 인프라 위에 입력 신호와 자산 구성이 서로 다른 전략들을 시리즈로 확장.<span style="display:block;margin-top:5px">· <strong>추세 신호 기반 비중 조절 전략군</strong>(지수·섹터·개별주 13종) · <strong>자산 페어 간 동적 비중 스위칭 전략</strong>(2종) 추가 운용</span><span style="display:block;margin-top:3px">· 각 전략은 가설 정의 → 하이퍼파라미터 walk-forward 최적화 → out-of-sample 일반화 검증 → 라이브 진입의 동일한 파이프라인을 통해 출시</span></span></li>
-      <li><span class="bullet">→</span><span><strong>레거시 데이터 파이프라인 Airflow 기반 현대화</strong> — 3년간 직접 유지보수하며 누적된 구조적 한계(오케스트레이션 · 의존성 관리 · 관측성 · 관심사 분리)를 아키텍처 차원에서 진단하고 <strong>Airflow 기반 통합 플랫폼으로 전담 재설계</strong>. 금융 도메인 특수성(거래 세션 · 외부 API 제약)을 스케줄링 계층에 명시 반영하고, 단계적 전환 후 레거시 2종을 완전 폐기.</span></li>
-      <li><span class="bullet">→</span><span><strong>Django · FastAPI 기반 백엔드 서버 개발 및 운영</strong> — 핀테크 플랫폼의 RESTful API 서버를 전담 설계·구현·운영.<span style="display:block;margin-top:5px">· <strong>동기·비동기 워크로드를 명세별로 분리</strong> — Django DRF로 동기 처리 / FastAPI + asyncio로 비동기 처리를 담당시키고, Celery 기반 백그라운드 잡 큐와 SQLAlchemy 커넥션 풀을 표준화</span><span style="display:block;margin-top:3px">· 고부하 환경에서의 <strong>안정성 · 관측성 · 롤백 가능성</strong>을 갖춘 운영 체계 확립</span></span></li>
+      <li class="priority"><span class="bullet">→</span><span><strong>구독형 운용 상품 전환 프로젝트</strong> — 전략 선택과 운용 설정에서 이탈하는 사용자의 문제를 정의하고, 기관형 자산배분 프레임워크를 <strong>3-클릭 구독형 상품</strong>으로 재구성. 운용 데이터, 상관구조, 성과·리스크 기여도 분석으로 가설을 검증하고, 전략 엔진·백테스트·라이브 운용·주문 실행 위임까지 이어지는 제품형 시스템을 설계.<span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌 라이브 운용</span><span class="result-badge">AUM 50억+</span><span class="result-badge">서비스 매출 40% 기여</span></span></span></li>
+      <li class="priority"><span class="bullet">→</span><span><strong>가설 기반 상품 라인업 확장 시스템 구축</strong> — 동일한 시뮬레이션·라이브 인프라 위에서 서로 다른 자산군과 입력 신호를 가진 전략 상품군을 확장. 각 전략은 <strong>문제 가설 정의 → 데이터 검증 → 파라미터 탐색 → out-of-sample 검증 → 라이브 진입</strong>의 동일한 실험·출시 파이프라인을 거쳐 운영화.<span style="display:block;margin-top:5px">· 추세 신호 기반 전략군 13종, 자산 페어 동적 비중 스위칭 전략 2종 추가 운용</span></span></li>
+      <li><span class="bullet">→</span><span><strong>분산 주문 실행 인프라 Zero-to-One 설계·운영</strong> — 시그널 생성부와 주문 집행부를 pub/sub 1:N 구조로 분리하고, 다수 계좌와 외부 거래 채널에 안정적으로 주문 신호를 전달하는 실행 계층을 구축. DLQ, manual ACK, 시간 슬롯 멱등성, 계좌 단위 Bulkhead를 적용해 특정 계좌·외부 시스템 장애가 전체 운영으로 확산되지 않도록 설계.<span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌</span><span class="result-badge">6개 외부 시스템 통합</span><span class="result-badge">24/7 운영 · 관측 메시지 유실 0건</span><span class="result-badge">월평균 거래대금 5천억</span></span></span></li>
+      <li><span class="bullet">→</span><span><strong>데이터 플랫폼 확장을 위한 수집·적재 파이프라인 현대화</strong> — 실시간 데이터와 외부 API 기반 정형 데이터 수집·적재 로직이 레거시 코드에 분산되어 있던 구조를 Airflow 기반 실행 계층으로 재설계. DAG, Sensor, TaskGroup, SQLAlchemy, Storage Adapter, Data Quality Gate를 통해 수집·검증·저장·메타데이터 추적 책임을 분리하고, 추후 피처 스토어·데이터 마켓으로 확장 가능한 기반을 마련.</span></li>
+      <li><span class="bullet">→</span><span><strong>Django · FastAPI 기반 API 서버 설계·운영</strong> — 사용자 계정, 전략 설정, 실행 요청, 성과 조회 등 서비스 핵심 기능을 제공하는 RESTful API 서버를 설계·운영.<span style="display:block;margin-top:5px">· Django DRF는 동기 요청, FastAPI + asyncio + Celery는 비동기·고부하 작업으로 분리하고, SQLAlchemy 커넥션 풀과 백그라운드 잡 큐를 표준화해 API 처리 안정성과 운영 관측성을 개선</span></span></li>
+      <li><span class="bullet">→</span><span><strong>운영 비용과 확장성을 개선한 실행 계층 전환</strong> — 라이브 실행 시스템의 메모리 사용량, 배포 이미지 크기, 이벤트 루프 복잡도, 드라이버 호환성 문제를 Rust 기반 실행 계층으로 점진 전환. Strangler Fig + Feature Flag로 Python/Rust 공존과 롤백 가능성을 확보하고, 성능 개선을 실측 지표로 검증.<span style="display:block;margin-top:6px"><span class="result-badge">메모리 -95% (4.3GB → 193MB)</span><span class="result-badge">이미지 -87% (1.2GB → 160MB)</span><span class="result-badge">핵심 실행 LOC -53%</span></span></span></li>
     </ul>
     <div class="tag-row">
-      <span class="tag">Apache Airflow</span><span class="tag">SQLAlchemy</span>
-      <span class="tag">RabbitMQ · Celery</span><span class="tag">FastAPI</span>
-      <span class="tag">Rust · tokio · sqlx · lapin</span><span class="tag">Cargo workspace</span>
-      <span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
-      <span class="tag">ML 서빙 (학습→예측→재학습)</span>
+      <span class="tag">Python · SQL</span><span class="tag">System Design</span>
+      <span class="tag">Data Validation</span><span class="tag">Backtest / Live Consistency</span>
+      <span class="tag">FastAPI · Django</span><span class="tag">Apache Airflow</span>
+      <span class="tag">SQLAlchemy</span><span class="tag">RabbitMQ · Celery</span>
+      <span class="tag">Data Quality Gate</span><span class="tag">AWS S3 · Azure Blob</span>
+      <span class="tag">Rust · tokio</span>
     </div>
   </div>
 
@@ -300,10 +326,10 @@ section { padding-top: 40px; }
     </div>
     <div class="exp-role">데이터 엔지니어</div>
     <div class="exp-quote">
-      AI 기반 인플루언서 매칭 플랫폼에서 데이터 수집·정제·분석 전 과정의 자동화와 운영 도구를 구축했습니다.
+      AI 기반 인플루언서 매칭 플랫폼에서 데이터 수집·정제·분석 파이프라인을 자동화하고, 비개발자도 직접 실행·모니터링할 수 있는 운영 도구를 구축했습니다.
     </div>
     <ul class="blist">
-      <li><span class="bullet">→</span><span><strong>데이터 처리 파이프라인 전 과정 자동화</strong> — 라벨링·클렌징·수집·분석을 수동으로 분산 수행하던 업무의 병목을 분석한 뒤, 반복 가능한 단계로 분해해 Python 파이프라인으로 통합. <strong>4~5명 인력 → 1명</strong>으로 효율화<span class="result-badge">80% 인력 절감</span></span></li>
+      <li><span class="bullet">→</span><span><strong>운영 업무 자동화 및 내부 도구화</strong> — 라벨링·클렌징·수집·분석을 수동으로 분산 수행하던 업무를 반복 가능한 Python 파이프라인으로 통합하고, 실행 상태를 UI에서 확인할 수 있도록 도구화. <strong>4~5명 인력 → 1명</strong> 수준으로 운영 비용 절감<span class="result-badge">80% 인력 절감</span></span></li>
       <li><span class="bullet">→</span><span><strong>비개발자가 운영 가능한 구조로 인수인계</strong> — 개발자가 계속 붙어있어야 돌아가는 파이프라인은 장기적으로 실패한다고 보고, PyQt 기반 UI로 제어·상태·모니터링 기능을 감싸 분석가·운영팀이 직접 파이프라인을 쓰고 관리할 수 있게 만들었습니다.</span></li>
     </ul>
     <div class="tag-row">
@@ -319,46 +345,46 @@ section { padding-top: 40px; }
 <section id="projects">
   <span class="sec-label">Core Projects</span>
   <div class="exp-quote" style="border-left:none;padding-left:0;font-size:12.5px;margin-bottom:18px">
-    아래는 각 프로젝트의 핵심 요약입니다. <strong>아키텍처 다이어그램 · 대안 비교 트레이드오프 · 설계 결정 근거 · 운영 한계</strong> 등 상세 분석은 포트폴리오에서 다룹니다 → <a href="https://yeonseo-jung.github.io/portfolio/swe" style="font-weight:500">yeonseo-jung.github.io/portfolio/swe</a>
+    아래는 각 프로젝트의 핵심 요약입니다. <strong>아키텍처, 대안 비교, 설계 결정 근거, 운영 한계</strong> 등 상세 내용은 포트폴리오에서 다룹니다.
+    <span style="display:block;margin-top:6px"><a href="https://yeonseo-jung.github.io/portfolio/swe" target="_blank" style="text-decoration: underline; text-underline-offset: 2px;">포트폴리오 링크</a></span>
   </div>
 
   <div class="proj-card">
     <div class="proj-card-head">
-      <span class="proj-card-title">1. 분산 트레이딩 시스템 — Zero-to-One 구축 + Rust 마이그레이션</span>
-      <span class="proj-card-meta">STOA · 2023 – 현재 · 설계·구현·운영</span>
+      <span class="proj-card-title">1. 액티브 포트폴리오 상품화 시스템 — 전략 엔진·백테스팅·라이브 운영</span>
+      <span class="proj-card-meta">STOA · 2024 – 현재 · 문제 정의·설계·검증·운영</span>
     </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>계좌 수 증가로 시그널 생성과 주문 집행이 동일 프로세스에 묶이며 확장성과 격리성이 약해짐. 24/7 이벤트 매매 코인과 장 세션·리밸런싱 기반 주식을 동일 실행 모델로 처리하기 어려운 구조적 제약 존재</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>시그널 생성부와 주문 집행부를 pub/sub 1:N 구조로 물리적 분리</strong>.<span style="display:block;margin-top:5px">· RabbitMQ broadcast, DLQ, manual ACK, 시간 슬롯 멱등성, 계좌 단위 Bulkhead로 주문 side effect를 execution layer에 격리</span><span style="display:block;margin-top:3px">· 집행부는 <strong>코인 = 이벤트 기반 / 주식 = 요청 기반 TWAP</strong>으로 오케스트레이션 이원화하고, ML 서빙(학습 → 예측 → 재학습)을 시그널 파이프라인에 통합</span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 · 6개 거래소/증권사 · 24/7 운영 · 관측된 메시지 유실 0건</strong><span style="display:block;margin-top:3px">· 월평균 거래대금 약 5천억 규모 운용</span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">진화</span><span>GIL · 이벤트 루프 · 드라이버 호환성 등 Python 실행 계층의 한계를 줄이기 위해 거래 실행 엔진을 Rust 기반으로 점진 전환.<span style="display:block;margin-top:5px">· Strangler Fig + Feature Flag 기반 단계적 전환 / 13-crate Cargo workspace 설계 / <strong>거래소 어댑터 trait으로 4개 거래소 단일 계약 통일</strong></span><span style="display:block;margin-top:3px">· <strong>메모리 -95% · 이미지 -87% · 트레이딩 핵심 LOC -53%</strong> 실측</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>신규·라이트 유저는 전략 선택, 리밸런싱, 리스크 조절, 시장 국면 해석의 학습 비용이 높아 실제 운용 전환까지 이어지기 어려움.</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>기관형 자산배분 프레임워크를 3-클릭 구독형 상품으로 재구성</strong>하고, 가설 검증 → 포트폴리오 산출 → 리스크 오버레이 → 주문 실행 위임 → 라이브 모니터링으로 이어지는 제품형 운용 시스템 설계.<span style="display:block;margin-top:5px">· 운용 데이터 기반으로 자산군 상관구조, 성과 기여도, 리스크 기여도를 분석하며 자산 구성과 상품 구조를 점진 개선</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 라이브 운용 · AUM 50억+ · 서비스 매출 40% 기여</strong><span style="display:block;margin-top:5px">· 가설을 실서비스 상품과 수익 모델로 연결하고, 백테스트↔라이브 정합성 검증을 통해 운영 가능성을 확인</span></span></div>
     <div class="proj-card-tags">
-      <span class="tag">RabbitMQ</span><span class="tag">FastAPI · Celery</span><span class="tag">asyncio</span><span class="tag">Rust · tokio · sqlx · lapin</span><span class="tag">axum</span><span class="tag">3-Stage Docker</span><span class="tag">ML 서빙 (학습→예측→재학습)</span>
-    </div>
-  </div>
-
-  <div class="proj-card">
-    <div class="proj-card-head">
-      <span class="proj-card-title">2. 데이터 파이프라인 · Airflow 현대화 — 레거시 재설계 및 단계적 전환</span>
-      <span class="proj-card-meta">STOA · 2026.03 · 진단·재설계·전환</span>
-    </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>3년간 확장된 데이터 작업이 개별 스케줄러와 스크립트 중심으로 누적되며, DAG 의존성·재실행·백필·관측성·데이터 품질 검증을 일관된 방식으로 관리하기 어려운 상태</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>Airflow 기반 통합 오케스트레이션 플랫폼으로 이관. Sensor, TaskGroup, 데이터 품질 게이트, 백필 경로를 명시해 <strong>외부 API 수집 → 정제 → 적재 → 검증</strong> 흐름을 재현 가능한 DAG로 표준화</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span>프로덕션 전환 완료, <strong>레거시 2종 완전 폐기</strong>. 금융 도메인 특수성(거래 세션·휴장일·외부 API 제약)을 스케줄링 계층에 반영해 데이터 파이프라인 운영 기준을 통합</span></div>
-    <div class="proj-card-tags">
-      <span class="tag">Apache Airflow</span><span class="tag">Sensor · TaskGroup</span><span class="tag">SQLAlchemy</span><span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
+      <span class="tag">Problem Solving</span><span class="tag">KPI Definition</span><span class="tag">Hypothesis Validation</span><span class="tag">Productization</span><span class="tag">Backtest / Live Consistency</span>
     </div>
   </div>
 
   <div class="proj-card">
     <div class="proj-card-head">
-      <span class="proj-card-title">3. 핀테크 플랫폼 — 액티브 포트폴리오 운용 시스템 전담 구축</span>
-      <span class="proj-card-meta">STOA · 2024 – 현재 · 기획·설계·운영</span>
+      <span class="proj-card-title">2. 분산 주문 실행 인프라 — 모델 서빙·주문 집행·Rust 전환</span>
+      <span class="proj-card-meta">STOA · 2023 – 현재 · 실행 계층 설계·구현·운영</span>
     </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>B2C 투자 플랫폼에서 신규·라이트 유저는 전략 선택과 운용 방법의 학습 곡선이 높아 이탈 가능성이 큼. 기관형 자산배분 프레임워크를 개인 투자자가 바로 구독·운용할 수 있는 상품 구조로 재설계할 필요</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>3-클릭 구독형 B2C 서비스와 자산배분 운용 엔진을 함께 설계</strong>.<span style="display:block;margin-top:5px">· 거시 레짐, 공분산 전처리, 자산군별 리스크 예산, 꼬리 위험 오버레이, 추세 신호를 결합해 전략 엔진 구성</span><span style="display:block;margin-top:3px">· 운용 데이터 기반으로 자산군 상관구조, 성과 기여도, 리스크 기여도를 분석하고 자산 구성 정제·신규 자산군 편입을 점진 반영</span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 라이브 운용 · AUM 50억+ · 서비스 전체 매출 40% 기여</strong><span style="display:block;margin-top:5px">· 시뮬레이션↔라이브 risk-adjusted 지표 일관성 검증을 통해 전략의 상품화 가능성과 운용 안정성을 확인</span><span style="display:block;margin-top:3px">· 금융통계 가설을 시스템 요구사항으로 전환하고, 검증 결과를 서비스 라인업과 수익 모델에 연결</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>계좌 수 증가와 외부 시스템 실패에도 시그널 생성, 주문 실행, 체결 상태 기록이 안정적으로 동작하는 분산 실행 인프라가 필요했습니다.</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>시그널 생성부와 주문 실행부를 pub/sub 1:N 구조로 분리하고, RabbitMQ broadcast, DLQ, manual ACK, 시간 슬롯 멱등성, 계좌 단위 Bulkhead로 주문 side effect를 실행 계층에 격리.<span style="display:block;margin-top:5px">· 실행 시스템의 운영 비용과 확장성 개선을 위해 Rust 기반 실행 계층을 점진 도입하고, Feature Flag로 공존·롤백 가능성을 확보</span></span></div>
+    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 · 6개 거래소/증권사 · 24/7 운영 · 관측 메시지 유실 0건</strong><span style="display:block;margin-top:3px">· 월평균 거래대금 약 5천억 / 메모리 -95% · 이미지 -87% · 핵심 실행 LOC -53% 실측</span></span></div>
     <div class="proj-card-tags">
-      <span class="tag">Portfolio Optimization</span><span class="tag">Regime Detection</span><span class="tag">Risk Overlay</span><span class="tag">Feature Engineering</span><span class="tag">Productization</span>
+      <span class="tag">RabbitMQ</span><span class="tag">FastAPI · Celery</span><span class="tag">DLQ · Idempotency</span><span class="tag">Bulkhead</span><span class="tag">Rust · tokio · sqlx</span><span class="tag">Feature Flag</span>
+    </div>
+  </div>
+
+  <div class="proj-card">
+    <div class="proj-card-head">
+      <span class="proj-card-title">3. 데이터 파이프라인 — 수집·적재 현대화</span>
+      <span class="proj-card-meta">STOA · 2026.03 · 수집·적재·품질 검증·전환</span>
+    </div>
+    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>실시간 데이터와 외부 API 기반 정형 데이터의 수집·적재 로직, 데이터 검증, 저장소, 백필 정책이 레거시 코드에 분산되어 데이터 플랫폼 확장성이 제한됨.</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>Airflow DAG, Sensor, TaskGroup, SQLAlchemy, Storage Adapter, Data Quality Gate를 통해 수집·검증·저장·메타데이터 추적 책임을 분리하고, 피처 스토어·데이터 마켓으로 확장 가능한 기반을 마련.</span></div>
+    <div class="proj-card-row"><span class="proj-card-label">성과</span><span>도메인 제약이 반영된 데이터 실행 표준을 구축하고, <strong>레거시 파이프라인 2종을 폐기</strong>. 백필·스토리지 전환·품질 검증을 표준화해 데이터 플랫폼 확장 기반을 개선.</span></div>
+    <div class="proj-card-tags">
+      <span class="tag">Apache Airflow</span><span class="tag">Sensor · TaskGroup</span><span class="tag">Data Quality Gate</span><span class="tag">Metadata Tracking</span><span class="tag">Backfill</span><span class="tag">AWS S3 · Azure Blob</span>
     </div>
   </div>
 </section>
