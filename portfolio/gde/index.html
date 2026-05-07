@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정연서 — Growth Data Engineer 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --text:#191F28; --text-sub:#6B7684; --text-muted:#ADB5BD;
+  --border:#E5E8EB; --border2:#CDD1D6; --bg:#FFF; --surface:#F9FAFB; --surface2:#F2F4F6;
+  --accent:#0064FF; --accent-bg:#EBF3FF;
+  --green:#00835F; --green-bg:#E6F7F1;
+  --orange:#D97706; --orange-bg:#FFF8E6;
+  --red:#DC2626; --red-bg:#FEF2F2;
+  --r:4px; --r2:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#fff;color:var(--text);font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased;word-break:keep-all;max-width:880px;margin:0 auto;padding:0 52px 80px}
+a{color:var(--accent);text-decoration:none}
+strong{font-weight:600}
+em{font-style:italic;color:var(--text-sub)}
+code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:3px}
+
+.cover{text-align:center;padding:100px 0 60px}
+.cover-sub{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.cover-name{font-size:36px;font-weight:700;letter-spacing:-0.5px}
+.cover-role{font-size:15px;color:var(--text-sub);margin-top:6px}
+.cover-divider{width:48px;height:2px;background:var(--border2);margin:28px auto}
+.cover-contact{font-size:12px;color:var(--text-muted)}
+
+.toc-section{padding:24px 0 48px}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.toc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:18px 20px}
+.toc-card.featured{background:var(--accent-bg);border-color:#C5DBFF}
+.toc-num{font-size:28px;font-weight:700;color:var(--border2);line-height:1}
+.toc-card.featured .toc-num{color:#C5DBFF}
+.toc-title{font-size:13px;font-weight:600;margin-top:6px;line-height:1.4}
+.toc-desc{font-size:11.5px;color:var(--text-sub);margin-top:4px;line-height:1.55}
+
+.project-section{padding-top:56px;page-break-before:always}
+.project-section:first-of-type{page-break-before:auto}
+.proj-num{font-size:11px;font-weight:600;letter-spacing:2px;color:var(--text-muted)}
+.proj-title{font-size:22px;font-weight:700;margin-top:4px;letter-spacing:-0.3px;line-height:1.3}
+.proj-subtitle{font-size:13px;color:var(--text-sub);margin-top:6px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.tag{font-size:11.5px;padding:3px 9px;border-radius:var(--r);border:1px solid var(--border);color:var(--text-sub);background:#fff}
+
+.section-divider{border:none;border-top:1px solid var(--border);margin:24px 0}
+
+.sub-h{font-size:15px;font-weight:700;margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+.sub-h::before{content:'';width:3px;height:16px;background:var(--accent);border-radius:2px;flex-shrink:0}
+
+.body-text{font-size:13.5px;line-height:1.78;color:var(--text-sub)}
+.body-text+.body-text{margin-top:8px}
+
+.blist{list-style:none}
+.blist li{display:grid;grid-template-columns:14px 1fr;gap:8px;padding:6px 0;font-size:13px;line-height:1.72;border-bottom:1px solid var(--border)}
+.blist li:last-child{border-bottom:none}
+.blist .dot{color:var(--text-muted);font-size:11px;margin-top:5px}
+
+.decision-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:14px 18px;margin:10px 0}
+.decision-label{font-size:10.5px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.decision-body{font-size:12.5px;color:var(--text-sub);line-height:1.7}
+
+.insight-box{margin:14px 0;padding:12px 16px;background:var(--surface);border-left:2px solid var(--accent);border-radius:0 var(--r) var(--r) 0;font-size:12.5px;color:var(--text-sub);line-height:1.7}
+
+.kpi-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.kpi-chip{font-size:12.5px;padding:6px 14px;border-radius:var(--r);border:1px solid var(--border);color:var(--text);background:var(--surface);font-weight:500}
+.kpi-chip.highlight{background:var(--accent-bg);border-color:#C5DBFF;color:var(--accent);font-weight:600}
+
+.arch-diagram{margin:18px 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:20px;overflow:hidden}
+.arch-diagram svg{width:100%;height:auto;display:block}
+.arch-caption{font-size:11.5px;color:var(--text-muted);text-align:center;margin-top:8px;font-style:italic}
+
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:12px 0}
+.data-table th{text-align:left;font-size:10.5px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);padding:8px 10px;border-bottom:2px solid var(--border);text-transform:uppercase}
+.data-table td{padding:8px 10px;border-bottom:1px solid var(--border);line-height:1.55;vertical-align:top}
+.data-table tr:last-child td{border-bottom:none}
+.data-table .legacy{color:var(--red)}
+.data-table .new{color:var(--green);font-weight:500}
+
+
+.exec-title{font-size:10.5px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+.exec-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+.exec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:16px 18px}
+.exec-card-title{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--text)}
+.exec-card-body{font-size:12.5px;color:var(--text-sub);line-height:1.7}
+@media print{.exec-summary{padding:12px 0 18px}.exec-grid{gap:8px}.exec-card{padding:10px 12px}}
+
+@media print{
+  body{padding:20px 36px 40px;font-size:12px}
+  .cover{padding:60px 0 40px}
+  .project-section{padding-top:32px}
+  /* 핵심 시각 요소만 분할 금지 */
+  .arch-diagram,svg,.data-table{page-break-inside:avoid}
+  /* sub-h는 다음 콘텐츠와 함께 */
+  .sub-h{page-break-after:avoid}
+  /* 단락 고립 회피 */
+  p.body-text{orphans:3;widows:3}
+}
+</style>
+</head>
+
+<body>
+
+<div class="cover">
+  <div class="cover-sub">P O R T F O L I O</div>
+  <div class="cover-name">정연서</div>
+  <div class="cover-role">Growth Data Engineer</div>
+  <div class="cover-divider"></div>
+  <div class="cover-contact">010-6632-0568 · github.com/yeonseo-Jung · linkedin.com/in/yeonseo-jung · yeonseo-jung.github.io</div>
+</div>
+
+<div class="toc-section">
+  <div class="toc-grid">
+    <div class="toc-card featured">
+      <div class="toc-num">01</div>
+      <div class="toc-title">액티브 포트폴리오<br>상품화 시스템·라이브 운영</div>
+      <div class="toc-desc">전략 엔진 · 백테스팅(데이터 검증) · 라이브 운영 · AUM 50억+ · 서비스 매출 40% 기여</div>
+    </div>
+    <div class="toc-card">
+      <div class="toc-num">02</div>
+      <div class="toc-title">분산 주문 실행 인프라<br>전략·모델 서빙·Rust 전환</div>
+      <div class="toc-desc">전략 및 모델 서빙 · 주문 집행 엔진 설계·운영 · 메시징 신뢰성 · 월평균 거래대금 약 5천억</div>
+    </div>
+    <div class="toc-card">
+      <div class="toc-num">03</div>
+      <div class="toc-title">데이터 파이프라인<br>수집·적재 현대화</div>
+      <div class="toc-desc">데이터 플랫폼 확장을 위한 수집·적재 파이프라인 · Airflow 실행 표준화 · 품질 게이트 · 백필</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PROJECT 01 — 액티브 포트폴리오 상품화 시스템
+     ═══════════════════════════════════════════════════════ -->
+<div class="project-section">
+  <div class="proj-num">PROJECT 01</div>
+  <div class="proj-title">액티브 포트폴리오 상품화 시스템 — 전략 엔진·백테스팅(데이터 검증)·라이브 운영</div>
+  <div class="proj-subtitle">STOA Investment · 2024 – 현재 · 문제 정의·전략 엔진·백테스팅·라이브 운영 전담</div>
+  <div class="proj-tags">
+    <span class="tag">Portfolio Engine</span><span class="tag">Regime Detection</span>
+    <span class="tag">Risk Budgeting</span><span class="tag">Tail Risk Overlay</span>
+    <span class="tag">Point-in-Time Data</span><span class="tag">Live Trading</span>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="sub-h">비즈니스 문제 — 복잡한 운용 전략을 매출 가능한 상품으로 전환</div>
+  <p class="body-text">
+    B2C 핀테크 플랫폼의 핵심 병목은 전략의 부재가 아니라 <strong>사용자가 전략을 이해하고 설정하기까지의 학습 비용</strong>이었습니다. 라이트 유저는 자산군 선택, 리밸런싱, 리스크 조절, 시장 국면 해석을 직접 수행하기 어렵고, 그 결과 서비스 탐색 후 실제 운용 전환까지 이어지는 비율이 낮아집니다. 이 문제를 해결하기 위해 기관형 자산배분 프레임워크를 <strong>3-클릭 구독형 운용 상품</strong>으로 재구성했습니다.
+  </p>
+  <p class="body-text">
+    이 프로젝트의 핵심은 단순히 백테스트 수익률을 높이는 것이 아니라, <strong>도메인 가설 → 데이터 검증 → 포트폴리오 산출 → 리스크 오버레이 → 주문 위임 → 라이브 모니터링</strong>까지 이어지는 제품형 운용 엔진을 만드는 것이었습니다. 결과적으로 1,600+ 계좌 운용 인프라 내에서 라이브 적용되었고, 구독형 운용 상품의 AUM 50억+ 달성에 기여했습니다.
+  </p>
+
+  <div class="kpi-row">
+    <span class="kpi-chip highlight">1,600+ 계좌 운용 인프라 내 라이브 적용</span>
+    <span class="kpi-chip highlight">AUM 50억+</span>
+    <span class="kpi-chip">3-클릭 구독형 운용 UX</span>
+    <span class="kpi-chip">시뮬레이션 4.15y · 라이브 1.36y 정합 검증</span>
+  </div>
+
+  <div class="sub-h">문제 해결 과정 — 문제 정의에서 회고까지</div>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td><strong>문제 정의</strong></td>
+        <td>신규·라이트 유저는 전략을 직접 설계하고 운용 규칙을 이해하는 데 높은 학습 비용을 겪었고, 이는 서비스 탐색 후 실제 운용 전환을 막는 병목이었습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>가설 수립</strong></td>
+        <td>기관형 자산배분 프레임워크를 사용자가 이해 가능한 구독형 상품 구조로 추상화하면, 전략 설계 부담을 낮추고 실제 운용 전환과 유지율을 높일 수 있다고 판단했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>실험 설계</strong></td>
+        <td>거시 레짐, 공분산 전처리, 리스크 예산, 꼬리 위험 오버레이를 결합한 운용 엔진을 만들고, 백테스트와 라이브 운용 흐름을 동일한 데이터 기준으로 검증했습니다. 전략 산출물은 주문 실행 인프라로 위임해 실제 계좌 운용까지 연결했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>성과 측정</strong></td>
+        <td>1,600+ 계좌 라이브 운용 환경에서 적용되었고, 구독형 운용 상품 AUM 50억+ 및 서비스 매출 40% 기여로 이어졌습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>회고 및 개선</strong></td>
+        <td>단기 수익률이 높은 전략보다 사용자가 이해하고 지속 운용할 수 있는 설명 가능성, 리스크 안정성, 라이브 재현성이 더 중요하다고 판단했습니다. 이후 운용 데이터 기반으로 자산군 상관구조, 성과 기여도, 리스크 기여도를 분석하며 자산 구성과 상품 구조를 점진 개선했습니다.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-h">문제 해결 방법론 — 금융 가설을 시스템 모듈로 변환</div>
+  <ul class="blist">
+    <li><span class="bullet">→</span><span><strong>H1. 시장 상태 조건부 성과</strong> — 자산의 기대수익은 무조건부 평균이 아니라 성장·인플레 국면에 따라 다른 조건부 분포로 나타난다고 가정했습니다. 이를 Regime Detector 모듈로 분리해 포트폴리오 가중치의 입력으로 사용했습니다.</span></li>
+    <li><span class="bullet">→</span><span><strong>H2. 자본 비중 균등 ≠ 리스크 균등</strong> — 동일 자본 비중이라도 변동성과 상관구조에 따라 자산별 리스크 기여도가 크게 달라집니다. 따라서 자산군 간 리스크 예산을 먼저 맞추고, 자산군 내부에서는 효율성 신호로 tilt하는 2단계 배분 구조를 채택했습니다.</span></li>
+    <li><span class="bullet">→</span><span><strong>H3. 최적화 품질은 입력 행렬 품질에 종속</strong> — 자산 수 대비 관측 기간이 제한된 환경에서는 공분산 행렬이 노이즈에 민감합니다. EWM·Shrinkage·RMT·PD 보정을 거치는 입력 전처리 파이프라인을 별도 모듈로 두었습니다.</span></li>
+    <li><span class="bullet">→</span><span><strong>H4. 상시 헤지보다 조건부 노출 축소</strong> — 전 기간 헤지는 비용 누적 문제가 있어, 꼬리 위험 임계 초과 시에만 노출을 낮추는 risk overlay를 적용했습니다.</span></li>
+    <li><span class="bullet">→</span><span><strong>H5. 데이터 최적해와 전략적 prior 결합</strong> — 단일 표본의 극단 비중을 완화하기 위해 데이터 기반 산출값과 전략적 사전을 볼록결합해 실서비스에서 설명 가능한 비중 변화를 유도했습니다.</span></li>
+  </ul>
+
+  <div class="sub-h">아키텍처 — 전략 엔진과 실행 시스템의 경계 분리</div>
+  <div class="arch-diagram">
+    <svg viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
+      <defs>
+        <marker id="arrP" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0 0 L6 3 L0 6" fill="none" stroke="#ADB5BD" stroke-width="1"/>
+        </marker>
+      </defs>
+
+      <text x="10" y="22" font-size="10" font-weight="700" fill="#6B7684" letter-spacing="1">POINT-IN-TIME DATA</text>
+      <rect x="10" y="34" width="800" height="42" rx="4" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <text x="30" y="59" font-size="9" fill="#191F28">가격 · 수정주가 · 거시지표 · VIX · 실질금리 · 장단기 금리차</text>
+      <text x="520" y="59" font-size="8.5" fill="#6B7684">release date 기준 available-at 처리</text>
+
+      <text x="10" y="108" font-size="10" font-weight="700" fill="#0064FF" letter-spacing="1">STRATEGY ENGINE</text>
+      <rect x="10" y="120" width="800" height="92" rx="6" fill="#EBF3FF" stroke="#C5DBFF"/>
+      <rect x="24" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="98" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Regime Detector</text>
+      <text x="98" y="173" text-anchor="middle" font-size="8" fill="#6B7684">성장·인플레 축</text>
+      <rect x="184" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="258" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Covariance Pipeline</text>
+      <text x="258" y="173" text-anchor="middle" font-size="8" fill="#6B7684">EWM · LW · RMT · PD</text>
+      <rect x="344" y="140" width="148" height="50" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="418" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#0064FF">Risk Budgeting</text>
+      <text x="418" y="173" text-anchor="middle" font-size="8" fill="#6B7684">Inter/Intra Class</text>
+      <rect x="504" y="140" width="148" height="50" rx="4" fill="#FFF8E6" stroke="#F0D88C"/>
+      <text x="578" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#D97706">Prior Anchor</text>
+      <text x="578" y="173" text-anchor="middle" font-size="8" fill="#6B7684">전략적 사전 결합</text>
+      <rect x="664" y="140" width="124" height="50" rx="4" fill="#FFF8E6" stroke="#F0D88C"/>
+      <text x="726" y="158" text-anchor="middle" font-size="9" font-weight="600" fill="#D97706">Risk Overlay</text>
+      <text x="726" y="173" text-anchor="middle" font-size="8" fill="#6B7684">조건부 노출 축소</text>
+      <path d="M410 76 L410 116" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+      <path d="M172 165 L184 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+      <path d="M332 165 L344 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+      <path d="M492 165 L504 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+      <path d="M652 165 L664 165" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+
+      <text x="10" y="252" font-size="10" font-weight="700" fill="#00835F" letter-spacing="1">VALIDATION · PRODUCTIZATION · EXECUTION BOUNDARY</text>
+      <rect x="10" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="135" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Backtest / Live Consistency</text>
+      <text x="135" y="304" text-anchor="middle" font-size="8" fill="#6B7684">동일 시그널 함수 · t+1 체결 · 상태 분리</text>
+      <rect x="285" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="410" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Subscription Product</text>
+      <text x="410" y="304" text-anchor="middle" font-size="8" fill="#6B7684">3-클릭 운용 UX · 전략 라인업 패키징</text>
+      <rect x="560" y="266" width="250" height="56" rx="4" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="685" y="287" text-anchor="middle" font-size="9" font-weight="600" fill="#00835F">Execution Delegation</text>
+      <text x="685" y="304" text-anchor="middle" font-size="8" fill="#6B7684">Project 02 주문 실행 계층으로 위임</text>
+      <path d="M410 212 L410 262" stroke="#ADB5BD" marker-end="url(#arrP)"/>
+    </svg>
+    <div class="arch-caption">전략 엔진은 비중 산출·검증·리스크 제어에 집중하고, 실제 주문 side effect는 Project 02 실행 계층으로 위임해 책임 경계를 분리했습니다.</div>
+  </div>
+
+  <div class="sub-h">핵심 설계 판단</div>
+  <div class="decision-box">
+    <div class="decision-label">해석 가능한 레짐 감지 — 서비스 신뢰성 우선</div>
+    <div class="decision-body">
+      HMM·GMM 같은 비지도 방식은 연구 단계에서 유용하지만, 출력 클러스터에 경제적 의미를 사후 부여해야 합니다. 사용자가 이해할 수 있는 운용 상품에서는 설명 가능성이 중요하므로, 성장·인플레 축을 설계 단계에서 직접 반영한 규칙 기반 레짐 감지를 우선 적용했습니다. 이는 투자 설명, 운영 모니터링, 파라미터 변경 승인 과정에서 모두 재사용 가능한 의사결정 언어를 제공합니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">공분산 입력 품질 — 4단계 전처리</div>
+    <div class="decision-body">
+      최적화 알고리즘 자체보다 입력 행렬의 품질이 최종 비중 안정성에 더 큰 영향을 준다고 판단했습니다. 최근성 반영을 위한 EWM, 표본 불안정성 완화를 위한 Ledoit-Wolf shrinkage, 무작위 행렬 이론 기반 노이즈 제거, 솔버 조건을 만족시키는 positive definite 보정을 순차 적용했습니다. 각 단계는 서로 다른 문제를 해결하도록 분리되어, 입력 추정 방식만 교체해도 전체 엔진은 유지됩니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">리스크 예산 — 자산군 간 균형과 내부 효율성 분리</div>
+    <div class="decision-body">
+      자산군 간에는 리스크 기여도를 기준으로 균형을 맞추고, 자산군 내부에서는 Sharpe·모멘텀·상관 구조를 반영해 효율성이 높은 자산으로 일부 tilt했습니다. 이 구조는 1/N 자본 배분의 단순함과 평균-분산 최적화의 과민성을 모두 피하면서, 상품 설명 가능성과 실전 운용 안정성을 동시에 확보하기 위한 절충입니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">백테스트↔라이브 정합성 — 상태 3계층 분리</div>
+    <div class="decision-body">
+      최신 최적화 산출물, 직전 승인 비중, 실제 포지션 상태를 분리해 저장했습니다. 매일 최적화는 수행하되, 직전 승인 비중 대비 편차가 임계값 이하이면 리밸런싱을 보류하는 deadband를 두어 turnover를 관리했습니다. 외부 지표는 발표일 기준으로 available-at 시점을 맞췄고, 시그널 생성 후 다음 거래일 체결 원칙을 적용해 시뮬레이션과 라이브의 데이터 흐름을 일치시켰습니다.
+    </div>
+  </div>
+
+  <div class="sub-h">성과와 실서비스 연결</div>
+  <table class="data-table">
+    <thead>
+      <tr><th>항목</th><th>구현 내용</th><th>비즈니스/운영 효과</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>상품화</strong></td>
+        <td>기관형 자산배분 프레임워크를 3-클릭 구독형 운용 상품으로 재구성</td>
+        <td class="new">복잡한 전략 설정 과정을 낮춰 실제 운용 전환 경로를 단순화</td>
+      </tr>
+      <tr>
+        <td><strong>운용 규모</strong></td>
+        <td>1,600+ 계좌 운용 인프라 내 라이브 적용 · AUM 50억+</td>
+        <td class="new">도메인 가설이 연구 코드가 아니라 매출 가능한 실서비스 상품으로 연결</td>
+      </tr>
+      <tr>
+        <td><strong>데이터 기반 개선</strong></td>
+        <td>자산 유니버스, 리스크 예산, 리밸런싱 deadband를 운용 데이터 기반으로 조정</td>
+        <td>시장 국면·자산 상관구조 변화에 대응 가능한 제품 운영 체계 확보</td>
+      </tr>
+      <tr>
+        <td><strong>실행 경계</strong></td>
+        <td>전략 엔진은 비중 산출에 집중하고 주문 실행은 Project 02 시스템으로 위임</td>
+        <td>전략 변경과 주문 인프라 변경의 영향 범위를 분리</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight-box">
+    <strong>포트폴리오에서의 의미:</strong> 이 프로젝트는 금융 도메인 이해, 통계적 가설 설정, 데이터 기반 검증, 제품화, 라이브 운용까지 연결한 사례입니다. 단순 백엔드 구현이 아니라 <strong>비즈니스 문제를 계량 가설과 운영 가능한 시스템 경계로 번역</strong>한 점이 핵심 경쟁력입니다.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PROJECT 02 — 분산 주문 실행 인프라
+     ═══════════════════════════════════════════════════════ -->
+<div class="project-section">
+  <div class="proj-num">PROJECT 02</div>
+  <div class="proj-title">분산 주문 실행 인프라 — 전략 및 모델 서빙, 주문 집행 엔진 설계·운영, Rust 마이그레이션</div>
+  <div class="proj-subtitle">STOA Investment · 2023 – 현재 · 전략·모델 서빙, 실행 계층 설계·구현·운영·고도화 주도</div>
+  <div class="proj-tags">
+    <span class="tag">Python</span><span class="tag">Rust</span><span class="tag">RabbitMQ</span><span class="tag">Celery</span><span class="tag">tokio</span>
+    <span class="tag">sqlx</span><span class="tag">XGBoost · LightGBM</span><span class="tag">pytest</span>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="sub-h">프로젝트 배경</div>
+  <p class="body-text">
+    계좌 수가 수백에서 1,600+ 규모로 커지면서, 시그널 생성과 주문 집행을 같은 실행 흐름에 묶는 구조는 확장성과 운영 통제 측면에서 한계가 명확했습니다. 코인은 24/7 이벤트 매매가 필요하고, 주식은 장 세션과 리밸런싱 주기에 맞춰야 했기 때문에 자산군별 실행 특성을 하나의 엔진으로 처리하기 어려웠습니다. 이를 해결하기 위해 시그널 생성부와 주문 집행부를 물리적으로 분리하고, RabbitMQ 기반 pub/sub 1:N 구조로 <strong>시그널 1개를 다수 계좌에 안정적으로 배포하는 실행 계층</strong>을 설계했습니다.
+  </p>
+  <p class="body-text">
+    현재 구조는 1,600+ 계좌와 6개 외부 거래 채널을 기준으로 운용되며, 주문 집행 영역에서 <strong>운영 로그 기준 관측된 메시지 유실 0건</strong>을 유지했습니다. 월평균 거래대금은 약 5천억 규모로, 단일 계좌·단일 거래소 중심의 스크립트를 계좌 단위·거래소 단위로 수평 확장 가능한 운영 시스템으로 전환한 프로젝트입니다.
+  </p>
+
+  <div class="kpi-row">
+    <span class="kpi-chip highlight">1,600+ 계좌</span>
+    <span class="kpi-chip highlight">월평균 거래대금 약 5천억</span>
+    <span class="kpi-chip">6개 거래소/증권사 연동</span>
+    <span class="kpi-chip">관측 메시지 유실 0건</span>
+  </div>
+
+  <div class="sub-h">문제 해결 관점 — 실행 신뢰성과 확장성 확보</div>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td><strong>문제</strong></td>
+        <td>계좌 수가 증가하면서 시그널 생성, 계좌별 주문 판단, 외부 거래 채널 연동, 주문·체결 상태 기록이 같은 실행 흐름에 묶여 확장성과 장애 격리성이 약해졌습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>설계 판단</strong></td>
+        <td>시그널 생성은 stateless하게 유지하고, 주문 side effect와 계좌 상태는 execution layer에서만 관리하도록 경계를 분리했습니다. 이를 통해 전략 추가, 계좌 확장, 거래소 연동을 실행 계층의 재설계 없이 처리할 수 있다고 판단했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>구현</strong></td>
+        <td>RabbitMQ 기반 pub/sub 1:N 구조로 시그널을 fanout하고, manual ACK, DLQ, 시간 슬롯 멱등성, 계좌 단위 Bulkhead를 적용했습니다. 자산군별 실행 특성은 별도 정책으로 분리했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>운영 성과</strong></td>
+        <td>1,600+ 계좌, 6개 외부 거래 채널 기준으로 운용되었고, 주문 집행 영역에서 운영 로그 기준 관측 메시지 유실 0건, 월평균 거래대금 약 5천억 규모를 처리했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>개선</strong></td>
+        <td>초기 Python 실행 계층은 빠른 제품화에는 유리했지만, 고빈도 코인 주문 영역에서는 런타임 일관성, 메모리, 배포 이미지 크기 문제가 커졌습니다. 이후 Rust 기반 실행 계층을 Strangler Fig 방식으로 점진 전환해 운영 비용과 타입 안정성을 개선했습니다.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-h">아키텍처 — Signal Layer와 Execution Layer 분리</div>
+  <div class="arch-diagram">
+    <svg viewBox="0 0 820 370" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
+      <defs>
+        <marker id="arrT" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0 0 L6 3 L0 6" fill="none" stroke="#ADB5BD" stroke-width="1"/>
+        </marker>
+      </defs>
+
+      <text x="10" y="20" font-size="10" font-weight="700" fill="#0064FF" letter-spacing="1">SIGNAL LAYER</text>
+      <rect x="10" y="32" width="800" height="92" rx="6" fill="#EBF3FF" stroke="#C5DBFF"/>
+      <rect x="24" y="46" width="175" height="62" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="111" y="63" text-anchor="middle" font-size="9.5" font-weight="600" fill="#0064FF">ML Serving Pipeline</text>
+      <text x="111" y="80" text-anchor="middle" font-size="8" fill="#6B7684">XGBoost · LightGBM 앙상블</text>
+      <text x="111" y="94" text-anchor="middle" font-size="8" fill="#6B7684">모델 버전 · 롤백 포인터 관리</text>
+
+      <rect x="214" y="46" width="175" height="62" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="301" y="63" text-anchor="middle" font-size="9.5" font-weight="600" fill="#0064FF">Signal Generator</text>
+      <text x="301" y="80" text-anchor="middle" font-size="8" fill="#6B7684">전략별 스케줄링</text>
+      <text x="301" y="94" text-anchor="middle" font-size="8" fill="#6B7684">거래소·자산군별 신호 생성</text>
+
+      <rect x="404" y="46" width="175" height="62" rx="4" fill="#FFF8E6" stroke="#F0D88C"/>
+      <text x="491" y="63" text-anchor="middle" font-size="9.5" font-weight="600" fill="#D97706">Signal Post-Processing</text>
+      <text x="491" y="80" text-anchor="middle" font-size="8" fill="#6B7684">확률 보정 · 상태 전이 필터</text>
+      <text x="491" y="94" text-anchor="middle" font-size="8" fill="#6B7684">반복 진입 · 과대 노출 억제</text>
+
+      <rect x="594" y="46" width="190" height="62" rx="4" fill="#FFF" stroke="#0064FF" stroke-width="1.5"/>
+      <text x="689" y="63" text-anchor="middle" font-size="10" font-weight="700" fill="#0064FF">RabbitMQ Broadcast</text>
+      <text x="689" y="80" text-anchor="middle" font-size="8" fill="#6B7684">시그널 1개 → N개 계좌 배포</text>
+      <text x="689" y="94" text-anchor="middle" font-size="8" fill="#6B7684">ACK · DLQ · 멱등성 키</text>
+
+      <path d="M199 77 L214 77" stroke="#ADB5BD" marker-end="url(#arrT)"/>
+      <path d="M389 77 L404 77" stroke="#ADB5BD" marker-end="url(#arrT)"/>
+      <path d="M579 77 L594 77" stroke="#ADB5BD" marker-end="url(#arrT)"/>
+
+      <text x="10" y="162" font-size="10" font-weight="700" fill="#00835F" letter-spacing="1">EXECUTION LAYER</text>
+      <rect x="10" y="174" width="800" height="124" rx="6" fill="#E6F7F1" stroke="#86D4B8"/>
+      <rect x="24" y="192" width="170" height="66" rx="4" fill="#FFF" stroke="#86D4B8"/>
+      <text x="109" y="210" text-anchor="middle" font-size="9.5" font-weight="600" fill="#00835F">Consumer Group</text>
+      <text x="109" y="226" text-anchor="middle" font-size="8" fill="#6B7684">계좌 단위 fanout</text>
+      <text x="109" y="240" text-anchor="middle" font-size="8" fill="#6B7684">manual ACK · prefetch 제어</text>
+
+      <rect x="214" y="192" width="170" height="66" rx="4" fill="#FFF" stroke="#86D4B8"/>
+      <text x="299" y="210" text-anchor="middle" font-size="9.5" font-weight="600" fill="#00835F">Account Bulkhead</text>
+      <text x="299" y="226" text-anchor="middle" font-size="8" fill="#6B7684">계좌별 상태 격리</text>
+      <text x="299" y="240" text-anchor="middle" font-size="8" fill="#6B7684">쿨다운 · 노출 제한</text>
+
+      <rect x="404" y="192" width="170" height="66" rx="4" fill="#FFF" stroke="#86D4B8"/>
+      <text x="489" y="210" text-anchor="middle" font-size="9.5" font-weight="600" fill="#00835F">Broker Adapter</text>
+      <text x="489" y="226" text-anchor="middle" font-size="8" fill="#6B7684">거래소별 주문 규격 변환</text>
+      <text x="489" y="240" text-anchor="middle" font-size="8" fill="#6B7684">잔고·포지션 동기화</text>
+
+      <rect x="594" y="192" width="190" height="66" rx="4" fill="#FFF" stroke="#86D4B8"/>
+      <text x="689" y="210" text-anchor="middle" font-size="9.5" font-weight="600" fill="#00835F">Audit Store</text>
+      <text x="689" y="226" text-anchor="middle" font-size="8" fill="#6B7684">주문·체결·계좌 상태 기록</text>
+      <text x="689" y="240" text-anchor="middle" font-size="8" fill="#6B7684">재현 가능한 실행 로그</text>
+
+      <path d="M689 108 L689 170" stroke="#ADB5BD" marker-end="url(#arrT)"/>
+      <path d="M194 225 L214 225" stroke="#ADB5BD" marker-end="url(#arrT)"/>
+      <path d="M384 225 L404 225" stroke="#ADB5BD" marker-end="url(#arrT)"/>
+      <path d="M574 225 L594 225" stroke="#ADB5BD" marker-end="url(#arrT)"/>
+
+      <rect x="10" y="322" width="800" height="30" rx="4" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <text x="410" y="341" text-anchor="middle" font-size="9" fill="#191F28"><tspan font-weight="600">핵심 원칙</tspan> — 시그널은 stateless하게 배포하고, 계좌 상태와 주문 side effect는 execution layer에서만 관리</text>
+    </svg>
+    <div class="arch-caption">시그널 생성과 주문 실행을 경계로 분리해, 전략 추가·거래소 추가·계좌 확장을 실행 계층의 재설계 없이 처리하도록 구성했습니다.</div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">실행 계층 보완 — 자산군별 실행 특성과 운영 보조 계층</div>
+    <div class="decision-body">
+      위 구조도는 대표 흐름을 단순화해 <strong>Signal Layer와 Execution Layer의 경계</strong>를 먼저 보여주기 위한 것입니다. 실제 구현에서는 자산군별 실행 특성과 운영 보조 계층을 분리해, 주문 실행 경로와 관측·저장 경로가 서로의 책임을 침범하지 않도록 설계했습니다.
+      <ul class="blist" style="margin-top:10px">
+        <li><span class="bullet">→</span><span><strong>주식 실행 경로</strong> — 장 세션, 휴장일, 리밸런싱 주기, 분할 주문을 고려해 장중 실행 가능 시간과 TWAP 성격의 주문 분산을 별도 정책으로 관리했습니다.</span></li>
+        <li><span class="bullet">→</span><span><strong>코인 실행 경로</strong> — 24/7 이벤트 기반 시장을 전제로 포지션 델타, 레버리지, 거래소별 주문 규격, 실시간 잔고 동기화를 execution worker 내부에서 처리했습니다.</span></li>
+        <li><span class="bullet">→</span><span><strong>저장 계층</strong> — MySQL은 주문·체결·계좌 상태의 기준 기록으로 사용하고, Redis는 실시간 가격 캐시와 단기 상태 조회 용도로 제한해 RabbitMQ의 메시지 전달 책임과 혼동되지 않도록 분리했습니다.</span></li>
+        <li><span class="bullet">→</span><span><strong>관측성 계층</strong> — Prometheus·Grafana·Slack Alert는 핵심 주문 경로와 분리된 운영 보조 계층으로 두어, 처리량·지연·DLQ·계좌별 실패율을 모니터링하고 이상 징후를 빠르게 확인할 수 있게 했습니다.</span></li>
+      </ul>
+      <span style="display:block; margin-top:10px">
+        따라서 대표 구조도는 <strong>확장 가능한 실행 경계</strong>를 보여주고, 이 보완 설명은 기존 구현의 세부 요소인 주식/코인 실행 차이, 저장소, 캐시, 관측성의 책임 경계를 함께 명시하기 위한 장치입니다.
+      </span>
+    </div>
+  </div>
+
+  <div class="sub-h">핵심 설계 판단</div>
+  <div class="decision-box">
+    <div class="decision-label">메시징 신뢰성 — at-least-once + 멱등성</div>
+    <div class="decision-body">
+      금융 주문 도메인은 메시지 한 건이 실제 자산 상태를 바꾸므로, 브로커 ACK만으로는 충분하지 않았습니다. Publisher confirm으로 송신 확인을 받고, consumer는 manual ACK로 처리 완료 시점을 명시했습니다. 중복 전달 가능성은 시간 슬롯·계좌·전략·시그널 ID를 결합한 멱등성 키로 흡수해 <strong>at-least-once 전달과 중복 주문 억제</strong>를 동시에 만족하도록 설계했습니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">계좌 단위 Bulkhead — 영향 범위 제한</div>
+    <div class="decision-body">
+      계좌 상태, 주문 가능 수량, 포지션 동기화, 쿨다운을 계좌별로 분리했습니다. 특정 계좌의 상태 변화가 전체 루프의 처리량이나 다른 계좌 주문 판단에 영향을 주지 않도록 설계했으며, 수평 확장 단위도 계좌·거래소 기준으로 나눴습니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">ML Serving 통합 — 전략 신호의 제품화</div>
+    <div class="decision-body">
+      XGBoost·LightGBM 앙상블 모델을 단순 연구 코드가 아니라 프로덕션 시그널 파이프라인의 일부로 통합했습니다. 모델 파일, 피처 버전, 임계값, 롤백 포인터를 함께 저장해 동일 모델을 재현할 수 있게 했고, 신호 생성 이후에는 확률 보정과 상태 전이 필터를 적용해 반복 진입과 과대 노출을 억제했습니다.
+    </div>
+  </div>
+
+  <div class="sub-h">Python → Rust 점진 전환</div>
+  <p class="body-text">
+    Phase 1의 Python 기반 실행 계층은 빠른 제품화와 거래소 SDK 연동에는 유리했지만, 고빈도 코인 주문 실행 영역에서는 비동기 런타임 일관성, 타입 계약, 메모리 사용량, 배포 이미지 크기 측면에서 개선 여지가 컸습니다. 전체 시스템을 한 번에 바꾸지 않고, <strong>코인 거래 실행 계층</strong>을 우선 전환 대상으로 제한했습니다.
+  </p>
+  <p class="body-text">
+    Rust 전환은 Strangler Fig 방식으로 진행했습니다. Python 서비스와 Rust 서비스가 RabbitMQ 경계를 기준으로 공존하게 두고, 환경 변수와 라우팅 정책으로 소비 주체를 전환할 수 있게 했습니다. 거래소 어댑터는 trait으로 계약을 고정하고, DB는 sqlx 기반 정적 쿼리 검증을 사용해 런타임 의존성을 줄였습니다.
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>항목</th><th>Python 실행 계층</th><th>Rust 실행 계층</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>런타임</td><td>Celery worker + asyncio 혼합</td><td class="new">tokio async runtime</td></tr>
+      <tr><td>동시성 모델</td><td>프로세스/worker 기반 확장</td><td class="new">M:N 스케줄링 + 계좌 단위 task 분리</td></tr>
+      <tr><td>인터페이스 계약</td><td>런타임 duck typing 중심</td><td class="new">trait bound로 어댑터 계약 명시</td></tr>
+      <tr><td>메모리 사용량</td><td>약 4.3GB</td><td class="new">약 193MB</td></tr>
+      <tr><td>Docker 이미지</td><td>약 1.2GB</td><td class="new">약 160MB</td></tr>
+      <tr><td>핵심 LOC</td><td>약 24K</td><td class="new">약 11.4K</td></tr>
+    </tbody>
+  </table>
+
+  <div class="insight-box">
+    <strong>기술 선택의 기준:</strong> Rust 도입은 단순 성능 최적화가 아니라, 계좌 단위 병렬 실행·명시적 인터페이스 계약·낮은 런타임 비용·단일 바이너리 배포라는 운영 요구를 동시에 만족시키기 위한 선택이었습니다. 반면 한국 주식 SDK와 연구성 시그널 생성처럼 Python 생태계 이점이 큰 영역은 의도적으로 남겼습니다.
+  </div>
+</div>
+
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PROJECT 03 — 데이터 파이프라인
+     ═══════════════════════════════════════════════════════ -->
+<div class="project-section">
+  <div class="proj-num">PROJECT 03</div>
+  <div class="proj-title">데이터 파이프라인 — 데이터 플랫폼 확장을 위한 수집·적재 파이프라인 현대화</div>
+  <div class="proj-subtitle">STOA Investment · 2026.03 프로덕션 전환 · 데이터 수집·적재·품질 검증·전환 전담</div>
+  <div class="proj-tags">
+    <span class="tag">Apache Airflow</span><span class="tag">SQLAlchemy</span>
+    <span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
+    <span class="tag">Data Quality</span><span class="tag">Backfill</span>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="sub-h">프로젝트 배경</div>
+  <p class="body-text">
+    기존 데이터 수집·가공 로직은 두 개의 레거시 코드베이스에 분산되어 있었고, 스케줄링·DB 접근·파일 저장·외부 API 호출·데이터 검증이 서로 강하게 결합되어 있었습니다. 기능은 동작했지만, 신규 데이터 소스 추가나 백필, 재현 가능한 실행 이력 확보, 스토리지 전환 같은 운영 요구가 커질수록 구조적 비용이 증가했습니다.
+  </p>
+  <p class="body-text">
+    이를 Airflow 기반 데이터 플랫폼으로 통합하면서, 단순 배치 스크립트를 <strong>DAG 기반 오케스트레이션 · 중앙화된 DB 세션 관리 · 스토리지 추상화 · 데이터 품질 게이트</strong>로 재구성했습니다. 목표는 특정 배치를 고치는 것이 아니라, 향후 데이터 마켓·피처 스토어로 확장 가능한 표준 실행 계층을 만드는 것이었습니다.
+  </p>
+
+  <div class="sub-h">문제 해결 관점 — 데이터 플랫폼 확장 기반 구축</div>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td><strong>문제</strong></td>
+        <td>실시간 데이터와 외부 API 기반 정형 데이터 수집·적재 로직이 레거시 코드에 분산되어 있어, 신규 데이터 소스 추가, 백필, 품질 검증, 스토리지 전환이 매번 높은 운영 비용을 만들었습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>구조적 판단</strong></td>
+        <td>수집·검증·저장·메타데이터 추적 책임을 공통 실행 계층으로 분리하면, 데이터 소스가 늘어나도 재현 가능한 방식으로 운영할 수 있고 추후 피처 스토어/데이터 마켓 확장 기반을 만들 수 있다고 판단했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>실행 설계</strong></td>
+        <td>Airflow DAG, Sensor, TaskGroup, SQLAlchemy 세션 팩토리, Storage Adapter, Data Quality Gate를 도입해 외부 API 수집 → 정제 → 적재 → 검증 → 산출물 추적 흐름을 표준화했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>운영 성과</strong></td>
+        <td>프로덕션 전환 후 레거시 파이프라인 2종을 폐기했고, 데이터 품질 게이트, 백필 경로, 스토리지 전환 기준을 공통화했습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>확장 방향</strong></td>
+        <td>단순히 Airflow로 이관하는 것보다 데이터 소스·실행 시각·산출물 위치·검증 결과를 메타데이터로 남기는 구조를 우선했습니다. 이를 기반으로 추후 데이터 마켓/피처 스토어로 확장 가능한 실행 표준을 마련했습니다.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-h">Before / After 아키텍처</div>
+  <div class="arch-diagram">
+    <svg viewBox="0 0 820 350" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
+      <defs>
+        <marker id="arrD" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0 0 L6 3 L0 6" fill="none" stroke="#ADB5BD" stroke-width="1"/>
+        </marker>
+      </defs>
+
+      <text x="10" y="22" font-size="10" font-weight="700" fill="#6B7684" letter-spacing="1">BEFORE — SCRIPT-CENTRIC PIPELINE</text>
+      <rect x="10" y="36" width="380" height="120" rx="6" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <rect x="24" y="58" width="92" height="38" rx="4" fill="#FFF" stroke="#CDD1D6"/>
+      <text x="70" y="81" text-anchor="middle" font-size="9" fill="#191F28">Celery Beat</text>
+      <rect x="136" y="58" width="100" height="38" rx="4" fill="#FFF" stroke="#CDD1D6"/>
+      <text x="186" y="81" text-anchor="middle" font-size="9" fill="#191F28">batch scripts</text>
+      <rect x="256" y="58" width="108" height="38" rx="4" fill="#FFF" stroke="#CDD1D6"/>
+      <text x="310" y="81" text-anchor="middle" font-size="9" fill="#191F28">DB / Files</text>
+      <path d="M116 77 L136 77" stroke="#ADB5BD" marker-end="url(#arrD)"/>
+      <path d="M236 77 L256 77" stroke="#ADB5BD" marker-end="url(#arrD)"/>
+      <text x="30" y="122" font-size="8" fill="#6B7684">• 실행 이력·의존성·백필 정책이 코드 외부에서 통합 관리되지 않음</text>
+      <text x="30" y="138" font-size="8" fill="#6B7684">• API 서버와 배치 코드의 관심사가 섞여 변경 영향 범위가 넓음</text>
+
+      <text x="430" y="22" font-size="10" font-weight="700" fill="#0064FF" letter-spacing="1">AFTER — AIRFLOW DATA PLATFORM</text>
+      <rect x="430" y="36" width="380" height="120" rx="6" fill="#EBF3FF" stroke="#C5DBFF"/>
+      <rect x="446" y="58" width="82" height="38" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="487" y="81" text-anchor="middle" font-size="9" fill="#0064FF">Airflow DAG</text>
+      <rect x="546" y="58" width="82" height="38" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="587" y="81" text-anchor="middle" font-size="9" fill="#0064FF">Sensors</text>
+      <rect x="646" y="58" width="68" height="38" rx="4" fill="#FFF8E6" stroke="#F0D88C"/>
+      <text x="680" y="81" text-anchor="middle" font-size="9" fill="#D97706">Quality</text>
+      <rect x="732" y="58" width="60" height="38" rx="4" fill="#FFF" stroke="#C5DBFF"/>
+      <text x="762" y="81" text-anchor="middle" font-size="9" fill="#0064FF">Storage</text>
+      <path d="M528 77 L546 77" stroke="#ADB5BD" marker-end="url(#arrD)"/>
+      <path d="M628 77 L646 77" stroke="#ADB5BD" marker-end="url(#arrD)"/>
+      <path d="M714 77 L732 77" stroke="#ADB5BD" marker-end="url(#arrD)"/>
+      <text x="450" y="122" font-size="8" fill="#6B7684">• DAG 의존성·실행 이력·백필·재시도 정책을 플랫폼에서 관리</text>
+      <text x="450" y="138" font-size="8" fill="#6B7684">• DB 세션·스토리지·품질 검증을 공통 모듈로 표준화</text>
+
+      <line x1="10" y1="188" x2="810" y2="188" stroke="#E5E8EB" stroke-dasharray="4,4"/>
+      <text x="10" y="222" font-size="10" font-weight="700" fill="#00835F" letter-spacing="1">OPERATING STANDARD</text>
+      <rect x="10" y="236" width="800" height="72" rx="6" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="34" y="262" font-size="9" fill="#191F28"><tspan font-weight="600">DB Session Factory</tspan> — 모든 DAG에서 동일한 커넥션 풀·트랜잭션 경계 사용</text>
+      <text x="34" y="282" font-size="9" fill="#191F28"><tspan font-weight="600">Storage Adapter</tspan> — 로컬·S3·Azure Blob을 동일 인터페이스로 전환</text>
+      <text x="430" y="262" font-size="9" fill="#191F28"><tspan font-weight="600">Quality Gate</tspan> — row count·schema·coverage 기준을 통과한 데이터만 적재</text>
+      <text x="430" y="282" font-size="9" fill="#191F28"><tspan font-weight="600">Metadata First</tspan> — 실행 결과·소스·버전·산출물 위치를 추적 가능하게 기록</text>
+    </svg>
+    <div class="arch-caption">레거시 배치 코드를 단순 이관한 것이 아니라, 실행·검증·저장·추적 책임을 공통 플랫폼 레이어로 분리했습니다.</div>
+  </div>
+
+  <div class="sub-h">핵심 설계 판단</div>
+  <div class="decision-box">
+    <div class="decision-label">Celery Beat → Apache Airflow</div>
+    <div class="decision-body">
+      단순 주기 실행은 배치가 늘어날수록 의존성, 실행 순서, 백필, 산출물 추적을 코드 내부 규칙에 의존하게 만듭니다. Airflow를 도입해 DAG 의존성·실행 이력·재시도 정책·백필을 플랫폼 레벨에서 관리하도록 전환했습니다. Managed 서비스 대신 자체 운영을 선택한 이유는 기존 Docker Compose 기반 인프라와 비용 구조, 사내 배치 규모를 고려했을 때 운영 복잡도 대비 통제 가능성이 더 높았기 때문입니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">DB 연결 중앙화 · 커넥션 풀 표준화</div>
+    <div class="decision-body">
+      레거시 코드는 배치별로 DB 연결 생성 방식이 달라 커넥션 정책을 일관되게 관리하기 어려웠습니다. 공통 세션 팩토리와 repository 경계를 두어 모든 DAG가 동일한 풀·트랜잭션 정책을 사용하게 했고, 시장 데이터 원문과 메타데이터를 분리해 OLTP 부하와 분석 워크로드가 섞이지 않도록 했습니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">스토리지 추상화 — S3 / Azure Blob / Local 전환</div>
+    <div class="decision-body">
+      데이터 산출물이 특정 파일 시스템에 결합되면 클라우드 스토리지 전환과 백필 재현성이 모두 약해집니다. Storage adapter를 두어 저장소 구현을 교체 가능하게 만들고, 산출물 경로·데이터 소스·실행 시각·버전을 메타데이터로 기록했습니다. 이를 통해 동일 DAG가 운영 환경과 재처리 환경에서 같은 계약으로 동작하도록 구성했습니다.
+    </div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-label">데이터 품질 게이트 — 적재 전 검증</div>
+    <div class="decision-body">
+      외부 데이터는 API 문서와 실제 응답이 다를 수 있고, 소스별 결측·범위·단위 차이가 존재합니다. 따라서 row count, schema, key coverage, 날짜 coverage, 값 범위 검사를 표준 게이트로 두었습니다. 품질 기준을 통과한 데이터만 downstream 테이블과 파일 산출물로 이동시키고, 기준 미달 데이터는 별도 검토 큐로 분리합니다.
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>영역</th><th>기존 구조</th><th>개선 구조</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>오케스트레이션</td><td>스크립트별 주기 실행</td><td class="new">DAG 기반 의존성·실행 이력 관리</td></tr>
+      <tr><td>DB 접근</td><td>배치별 연결 생성</td><td class="new">공통 세션 팩토리 + repository 경계</td></tr>
+      <tr><td>스토리지</td><td>환경별 파일 경로 의존</td><td class="new">S3 · Azure Blob · Local adapter</td></tr>
+      <tr><td>품질 보증</td><td>수작업 확인 중심</td><td class="new">row count · schema · coverage 게이트</td></tr>
+      <tr><td>확장성</td><td>신규 소스 추가 시 코드 영향 범위 큼</td><td class="new">source adapter + DAG template로 반복 구현 축소</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>

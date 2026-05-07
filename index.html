@@ -157,6 +157,32 @@ strong { font-weight: 600; }
   line-height: 1.65;
 }
 
+.variant-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.variant-link {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 11.5px;
+  color: var(--text-sub);
+  background: var(--surface);
+}
+
+.variant-link:hover {
+  color: var(--accent);
+  border-color: var(--border2);
+}
+
 .card-foot {
   position: relative;
   z-index: 2;
@@ -239,6 +265,7 @@ strong { font-weight: 600; }
   .contact-row { gap: 14px; font-size: 12.5px; }
   .summary { font-size: 13.5px; }
   .divider { margin: 32px 0; }
+  .variant-links { gap: 6px; }
   .skill-row {
     grid-template-columns: 1fr;
     gap: 3px;
@@ -339,6 +366,10 @@ strong { font-weight: 600; }
     <article class="card">
       <h2 class="card-title"><a class="card-link" href="resume/">Resume</a></h2>
       <div class="card-meta">경력 · Skills · Core Projects</div>
+      <div class="variant-links">
+        <a class="variant-link" href="resume/">Software Engineer</a>
+        <a class="variant-link" href="resume/gde/">Growth Data Engineer</a>
+      </div>
       <div class="card-foot">
         <a class="pdf-link" href="resume.pdf" download>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -350,6 +381,10 @@ strong { font-weight: 600; }
     <article class="card">
       <h2 class="card-title"><a class="card-link" href="portfolio/">Portfolio</a></h2>
       <div class="card-meta">프로젝트 상세 분석</div>
+      <div class="variant-links">
+        <a class="variant-link" href="portfolio/">Software Engineer</a>
+        <a class="variant-link" href="portfolio/gde/">Growth Data Engineer</a>
+      </div>
       <div class="card-foot">
         <a class="pdf-link" href="portfolio.pdf" download>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
