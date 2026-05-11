@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정연서 — 당근 지원 프로젝트 기획 제안서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --text:#191F28; --text-sub:#6B7684; --text-muted:#ADB5BD;
+  --border:#E5E8EB; --border2:#CDD1D6; --bg:#FFF; --surface:#F9FAFB; --surface2:#F2F4F6;
+  --accent:#FF6F0F; --accent-bg:#FFF4EC; --accent-border:#FFD3B0;
+  --green:#00835F; --green-bg:#E6F7F1;
+  --r:4px; --r2:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#fff;color:var(--text);font-size:14px;line-height:1.78;-webkit-font-smoothing:antialiased;word-break:keep-all;max-width:880px;margin:0 auto;padding:0 52px 80px}
+strong{font-weight:600}
+em{font-style:italic;color:var(--text-sub)}
+
+.cover{text-align:center;padding:80px 0 50px}
+.cover-sub{font-size:11.5px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.cover-title{font-size:26px;font-weight:700;letter-spacing:-0.4px;line-height:1.4}
+.cover-author{font-size:13.5px;color:var(--text-sub);margin-top:14px}
+.cover-divider{width:48px;height:2px;background:var(--accent-border);margin:24px auto}
+.cover-note{font-size:12px;color:var(--text-muted);max-width:540px;margin:0 auto;line-height:1.7}
+
+section{padding-top:48px}
+.sec-num{font-size:11px;font-weight:600;letter-spacing:2px;color:var(--text-muted)}
+.sec-title{font-size:20px;font-weight:700;margin-top:4px;letter-spacing:-0.3px;line-height:1.35;margin-bottom:18px}
+.sec-divider{border:none;border-top:1px solid var(--border);margin:0}
+
+p{font-size:13.5px;line-height:1.8;color:var(--text-sub);margin-bottom:10px}
+p strong{color:var(--text)}
+
+.tldr{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--r2);padding:18px 22px;margin:6px 0}
+.tldr-label{font-size:10.5px;font-weight:700;letter-spacing:1.4px;color:var(--accent);margin-bottom:6px;display:block}
+.tldr-body{font-size:14px;color:var(--text);line-height:1.7}
+
+.dt{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0}
+.dt th{text-align:left;font-size:10.5px;font-weight:600;letter-spacing:0.5px;color:var(--text-muted);padding:8px 10px;border-bottom:2px solid var(--border);text-transform:uppercase}
+.dt td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.65}
+.dt tr:last-child td{border-bottom:none}
+.dt .ok{color:var(--green);font-weight:500}
+.dt .new{color:var(--accent);font-weight:500}
+
+.bul{list-style:none;margin:6px 0}
+.bul li{display:grid;grid-template-columns:14px 1fr;gap:8px;padding:5px 0;font-size:13.5px;line-height:1.72;color:var(--text-sub)}
+.bul li:last-child{border-bottom:none}
+.bul .bullet{color:var(--text-muted);font-size:11px;margin-top:5px}
+
+.box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:14px 18px;margin:12px 0}
+.box-label{font-size:10.5px;font-weight:700;letter-spacing:1.2px;color:var(--accent);margin-bottom:6px;text-transform:uppercase}
+.box-body{font-size:13px;color:var(--text-sub);line-height:1.75}
+.box-body strong{color:var(--text)}
+
+.diagram{margin:18px 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:22px;overflow:hidden}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram-cap{font-size:11.5px;color:var(--text-muted);text-align:center;margin-top:10px;font-style:italic;line-height:1.65}
+
+.phase{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--r2) var(--r2) 0;padding:14px 18px;margin:12px 0}
+.phase-h{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px}
+.phase-h .phase-tag{font-size:10.5px;font-weight:600;color:var(--accent);letter-spacing:0.6px;margin-right:8px}
+.phase-body{font-size:13px;color:var(--text-sub);line-height:1.75}
+.phase-body strong{color:var(--text)}
+
+.foot{margin-top:50px;padding:18px;background:var(--surface);border-radius:var(--r2);font-size:12px;color:var(--text-muted);line-height:1.7;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-sub">P R O P O S A L · 당근에서 시작하고 싶은 첫 프로젝트</div>
+  <div class="cover-title">AI Data Trust Gateway<br>data-mcp 기반 신뢰성 컨텍스트 레이어</div>
+  <div class="cover-divider"></div>
+  <div class="cover-author">Software Engineer, Data 지원 · 정연서</div>
+  <div class="cover-note" style="margin-top:14px">본 제안서는 입사 전 공개 자료를 바탕으로 정리한 초기 가설입니다. 실제 데이터가치화팀의 우선순위와 내부 상황에 맞춰 재정의될 것을 전제로 합니다.</div>
+</div>
+
+<hr class="sec-divider">
+
+<section>
+  <div class="sec-num">SECTION 0</div>
+  <div class="sec-title">한 줄 요약</div>
+  <div class="tldr">
+    <span class="tldr-label">TL;DR</span>
+    <div class="tldr-body">
+      당근의 data-mcp 확산으로 자연어 데이터 접근은 이미 빠르게 넓어지고 있습니다. 다음 병목은 <strong>“누구나 물을 수 있는가”가 아니라 “그 답을 믿을 수 있는가”</strong>라고 봅니다. 본 제안서는 KarrotMetrics, Lineage, BigQuery, Event, Experiment MCP 위에 <strong>지표 정의·권한·품질 상태·리니지·감사 로그</strong>를 응답과 함께 제공하는 <strong>AI Data Trust Gateway</strong>를 제안합니다. 단, 처음부터 모든 요청을 한 곳으로 모으기보다 <strong>파일럿 도메인과 고위험 요청부터 검증 가능성을 표준화하는 경량 신뢰성 컨텍스트 레이어</strong>로 시작합니다.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 1</div>
+  <div class="sec-title">공개 자료로 이해한 당근의 데이터 기반</div>
+  <p>JD와 데이터가치화팀의 공개 글(특히 2026.04 "AI 시대 데이터 팀")을 기준으로, 현재 당근의 데이터 기반을 다음과 같이 이해했습니다.</p>
+  <table class="dt">
+    <tbody>
+      <tr><td><strong>모델링·데이터 흐름</strong></td><td>dbt 기반 변환 + 컬럼 단위 데이터 흐름 추적</td></tr>
+      <tr><td><strong>오케스트레이션</strong></td><td>Airflow 기반 의존성·실행 이력 관리</td></tr>
+      <tr><td><strong>실시간 변경 캡처</strong></td><td>MongoDB CDC 파이프라인</td></tr>
+      <tr><td><strong>전사 공통 레이어</strong></td><td>User Activation 등 공통 데이터 모델 정착</td></tr>
+      <tr><td><strong>이벤트 로깅 플랫폼</strong></td><td>정의·생성·검증 자동화 (참고 패턴 — 2장)</td></tr>
+      <tr><td><strong>지표 플랫폼</strong></td><td>KarrotMetrics 운영</td></tr>
+      <tr><td><strong>실험 플랫폼</strong></td><td>JD에 명시된 영역 (공개 자료 기준 세부 도구 미확인)</td></tr>
+      <tr><td><strong>data-mcp 6종</strong></td><td class="new">BigQuery · Lineage · KarrotMetrics · Superset · Event · Experiment MCP — LLM 기반 자연어 데이터 접근 지원</td></tr>
+      <tr><td><strong>데이터 거버넌스 · 데이터 포털</strong></td><td class="new">팀 역할에 명시된 영역 — 정의·문서화·접근 제어·감사 기반</td></tr>
+      <tr><td><strong>GenAI · 셀프서비스</strong></td><td>KarrotChat + Prompt Studio + MCP 허브 중심의 AI 활용 흐름</td></tr>
+    </tbody>
+  </table>
+  <p>요약: <strong>당근 데이터가치화팀은 이미 셀프서비스와 AI 기반 데이터 활용을 함께 확장하는 단계에 진입했다고 이해했습니다.</strong> 본 제안서는 신규 인프라 구축이 아니라, <strong>이미 운영되는 도구 위에서 답의 근거와 신뢰 상태를 검증 가능하게 만드는 기반 강화</strong>를 다룹니다.</p>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 2</div>
+  <div class="sec-title">참고 패턴 — 이벤트 영역에서 검증된 4가지 접근 방식</div>
+  <p>당근 이벤트 로깅 플랫폼은 단순한 수집 도구가 아니라, <strong>정의·생성·검증 과정을 표준화한 운영 패턴</strong>으로 볼 수 있습니다. 본 제안서는 이 패턴을 데이터 신뢰성 영역에 조심스럽게 확장해보는 가설입니다.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 820 280" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
+      <text x="10" y="20" font-size="10.5" font-weight="700" fill="#FF6F0F" letter-spacing="1.4">EVENT LOGGING PATTERN — 4가지 표준화 방식</text>
+
+      <rect x="10" y="38" width="190" height="98" rx="6" fill="#FFF" stroke="#E5E8EB"/>
+      <text x="105" y="62" text-anchor="middle" font-size="10" font-weight="700" fill="#FF6F0F">1. 표준 규칙</text>
+      <text x="105" y="83" text-anchor="middle" font-size="9.5" fill="#191F28" font-weight="600">로깅 규칙 표준화</text>
+      <text x="105" y="103" text-anchor="middle" font-size="8.5" fill="#6B7684">서비스와 무관하게 동일 규칙으로</text>
+      <text x="105" y="117" text-anchor="middle" font-size="8.5" fill="#6B7684">대상을 표현·해석</text>
+
+      <rect x="216" y="38" width="190" height="98" rx="6" fill="#FFF" stroke="#E5E8EB"/>
+      <text x="311" y="62" text-anchor="middle" font-size="10" font-weight="700" fill="#FF6F0F">2. 정의 화면</text>
+      <text x="311" y="83" text-anchor="middle" font-size="9.5" fill="#191F28" font-weight="600">UI 기반 정의 화면</text>
+      <text x="311" y="103" text-anchor="middle" font-size="8.5" fill="#6B7684">코드 변경 없이 정의 가능</text>
+      <text x="311" y="117" text-anchor="middle" font-size="8.5" fill="#6B7684">진입 비용·전파 시간 감소</text>
+
+      <rect x="422" y="38" width="190" height="98" rx="6" fill="#FFF" stroke="#E5E8EB"/>
+      <text x="517" y="62" text-anchor="middle" font-size="10" font-weight="700" fill="#FF6F0F">3. 타입 생성</text>
+      <text x="517" y="83" text-anchor="middle" font-size="9.5" fill="#191F28" font-weight="600">스키마 → 타입 생성</text>
+      <text x="517" y="103" text-anchor="middle" font-size="8.5" fill="#6B7684">필드 누락·타입 어긋남을</text>
+      <text x="517" y="117" text-anchor="middle" font-size="8.5" fill="#6B7684">컴파일 단계에서 사전 차단</text>
+
+      <rect x="628" y="38" width="190" height="98" rx="6" fill="#FFF" stroke="#E5E8EB"/>
+      <text x="723" y="62" text-anchor="middle" font-size="10" font-weight="700" fill="#FF6F0F">4. 즉시 확인</text>
+      <text x="723" y="83" text-anchor="middle" font-size="9.5" fill="#191F28" font-weight="600">결과 확인 화면</text>
+      <text x="723" y="103" text-anchor="middle" font-size="8.5" fill="#6B7684">의도대로 수집됐는지</text>
+      <text x="723" y="117" text-anchor="middle" font-size="8.5" fill="#6B7684">즉시 점검 가능</text>
+
+      <rect x="10" y="160" width="808" height="46" rx="6" fill="#FFF4EC" stroke="#FFD3B0"/>
+      <text x="414" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#FF6F0F">효과 — 신규 측정 항목의 반복 지원 비용 감소</text>
+      <text x="414" y="196" text-anchor="middle" font-size="9.5" fill="#6B7684">정의·타입 생성·검증 도구를 표준화해 서비스 온보딩 비용 축소</text>
+
+      <text x="10" y="234" font-size="10.5" font-weight="700" fill="#00835F" letter-spacing="1.4">핵심 해석</text>
+      <text x="10" y="252" font-size="11" fill="#191F28">이 4가지 접근 방식은 <tspan font-weight="700">이벤트 정의</tspan>에만 머무르지 않고, <tspan font-weight="700" fill="#FF6F0F">이미 수집된 데이터의 신뢰 상태</tspan>를 관리하는 데도 확장할 수 있습니다.</text>
+      <text x="10" y="267" font-size="10" fill="#6B7684">따라서 본 제안서는 새로운 대형 플랫폼이 아니라, 검증된 운영 패턴을 데이터 신뢰성 영역에 단계적으로 적용하는 제안입니다.</text>
+    </svg>
+    <div class="diagram-cap">이벤트 영역에서 확인한 4가지 운영 패턴 — 본 제안서가 참고하는 모델</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 3</div>
+  <div class="sec-title">문제 정의 — 셀프서비스는 확산됐지만 신뢰성은?</div>
+  <p>data-mcp 6종 도입으로 분석가·PM·마케터·엔지니어 누구나 자연어로 데이터에 질문할 수 있게 되었습니다. 동시에 새로운 위험이 동반됩니다 — <strong>"그럴듯하지만 틀린 답", "지표 정의 무시한 요약", "권한 범위를 넘은 응답"</strong>. 이는 외부 자료에서도 직접 언급된 패턴입니다.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 820 230" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
+      <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#ADB5BD"/></marker></defs>
+      <text x="10" y="20" font-size="10.5" font-weight="700" fill="#6B7684" letter-spacing="1.4">DATA-MCP USAGE FLOW — 자연어 데이터 활용 흐름</text>
+
+      <rect x="10" y="38" width="150" height="72" rx="6" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="85" y="63" text-anchor="middle" font-size="10.5" font-weight="700" fill="#00835F">자연어 질의</text>
+      <text x="85" y="82" text-anchor="middle" font-size="9" fill="#6B7684">data-mcp를 통해 접근</text>
+      <text x="85" y="98" text-anchor="middle" font-size="9.5" font-weight="600" fill="#00835F">자동화 완료</text>
+
+      <path d="M165 75 L195 75" stroke="#ADB5BD" stroke-width="1.5" fill="none" marker-end="url(#ar2)"/>
+
+      <rect x="200" y="38" width="150" height="72" rx="6" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="275" y="63" text-anchor="middle" font-size="10.5" font-weight="700" fill="#00835F">AI 응답 생성</text>
+      <text x="275" y="82" text-anchor="middle" font-size="9" fill="#6B7684">LLM이 답·요약 제공</text>
+      <text x="275" y="98" text-anchor="middle" font-size="9.5" font-weight="600" fill="#00835F">운영 중</text>
+
+      <path d="M355 75 L385 75" stroke="#ADB5BD" stroke-width="1.5" fill="none" marker-end="url(#ar2)"/>
+
+      <rect x="390" y="38" width="150" height="72" rx="6" fill="#FFF4EC" stroke="#FFD3B0"/>
+      <text x="465" y="63" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FF6F0F">신뢰성 검증</text>
+      <text x="465" y="82" text-anchor="middle" font-size="9" fill="#6B7684">근거·정합성·권한</text>
+      <text x="465" y="98" text-anchor="middle" font-size="9.5" font-weight="600" fill="#FF6F0F">검증 보강 필요</text>
+
+      <path d="M545 75 L575 75" stroke="#ADB5BD" stroke-width="1.5" fill="none" marker-end="url(#ar2)"/>
+
+      <rect x="580" y="38" width="150" height="72" rx="6" fill="#FFF4EC" stroke="#FFD3B0"/>
+      <text x="655" y="63" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FF6F0F">의사결정 활용</text>
+      <text x="655" y="82" text-anchor="middle" font-size="9" fill="#6B7684">조직 내 활용</text>
+      <text x="655" y="98" text-anchor="middle" font-size="9.5" font-weight="600" fill="#FF6F0F">신뢰 비용 증가</text>
+
+      <rect x="10" y="138" width="800" height="72" rx="6" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <text x="30" y="158" font-size="10.5" font-weight="700" fill="#191F28">가설</text>
+      <text x="30" y="178" font-size="11" fill="#191F28">자연어 질의와 LLM 응답은 이미 자동화돼 있으나, <tspan font-weight="700" fill="#FF6F0F">응답의 근거·정합성·권한·최신성을 응답 시점에 확인하는 자동화</tspan>는 외부 자료 기준 추가 검증 여지가 있음.</text>
+      <text x="30" y="194" font-size="9.5" fill="#6B7684">→ 셀프서비스가 넓어질수록 응답 검증 비용이 누적될 가능성</text>
+    </svg>
+    <div class="diagram-cap">data-mcp 활용 흐름 — 접근·응답 확산 이후 응답 신뢰성 검증이 병목이 될 수 있음</div>
+  </div>
+
+  <p><strong>이 가설은 외부 추정이므로 입사 후 검증이 전제됩니다.</strong> 데이터가치화팀은 이미 data-mcp 인증 체계 개선과 거버넌스 강화를 2026년 우선순위로 명시한 만큼, 본 제안서는 그 방향에 합류·가속하는 형태로 기여하는 것을 목표로 합니다. 더불어 KarrotMetrics가 이미 운영 중인 지표 결산·재계산 메커니즘과 User Activation 공통 데이터 레이어는 AI 응답의 신뢰 상태(결산 여부·신규/유지/복귀 분해 등)와 직접 연결될 수 있는 자산입니다.</p>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 4</div>
+  <div class="sec-title">검증 계획 — 입사 후 30-60일</div>
+  <p>본 제안서의 가설은 공개 자료 기반의 외부 시각이므로, 입사 직후 다음 데이터를 수집해 우선 검증합니다.</p>
+  <ul class="bul">
+    <li><span class="bullet">→</span><span><strong>data-mcp 응답 신뢰성 패턴</strong> — MCP 응답에 SLO·근거·소유권·최신성 메타데이터가 포함되는 비율, 사용자의 추가 검증 행동 빈도</span></li>
+    <li><span class="bullet">→</span><span><strong>데이터 품질 이슈 영향 범위</strong> — Lineage MCP 활용 사례에서 영향도 분석 소요 시간, 자동화 정도</span></li>
+    <li><span class="bullet">→</span><span><strong>지표 정의 일관성</strong> — KarrotMetrics 메타데이터에서 동일 의미 지표의 서비스별 정의 편차</span></li>
+    <li><span class="bullet">→</span><span><strong>권한 범위 위반 패턴</strong> — 사용자가 권한 외 데이터에 접근하려 한 사례, MCP의 차단·답변 거부 동작 일관성</span></li>
+  </ul>
+  <div class="box">
+    <div class="box-label">분기점</div>
+    <div class="box-body">가설이 강하게 확인되면 Phase 1 진행, 부분 확인이면 범위 축소, 다른 더 시급한 병목이 발견되면 즉시 우선순위 재정렬합니다. <strong>본 제안서의 모든 단계는 데이터가치화팀의 검토와 동의 위에서만 진행됩니다.</strong></div>
+  </div>
+</section>
+
+
+<section>
+  <div class="sec-num">SECTION 4.5</div>
+  <div class="sec-title">비목표 — 하지 않을 것</div>
+  <p>제안의 범위를 명확히 하기 위해, 의도적으로 제외하는 영역을 먼저 분리합니다.</p>
+  <ul class="bul">
+    <li><span class="bullet">→</span><span>기존 KarrotMetrics, Data Catalog, Lineage 시스템을 대체하지 않습니다. 기존 source of truth를 존중하고, MCP 응답에 필요한 신뢰성 컨텍스트만 조합합니다.</span></li>
+    <li><span class="bullet">→</span><span>모든 데이터 요청을 처음부터 하나의 게이트웨이로 강제하지 않습니다. 파일럿 도메인과 고위험 요청부터 검증 패턴을 적용합니다.</span></li>
+    <li><span class="bullet">→</span><span>AI 답변이 항상 맞다고 전제하지 않습니다. 대신 지표 정의, 근거, 품질 상태, 권한 범위를 함께 제공해 사용자가 직접 검증할 수 있게 합니다.</span></li>
+    <li><span class="bullet">→</span><span>원천 데이터를 매 요청마다 재검증하지 않습니다. 사전 계산된 품질 메타데이터와 요청 시점 정책 검증을 결합합니다.</span></li>
+  </ul>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 5</div>
+  <div class="sec-title">솔루션 설계 — 3단계 진행</div>
+
+  <div class="phase">
+    <div class="phase-h"><span class="phase-tag">PHASE 1</span>데이터 품질 SLO 정립 — 파일럿 도메인 1개 (1-2개월)</div>
+    <div class="phase-body">
+      <strong>무엇을:</strong> 영향도가 큰 데이터 도메인 한 곳에서 4가지 품질 기준(가용성·최신성·완전성·정합성)를 정의하고 측정·모니터링 체계를 정착시킵니다.<br>
+      <strong>어떻게:</strong>
+      <ul class="bul" style="margin-top:6px">
+        <li><span class="bullet">·</span><span>도메인의 핵심 테이블·지표별로 4가지 품질 기준을 정량 목표로 정의합니다. 여기서 정합성은 일반적인 “정답률”이 아니라 도메인별 데이터 계약을 기준으로 한 validation pass rate로 제한해 정의합니다. 예: freshness p95 1시간 이내, schema validation pass rate 99.5% 이상, partition coverage 99.9% 이상, key uniqueness violation 0.1% 이하.</span></li>
+        <li><span class="bullet">·</span><span>Project 03의 Quality Gate 패턴(row count · schema · key coverage · 값 범위 검사)을 적용해 SLO 위반을 자동 감지·알림합니다.</span></li>
+        <li><span class="bullet">·</span><span>해당 도메인에 접근하는 MCP 응답에 SLO 메타데이터를 표준 필드로 함께 포함합니다(현재 SLO 충족 여부, 마지막 업데이트 시각, 오너).</span></li>
+        <li><span class="bullet">·</span><span>산출물: SLO 정의서, 모니터링 대시보드, MCP 응답 메타데이터 명세.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-h"><span class="phase-tag">PHASE 2</span>4가지 접근 방식의 데이터 신뢰성 영역 확장 (3-4개월)</div>
+    <div class="phase-body">
+      <strong>무엇을:</strong> 이벤트 영역에서 검증된 4가지 접근 방식을 데이터 신뢰성 도구로 매핑합니다 — 기존 메타데이터·지표·리니지 source of truth를 대체하지 않고, MCP 응답에 필요한 신뢰성 컨텍스트를 조합·캐시하는 경량 계층입니다.<br>
+      <strong>어떻게:</strong> 4가지 기준을 다음과 같이 매핑하며, AI Data Trust Gateway는 파일럿 도메인과 고위험 요청부터 검증 경로 역할을 합니다.
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-label">INTENT ROUTING · 질문 유형별 라우팅</div>
+    <div class="box-body">Gateway형 레이어는 자연어 질의를 다음 유형으로 분류해 적절한 MCP·검증 경로로 라우팅합니다.</div>
+    <table class="dt" style="margin-top:8px">
+      <thead><tr><th>Intent</th><th>예시 질의</th><th>기본 라우팅</th></tr></thead>
+      <tbody>
+        <tr><td>Metric Lookup</td><td>"지난달 MAU 알려줘"</td><td>KarrotMetrics MCP</td></tr>
+        <tr><td>Metric Diagnosis</td><td>"MAU가 왜 줄었어?"</td><td>KarrotMetrics + User Activation + Superset</td></tr>
+        <tr><td>Ad-hoc Query</td><td>"서울 신규 게시글 추이"</td><td>BigQuery MCP</td></tr>
+        <tr><td>Lineage Impact</td><td>"이 컬럼 삭제해도 돼?"</td><td>Lineage MCP</td></tr>
+        <tr><td>Event Discovery</td><td>"이 행동의 이벤트가 뭐야?"</td><td>Event MCP</td></tr>
+        <tr><td>Experiment Review</td><td>"A/B 테스트 결과 요약"</td><td>Experiment MCP</td></tr>
+        <tr><td>Dashboard Search</td><td>"관련 대시보드 찾아줘"</td><td>Superset MCP</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
+      <text x="10" y="20" font-size="10.5" font-weight="700" fill="#6B7684" letter-spacing="1.4">EVENT PATTERN → DATA TRUST LAYER</text>
+
+      <rect x="10" y="38" width="190" height="98" rx="6" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <text x="105" y="60" text-anchor="middle" font-size="9.5" font-weight="700" fill="#6B7684">1. 표준 규칙</text>
+      <text x="105" y="80" text-anchor="middle" font-size="9.5" fill="#191F28" font-weight="600">→ Quality Rules</text>
+      <text x="105" y="98" text-anchor="middle" font-size="8.5" fill="#6B7684">품질 기준·소유권</text>
+      <text x="105" y="112" text-anchor="middle" font-size="8.5" fill="#6B7684">도메인 공통 기준</text>
+
+      <rect x="216" y="38" width="190" height="98" rx="6" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <text x="311" y="60" text-anchor="middle" font-size="9.5" font-weight="700" fill="#6B7684">2. 정의 화면</text>
+      <text x="311" y="80" text-anchor="middle" font-size="9.5" fill="#191F28" font-weight="600">→ Trust Context Layer</text>
+      <text x="311" y="98" text-anchor="middle" font-size="8.5" fill="#6B7684">기존 메타데이터·품질 상태를</text>
+      <text x="311" y="112" text-anchor="middle" font-size="8.5" fill="#6B7684">응답 시점에 조합</text>
+
+      <rect x="422" y="38" width="190" height="98" rx="6" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <text x="517" y="60" text-anchor="middle" font-size="9.5" font-weight="700" fill="#6B7684">3. 타입 생성</text>
+      <text x="517" y="80" text-anchor="middle" font-size="9.5" fill="#191F28" font-weight="600">→ Validation Contract</text>
+      <text x="517" y="98" text-anchor="middle" font-size="8.5" fill="#6B7684">dbt test · Airflow sensor</text>
+      <text x="517" y="112" text-anchor="middle" font-size="8.5" fill="#6B7684">응답 메타데이터 템플릿 변환</text>
+
+      <rect x="628" y="38" width="190" height="98" rx="6" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <text x="723" y="60" text-anchor="middle" font-size="9.5" font-weight="700" fill="#6B7684">4. 즉시 확인</text>
+      <text x="723" y="80" text-anchor="middle" font-size="9.5" fill="#191F28" font-weight="600">→ Pre-response Check</text>
+      <text x="723" y="98" text-anchor="middle" font-size="8.5" fill="#6B7684">품질 상태·권한·감사 로그</text>
+      <text x="723" y="112" text-anchor="middle" font-size="8.5" fill="#6B7684">응답 전 확인</text>
+
+      <rect x="10" y="160" width="808" height="40" rx="6" fill="#FFF4EC" stroke="#FFD3B0"/>
+      <text x="414" y="178" text-anchor="middle" font-size="11" font-weight="700" fill="#FF6F0F">핵심 원칙 — 새 플랫폼이 아닌 data-mcp + KarrotMetrics + dbt/Airflow 위에 신뢰성 컨텍스트 추가</text>
+      <text x="414" y="193" text-anchor="middle" font-size="9.5" fill="#6B7684">중복 인프라를 만들지 않고 기존 도구의 메타데이터를 연결 · "답이 없는 것이 틀린 답보다 안전하다" 원칙을 정책으로 표현</text>
+
+      <text x="10" y="232" font-size="10.5" font-weight="700" fill="#00835F" letter-spacing="1.4">EXAMPLE — 분석가가 KarrotMetrics MCP에 자연어로 "지난주 활성 사용자 추이" 질문 시</text>
+      <text x="10" y="252" font-size="10.5" fill="#191F28">1. Trust Context Layer가 사용자 권한과 접근 범위 확인</text>
+      <text x="10" y="268" font-size="10.5" fill="#191F28">2. Quality Rules가 적용된 품질 기준을 확인</text>
+      <text x="10" y="284" font-size="10.5" fill="#191F28">3. Validation Contract가 근거 테이블·오너·최신성을 응답 메타데이터로 변환</text>
+      <text x="10" y="300" font-size="10.5" fill="#191F28">4. Pre-response Check가 품질 상태와 정책을 응답 직전 확인하고, 위반 시 경고·감사 로그 기록</text>
+    </svg>
+    <div class="diagram-cap">Phase 2 — 4축 접근 방식의 데이터 신뢰성 영역 매핑. 구현체는 내부 표준을 따르되, 핵심은 policy decision point와 enforcement point의 분리</div>
+  </div>
+
+  <div class="box">
+    <div class="box-label">EVIDENCE COMPOSER · 검증 가능한 응답 객체</div>
+    <div class="box-body">답변은 "정답처럼 보이는 문장"만 반환하지 않고 <strong>검증 가능한 응답 객체</strong>를 함께 제공합니다. 메트릭 정의·품질 상태·근거 SQL·리니지·권한·비용 정보를 한 번에 확인할 수 있게 합니다.</div>
+<pre style="background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:12px;font-size:11.5px;line-height:1.65;color:var(--text);font-family:'SFMono-Regular',Consolas,monospace;overflow:auto;margin-top:8px">{
+  "answer": "지난달 MAU 감소의 주된 원인은 복귀 유저 감소입니다.",
+  "confidence": "medium",
+  "metric": {
+    "name": "monthly_active_users",
+    "version": "v3",
+    "owner": "growth-data",
+    "definition_url": "karrotmetrics://metrics/monthly_active_users"
+  },
+  "trust_context": {
+    "freshness_status": "pass",
+    "quality_status": "pass",
+    "permission_scope": "allowed",
+    "query_cost_estimate": "1.2 GB scanned",
+    "generated_at": "2026-05-11T02:10:00+09:00"
+  },
+  "evidence": {
+    "query_hash": "qry_hash_xxx",
+    "tables": ["karrot_metrics.mau_monthly"],
+    "lineage_refs": ["lineage://asset/mau_monthly/depth/2"]
+  },
+  "warnings": []
+}</pre>
+  </div>
+
+  <div class="phase">
+    <div class="phase-h"><span class="phase-tag">PHASE 3</span>AI 데이터 접근 정책과 거버넌스 확산 (5-6개월)</div>
+    <div class="phase-body">
+      <strong>무엇을:</strong> Phase 2 패턴을 검증된 도메인부터 점진 확산하고, AI 응답의 안전장치를 정책·계약·감사 로그로 표준화합니다.<br>
+      <strong>어떻게:</strong>
+      <ul class="bul" style="margin-top:6px">
+        <li><span class="bullet">·</span><span>"권한 밖 답은 만들지 않는다" 원칙을 data-mcp 계층의 표준 동작으로 코드화합니다.</span></li>
+        <li><span class="bullet">·</span><span>핵심·고위험 MCP 응답부터 근거(테이블·컬럼·SLO·최신성·오너)를 표준 필드로 함께 제공하고, 사용자가 한 번에 검증할 수 있게 합니다.</span></li>
+        <li><span class="bullet">·</span><span>데이터 거버넌스 정책(접근 제어·감사·익명화)을 선언형 규칙으로 표현해 신규 도메인에도 일관되게 적용할 수 있게 합니다.</span></li>
+        <li><span class="bullet">·</span><span><strong>결과:</strong> 분석가·PM·마케터가 자연어 답을 그대로 받아들이기보다, 근거·경고·권한 범위를 함께 확인하는 환경. 데이터가치화팀의 반복 검증 부담을 도구와 정책으로 점진적으로 줄입니다.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-label">AUDIT SCHEMA · 핵심 요청 추적 가능</div>
+    <div class="box-body">Phase 3에서 도입할 감사 테이블의 핵심 컬럼 — "누가 · 어떤 질문 · 어떤 데이터 · 어떤 결과"를 재현 가능한 로그로 남깁니다.</div>
+    <table class="dt" style="margin-top:8px">
+      <thead><tr><th>컬럼</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td><strong>request_id · user_id · intent_type</strong></td><td>누가·어떤 유형의 질문을 했는지</td></tr>
+        <tr><td><strong>referenced_assets · query_hash</strong></td><td>어떤 metric · table · SQL이 사용됐는지</td></tr>
+        <tr><td><strong>policy_result · estimated_bytes</strong></td><td>정책 검증 결과 · BigQuery 예상 스캔량</td></tr>
+        <tr><td><strong>response_confidence · warnings</strong></td><td>응답 신뢰 수준 · 사용자에게 노출된 경고</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 6</div>
+  <div class="sec-title">제안 시스템 — 전체 구조 한눈에</div>
+  <div class="diagram">
+    <svg viewBox="0 0 820 410" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR',sans-serif">
+      <defs>
+        <marker id="ar3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0 0 L6 3 L0 6" fill="none" stroke="#ADB5BD" stroke-width="1"/>
+        </marker>
+      </defs>
+
+      <text x="10" y="20" font-size="10.5" font-weight="700" fill="#6B7684" letter-spacing="1.4">EXISTING DATA PLATFORM — 기존 기반 활용</text>
+      <rect x="10" y="36" width="800" height="108" rx="6" fill="#F9FAFB" stroke="#E5E8EB"/>
+      <rect x="24" y="52" width="160" height="40" rx="4" fill="#FFF" stroke="#CDD1D6"/>
+      <text x="104" y="68" text-anchor="middle" font-size="9.5" font-weight="600" fill="#191F28">이벤트 로깅 플랫폼</text>
+      <text x="104" y="82" text-anchor="middle" font-size="8.5" fill="#6B7684">정의·생성·검증 자동화</text>
+      <rect x="196" y="52" width="160" height="40" rx="4" fill="#FFF" stroke="#CDD1D6"/>
+      <text x="276" y="68" text-anchor="middle" font-size="9.5" font-weight="600" fill="#191F28">KarrotMetrics</text>
+      <text x="276" y="82" text-anchor="middle" font-size="8.5" fill="#6B7684">지표 플랫폼</text>
+      <rect x="368" y="52" width="160" height="40" rx="4" fill="#FFF" stroke="#CDD1D6"/>
+      <text x="448" y="68" text-anchor="middle" font-size="9.5" font-weight="600" fill="#191F28">dbt + Airflow</text>
+      <text x="448" y="82" text-anchor="middle" font-size="8.5" fill="#6B7684">모델링·오케스트레이션</text>
+      <rect x="540" y="52" width="160" height="40" rx="4" fill="#FFF" stroke="#CDD1D6"/>
+      <text x="620" y="68" text-anchor="middle" font-size="9.5" font-weight="600" fill="#191F28">실험 플랫폼</text>
+      <text x="620" y="82" text-anchor="middle" font-size="8.5" fill="#6B7684">A/B 테스트</text>
+      <rect x="712" y="52" width="84" height="40" rx="4" fill="#FFF" stroke="#CDD1D6"/>
+      <text x="754" y="68" text-anchor="middle" font-size="9.5" font-weight="600" fill="#191F28">Data Lineage</text>
+      <text x="754" y="82" text-anchor="middle" font-size="8.5" fill="#6B7684">컬럼 단위 흐름</text>
+
+      <rect x="24" y="100" width="772" height="32" rx="4" fill="#FFF" stroke="#FF6F0F" stroke-width="1.5"/>
+      <text x="410" y="120" text-anchor="middle" font-size="10.5" font-weight="700" fill="#FF6F0F">data-mcp 6종 — BigQuery · Lineage · KarrotMetrics · Superset · Event · Experiment MCP (자연어 데이터 접근)</text>
+
+      <text x="10" y="172" font-size="10.5" font-weight="700" fill="#FF6F0F" letter-spacing="1.4">PROPOSED TRUST LAYER — 데이터 신뢰성 계층</text>
+      <rect x="10" y="188" width="800" height="90" rx="6" fill="#FFF4EC" stroke="#FFD3B0"/>
+      <rect x="24" y="206" width="180" height="60" rx="4" fill="#FFF" stroke="#FFD3B0"/>
+      <text x="114" y="226" text-anchor="middle" font-size="9.5" font-weight="600" fill="#FF6F0F">Quality Rules</text>
+      <text x="114" y="242" text-anchor="middle" font-size="8.5" fill="#6B7684">품질 기준·소유권</text>
+      <text x="114" y="256" text-anchor="middle" font-size="8.5" fill="#6B7684">공통 규칙</text>
+      <rect x="216" y="206" width="180" height="60" rx="4" fill="#FFF" stroke="#FFD3B0"/>
+      <text x="306" y="226" text-anchor="middle" font-size="9.5" font-weight="600" fill="#FF6F0F">Trust Context Layer</text>
+      <text x="306" y="242" text-anchor="middle" font-size="8.5" fill="#6B7684">메타데이터·품질·권한</text>
+      <text x="306" y="256" text-anchor="middle" font-size="8.5" fill="#6B7684">응답 컨텍스트</text>
+      <rect x="408" y="206" width="180" height="60" rx="4" fill="#FFF" stroke="#FFD3B0"/>
+      <text x="498" y="226" text-anchor="middle" font-size="9.5" font-weight="600" fill="#FF6F0F">Validation Contract</text>
+      <text x="498" y="242" text-anchor="middle" font-size="8.5" fill="#6B7684">검증 템플릿 변환</text>
+      <text x="498" y="256" text-anchor="middle" font-size="8.5" fill="#6B7684">응답 메타데이터 명세</text>
+      <rect x="600" y="206" width="188" height="60" rx="4" fill="#FFF" stroke="#FFD3B0"/>
+      <text x="694" y="226" text-anchor="middle" font-size="9.5" font-weight="600" fill="#FF6F0F">Pre-response Check</text>
+      <text x="694" y="242" text-anchor="middle" font-size="8.5" fill="#6B7684">품질 상태·권한·감사 로그</text>
+      <text x="694" y="256" text-anchor="middle" font-size="8.5" fill="#6B7684">응답 전 확인</text>
+
+      <path d="M114 144 L114 186" stroke="#ADB5BD" marker-end="url(#ar3)"/>
+      <path d="M306 144 L306 186" stroke="#ADB5BD" marker-end="url(#ar3)"/>
+      <path d="M498 144 L498 186" stroke="#ADB5BD" marker-end="url(#ar3)"/>
+      <path d="M694 144 L694 186" stroke="#ADB5BD" marker-end="url(#ar3)"/>
+
+      <text x="10" y="304" font-size="10.5" font-weight="700" fill="#00835F" letter-spacing="1.4">CONSUMERS — 근거와 신뢰 상태를 함께 받는 사용자</text>
+      <rect x="10" y="320" width="800" height="80" rx="6" fill="#E6F7F1" stroke="#86D4B8"/>
+      <text x="30" y="344" font-size="11" font-weight="600" fill="#00835F">분석가 · PM · 마케터 · 엔지니어 · AI 에이전트 — 답·근거·품질 상태·최신성·권한 범위를 함께 수신</text>
+      <text x="30" y="365" font-size="9.5" fill="#6B7684">"답이 어떻게 만들어졌는지" 추적 가능 · 권한 밖 데이터는 답변 거부 또는 마스킹 · 감사 로그 기록</text>
+      <text x="30" y="381" font-size="9.5" fill="#6B7684">→ 데이터가치화팀의 반복 확인 부담을 줄이고, 플랫폼·거버넌스 고도화에 더 집중 가능</text>
+
+      <path d="M114 278 L114 318" stroke="#ADB5BD" marker-end="url(#ar3)"/>
+      <path d="M306 278 L306 318" stroke="#ADB5BD" marker-end="url(#ar3)"/>
+      <path d="M498 278 L498 318" stroke="#ADB5BD" marker-end="url(#ar3)"/>
+      <path d="M694 278 L694 318" stroke="#ADB5BD" marker-end="url(#ar3)"/>
+    </svg>
+    <div class="diagram-cap">data-mcp 6종 위에 신뢰성 컨텍스트 레이어를 더해 "검증 가능한 답"을 셀프서비스로 제공</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 6.5</div>
+  <div class="sec-title">성공 지표 — 측정 가능한 KPI</div>
+  <p>본 제안서의 진행 상황과 임팩트는 다음 정량 지표로 측정합니다.</p>
+  <table class="dt">
+    <thead><tr><th>목표 영역</th><th>측정 지표</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AI 답변 신뢰성</strong></td><td>grounded response rate · unsupported answer rate</td></tr>
+      <tr><td><strong>데이터 오용 방지</strong></td><td>unauthorized request block count · policy violation rate</td></tr>
+      <tr><td><strong>비용 통제</strong></td><td>avg bytes scanned per request · blocked expensive queries</td></tr>
+      <tr><td><strong>생산성</strong></td><td>time-to-first-answer · 데이터가치화팀 반복 문의 감소율</td></tr>
+      <tr><td><strong>품질</strong></td><td>stale data usage rate · failed-quality answer block rate</td></tr>
+      <tr><td><strong>운영성</strong></td><td>p95 latency · MCP error rate · retry success rate</td></tr>
+      <tr><td><strong>감사 가능성</strong></td><td>request trace coverage · reproducible SQL coverage</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 7</div>
+  <div class="sec-title">본인 경험과의 매칭</div>
+  <table class="dt">
+    <thead>
+      <tr><th>Phase</th><th>본인 STOA 경험</th><th>적용 가능 패턴</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Phase 1</strong><br>SLO 정립</td>
+        <td>Project 03 — Data Quality Gate (row count · schema · key coverage · 값 범위 검사) · Storage Adapter · Metadata Tracking</td>
+        <td class="ok">4축 SLO 정의·자동 검증·메타데이터 제공 패턴</td>
+      </tr>
+      <tr>
+        <td><strong>Phase 2</strong><br>접근 제어·감사</td>
+        <td>Project 02 — manual ACK · 시간 슬롯 멱등성 · 6개 외부 시스템 통합 · 24/7 운영 관측 메시지 유실 0건</td>
+        <td class="ok">권한·감사·재현성 강화 패턴 (메시지 도메인 → 데이터 도메인 응용)</td>
+      </tr>
+      <tr>
+        <td><strong>Phase 3</strong><br>AI 데이터 접근 정책</td>
+        <td>Project 01 — 백테스트↔라이브 정합성 검증 (시뮬레이션 4.15y / 라이브 1.36y) · 가설 검증·KPI Definition</td>
+        <td class="ok">"답의 정합성을 검증 가능하게 만드는" 패턴</td>
+      </tr>
+      <tr>
+        <td><strong>운영·비용</strong></td>
+        <td>STOA Rust 마이그레이션 — 메모리 -95% (4.3GB→193MB), 이미지 -87% (1.2GB→160MB), 핵심 LOC -53%</td>
+        <td class="ok">"AI 데이터 사용 비용 효율화" 영역 매칭</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>네 영역 모두 본 제안서의 단계와 직접 매칭됩니다. 특히 외부 발행 글이 명시한 "더 중요해질 역할 7가지" 중 <strong>품질 기준·검증 체계 설계 / 데이터 접근 제어·감사 가능성 / AI 데이터 사용 비용 효율화 / 메타데이터 운영</strong>의 4개 영역과 정합합니다.</p>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 8</div>
+  <div class="sec-title">외부 시각의 한계 — 입사 후 재정렬 전제</div>
+  <p>이 제안서는 공개 자료를 바탕으로 한 추정입니다. 다음 한계가 있을 수 있고, 입사 후 검증·재구성을 전제로 합니다.</p>
+  <ul class="bul">
+    <li><span class="bullet">→</span><span>데이터가치화팀이 이미 동일 방향으로 진행 중일 수 있음 → 합류 시 가속 역할로 재정의</span></li>
+    <li><span class="bullet">→</span><span>data-mcp 인증 체계 개선이 이미 2026년 우선순위로 명시된 만큼, 본 제안서는 그 흐름에 합류·기여하는 형태</span></li>
+    <li><span class="bullet">→</span><span>의도적으로 일부 검증을 사람 판단에 남길 수 있음 (자동화 vs 통제 균형) → 방향 재논의</span></li>
+    <li><span class="bullet">→</span><span>파일럿 도메인 선정은 내부 데이터·우선순위로만 가능</span></li>
+  </ul>
+  <p><strong>본 제안서의 가치는 정답을 단정하는 데 있지 않습니다.</strong> 공개 자료를 읽고, 가설을 세우고, 검증 계획과 단계적 솔루션으로 옮기는 과정 자체가 제가 일하는 방식이며, 이 문서는 그 방식을 보여주기 위해 작성했습니다.</p>
+</section>
+
+<section>
+  <div class="sec-num">SECTION 9</div>
+  <div class="sec-title">입사 후 90일 액션 플랜</div>
+  <table class="dt">
+    <thead>
+      <tr><th>기간</th><th>활동</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Day 1-15</strong></td><td>데이터가치화팀 시스템 파악 (이벤트 로깅 플랫폼 · KarrotMetrics · dbt · CDC · 실험 플랫폼 · <strong>data-mcp 6종 운영 구조</strong>) + 도메인 학습</td></tr>
+      <tr><td><strong>Day 16-30</strong></td><td>본 제안서 가설 검증 데이터 수집 + 팀 인터뷰 + data-mcp 인증·거버넌스 작업 흐름 파악 + 내부 우선순위 기준 재정렬</td></tr>
+      <tr><td><strong>Day 31-60</strong></td><td>검증 결과에 따라 방향 재구성 + 파일럿 도메인 1개 선정 + 4축 SLO 정의 초안 + Quality Gate 적용 범위 확정</td></tr>
+      <tr><td><strong>Day 61-90</strong></td><td>Pilot 진행 + 핵심 MCP 응답 메타데이터 제공 PoC + 데이터가치화팀 리뷰 + 다음 분기 로드맵 제안</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="foot">
+  본 제안서는 외부 자료 기반 초기 가설이며, 실제 데이터·팀의 우선순위에 따라 재정의될 것을 전제로 합니다.<br>
+  정연서 · Software Engineer 지원 · yeonseosla@gmail.com
+</div>
+
+</body>
+</html>
