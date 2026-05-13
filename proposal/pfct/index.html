@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PFCT AX Squad 기술기획서 — Credit DecisionOps Copilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text:#191F28; --text-sub:#5F6B7A; --text-muted:#8B95A1;
+  --border:#E5E8EB; --border2:#CDD1D6; --bg:#FFFFFF; --surface:#F9FAFB; --surface2:#F2F4F6;
+  --accent:#0064FF; --accent-bg:#EBF3FF; --accent-border:#C5DBFF;
+  --green:#00835F; --green-bg:#E6F7F1; --green-border:#92D9C1;
+  --orange:#D97706; --orange-bg:#FFF8E6; --orange-border:#F0D88C;
+  --red:#DC2626; --red-bg:#FEF2F2; --red-border:#F5B5B5;
+  --purple:#6D28D9; --purple-bg:#F3E8FF; --purple-border:#D8B4FE;
+  --r:6px; --r2:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#fff;color:var(--text);font-size:14px;line-height:1.72;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;
+  max-width:980px;margin:0 auto;padding:52px 64px 80px;
+}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline;text-underline-offset:2px}
+strong{font-weight:700} code{font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;background:var(--surface2);padding:2px 5px;border-radius:4px;color:#334155}
+hr{border:0;border-top:1px solid var(--border);margin:32px 0}
+
+.cover{padding:30px 0 36px;border-bottom:1px solid var(--border)}
+.cover-kicker{font-size:11px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.cover-title{font-size:34px;font-weight:800;letter-spacing:-0.7px;line-height:1.25;max-width:830px}
+.cover-subtitle{font-size:15px;color:var(--text-sub);margin-top:12px;max-width:760px;line-height:1.75}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.meta-chip{font-size:12px;border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:5px 10px;color:var(--text-sub)}
+.meta-chip.primary{border-color:var(--accent-border);background:var(--accent-bg);color:var(--accent);font-weight:700}
+
+.exec-summary{margin-top:28px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:16px}
+.summary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:18px 20px}
+.summary-card.highlight{background:var(--accent-bg);border-color:var(--accent-border)}
+.card-label{display:block;font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.summary-card p{font-size:13px;color:var(--text-sub);line-height:1.75;margin-bottom:8px}.summary-card p:last-child{margin-bottom:0}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:12px 10px;text-align:center}
+.kpi-num{font-size:18px;font-weight:800;color:var(--text)}.kpi-label{font-size:10.5px;color:var(--text-muted);line-height:1.35;margin-top:3px}
+
+.toc{margin-top:26px;padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r2)}
+.toc-title{font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+.toc-list{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
+.toc-list a{font-size:12.7px;color:var(--text-sub);display:block;padding:3px 0}.toc-list a span{color:var(--accent);font-weight:700;margin-right:5px}
+
+section{padding-top:44px}.sec-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:10px}.sec-title{font-size:22px;font-weight:800;letter-spacing:-0.35px;margin-bottom:12px}.sec-lead{font-size:14px;color:var(--text-sub);line-height:1.82;max-width:830px;margin-bottom:18px}
+.sub-h{font-size:15px;font-weight:800;margin:26px 0 10px;display:flex;align-items:center;gap:8px}.sub-h::before{content:"";width:3px;height:17px;background:var(--accent);border-radius:2px;flex-shrink:0}
+.body-text{font-size:13.5px;color:var(--text-sub);line-height:1.82;margin:8px 0}
+.note{font-size:12px;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--border2);border-radius:var(--r);padding:10px 12px;margin:12px 0}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:16px 18px}.card.blue{background:var(--accent-bg);border-color:var(--accent-border)}.card.green{background:var(--green-bg);border-color:var(--green-border)}.card.orange{background:var(--orange-bg);border-color:var(--orange-border)}.card.red{background:var(--red-bg);border-color:var(--red-border)}.card.purple{background:var(--purple-bg);border-color:var(--purple-border)}
+.card-title{font-size:13.5px;font-weight:800;margin-bottom:6px}.card-body{font-size:12.5px;color:var(--text-sub);line-height:1.72}
+.badge-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}.badge{font-size:11px;color:var(--text-sub);border:1px solid var(--border);background:#fff;border-radius:999px;padding:3px 8px}.badge.blue{color:var(--accent);border-color:var(--accent-border);background:#fff}.badge.green{color:var(--green);border-color:var(--green-border);background:#fff}.badge.orange{color:var(--orange);border-color:var(--orange-border);background:#fff}.badge.red{color:var(--red);border-color:var(--red-border);background:#fff}
+
+.table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12.5px}.table th{text-align:left;font-size:10.5px;letter-spacing:.7px;text-transform:uppercase;color:var(--text-muted);padding:9px 10px;border-bottom:2px solid var(--border);background:var(--surface)}.table td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.65;color:var(--text-sub)}.table tr:last-child td{border-bottom:none}.table strong{color:var(--text)}
+
+.arch{margin:18px 0;background:#fff;border:1px solid var(--border);border-radius:var(--r2);padding:20px;overflow:hidden}.arch svg{width:100%;height:auto;display:block}.caption{font-size:11.5px;color:var(--text-muted);text-align:center;margin-top:8px;font-style:italic}
+
+.flow{display:flex;flex-direction:column;gap:8px;margin:14px 0}.flow-row{display:grid;grid-template-columns:160px 1fr;gap:10px;align-items:start;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);padding:10px 12px}.flow-key{font-size:12px;font-weight:800;color:var(--accent)}.flow-val{font-size:12.5px;color:var(--text-sub);line-height:1.65}
+
+.formula{background:#0F172A;color:#E2E8F0;border-radius:var(--r2);padding:16px 18px;margin:14px 0;font-family:'SFMono-Regular',Consolas,monospace;font-size:12px;line-height:1.8;overflow:auto}.formula .comment{color:#94A3B8}
+
+.phase{border-left:2px solid var(--border2);padding-left:16px;margin:18px 0}.phase-item{position:relative;margin-bottom:18px}.phase-item::before{content:"";position:absolute;left:-22px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--accent)}.phase-title{font-size:13.5px;font-weight:800}.phase-meta{font-size:11.5px;color:var(--text-muted);margin-top:2px}.phase-body{font-size:12.5px;color:var(--text-sub);line-height:1.72;margin-top:6px}
+
+.codeblock{background:#111827;color:#E5E7EB;border-radius:var(--r2);padding:16px 18px;margin:12px 0;font-family:'SFMono-Regular',Consolas,monospace;font-size:11.5px;line-height:1.65;white-space:pre-wrap;overflow:auto}
+
+.ref-list{font-size:12px;color:var(--text-sub);line-height:1.75;padding-left:18px}.ref-list li{margin:6px 0}
+.footer{margin-top:50px;border-top:1px solid var(--border);padding-top:16px;font-size:11.5px;color:var(--text-muted)}
+
+@media print{
+  @page{margin:14mm 11mm} body{padding:18px 26px 28px;font-size:11px;max-width:none}.cover{padding:12px 0 18px}.cover-title{font-size:24px}.cover-subtitle{font-size:11.5px}.exec-summary,.grid-2,.grid-3,.toc-list{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}section{padding-top:26px;page-break-inside:auto}.card,.summary-card,.arch,.table,.flow-row,.phase-item,.formula,.codeblock{page-break-inside:avoid}.sec-title{font-size:18px}.sub-h{page-break-after:avoid}.body-text{orphans:3;widows:3}.toc{display:none}
+}
+@media(max-width:760px){body{padding:28px 20px}.exec-summary,.grid-2,.grid-3,.toc-list{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}.flow-row{grid-template-columns:1fr}.cover-title{font-size:28px}}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-kicker">PFCT AX Squad · Technical Product Proposal</div>
+  <h1 class="cover-title">Credit DecisionOps Copilot<br>여신 업무 판단 근거 자동화와 HITL 검수 시스템</h1>
+  <p class="cover-subtitle">
+    PFCT의 온투금융 운영 경험, AIRPACK의 리스크 분석·룰셋·배포·모니터링 흐름, 그리고 통합여신시스템 확장 방향을 전제로 작성한 가설 기반 AX 프로젝트 기획서입니다. 목표는 AI가 최종 판단을 대체하는 것이 아니라, 금융 담당자가 더 빠르고 정확하게 판단하도록 <strong>근거 수집·정리·검수·피드백 루프</strong>를 시스템화하는 것입니다.
+  </p>
+  <div class="meta-row">
+    <span class="meta-chip primary">Project Type: Internal AX → Productizable Module</span>
+    <span class="meta-chip">Domain: Lending · Credit Risk · Loan Operations</span>
+    <span class="meta-chip">Track: Agentic System + Ontology/Retrieval + Backend</span>
+    <span class="meta-chip">Scope: Hypothesis → Architecture → Deployment</span>
+  </div>
+</div>
+
+<div class="exec-summary">
+  <div class="summary-card highlight">
+    <span class="card-label">Executive Thesis</span>
+    <p>
+      공개 자료 기준 PFCT에서 AX 임팩트가 클 것으로 가정하는 지점은 단순 문서검색이 아니라, <strong>여신 심사·한도/금리 산정·채권관리·운영 대응 과정에서 흩어진 판단 근거를 모아 사람이 검수 가능한 실행 단위로 구조화하는 구간</strong>입니다.
+    </p>
+    <p>
+      따라서 본 제안은 AI Agent가 대출 판단을 직접 확정하는 시스템이 아니라, 케이스별 데이터·정책·룰·모델 결과·유사 사례·사후 성과를 모아 <strong>Evidence Pack</strong>을 생성하고, HITL 검수와 평가 로그를 통해 지속 개선되는 DecisionOps 시스템을 목표로 합니다.
+    </p>
+  </div>
+  <div class="summary-card">
+    <span class="card-label">Core Deliverable</span>
+    <p><strong>MVP 1:</strong> Case Evidence Pack Generator</p>
+    <p><strong>MVP 2:</strong> HITL Review Queue & Audit Store</p>
+    <p><strong>MVP 3:</strong> Rule Change Impact Review Assistant</p>
+    <p><strong>MVP 4:</strong> Monitoring · Evaluation · Productization Bridge</p>
+  </div>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="kpi-num">30~50%</div><div class="kpi-label">근거 수집/정리 시간 절감 목표</div></div>
+  <div class="kpi"><div class="kpi-num">95%+</div><div class="kpi-label">감사 가능 근거 재현율 목표</div></div>
+  <div class="kpi"><div class="kpi-num">60%+</div><div class="kpi-label">HITL 결과 채택률 1차 목표</div></div>
+  <div class="kpi"><div class="kpi-num">0</div><div class="kpi-label">고위험 케이스 완전 자동승인 허용</div></div>
+</div>
+
+<div class="toc">
+  <div class="toc-title">Table of Contents</div>
+  <div class="toc-list">
+    <a href="#context"><span>01</span>공개 자료 기반 상황 가정</a>
+    <a href="#hypothesis"><span>02</span>병목 가설과 검증 플랜</a>
+    <a href="#product"><span>03</span>프로젝트 정의와 유저 시나리오</a>
+    <a href="#architecture"><span>04</span>기술 아키텍처</a>
+    <a href="#data"><span>05</span>데이터 모델과 API 계약</a>
+    <a href="#evaluation"><span>06</span>평가 지표와 HITL 루프</a>
+    <a href="#deployment"><span>07</span>운영·배포 플랜</a>
+    <a href="#roadmap"><span>08</span>MVP 로드맵과 리스크 관리</a>
+  </div>
+</div>
+
+<section id="context">
+  <span class="sec-label">01 · Public Context</span>
+  <h2 class="sec-title">공개 자료 기반 상황 가정</h2>
+  <p class="sec-lead">
+    본 기획서는 PFCT 내부 데이터나 실제 업무 프로세스를 알 수 없는 상태에서 작성했습니다. 따라서 확정적 진단이 아니라, 공개된 사업 방향과 제품 설명을 바탕으로 한 <strong>검증 가능한 초기 가설</strong>입니다.
+  </p>
+
+  <div class="grid-3">
+    <div class="card blue">
+      <div class="card-title">Cple · 온투금융 운영</div>
+      <div class="card-body">중금리 대출 고객과 채권 투자 고객을 연결하는 플랫폼입니다. 차입자 리스크, 투자자 보호, 상품 운영, 사후관리의 복합성이 높습니다.</div>
+    </div>
+    <div class="card green">
+      <div class="card-title">AIRPACK · B2B 리스크 솔루션</div>
+      <div class="card-body">데이터 분석, 승인 룰셋 최적화, 운영 배포, 모니터링까지 이어지는 여신 리스크 관리 제품 흐름을 갖습니다.</div>
+    </div>
+    <div class="card orange">
+      <div class="card-title">nTree · 통합여신 확장</div>
+      <div class="card-body">대출 신청·심사·실행·사후관리·콜센터까지 이어지는 여신 운영 시스템과 AI 리스크 분석의 결합 가능성이 있습니다.</div>
+    </div>
+  </div>
+
+  <div class="sub-h">핵심 해석</div>
+  <table class="table">
+    <thead><tr><th>사업 축</th><th>업무 복잡도</th><th>AX 기회</th></tr></thead>
+    <tbody>
+      <tr><td><strong>온투금융 플랫폼</strong></td><td>차입자 심사, 투자자 보호, 상품 설명, 채권 사후관리, 민원 대응이 연결됨</td><td>케이스별 판단 근거 자동 수집·정리, 운영자 검수 흐름 표준화</td></tr>
+      <tr><td><strong>AI 리스크 관리 솔루션</strong></td><td>모델 결과와 승인 룰셋, 정책 변경, 배포, 사후 성과 모니터링이 이어짐</td><td>룰 변경 영향도 설명, 모델/정책 근거 패키징, 배포 전 체크리스트 자동화</td></tr>
+      <tr><td><strong>통합여신 시스템 확장</strong></td><td>신청부터 콜센터까지 end-to-end 프로세스가 넓어짐</td><td>업무 단위 Agent, HITL 검수, 감사 로그, 사후학습 데이터 축적</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="hypothesis">
+  <span class="sec-label">02 · Hypothesis Driven Plan</span>
+  <h2 class="sec-title">병목 가설과 검증 플랜</h2>
+  <p class="sec-lead">
+    AX 프로젝트의 실패 원인은 “AI 기능을 만들었지만 업무 병목을 줄이지 못하는 것”입니다. 따라서 먼저 업무 시간을 실제로 잡아먹는 지점을 계량하고, 작은 단위에서 검증한 뒤 자동화 범위를 확장해야 합니다.
+  </p>
+
+  <table class="table">
+    <thead><tr><th>가설</th><th>예상 병목</th><th>검증 방법</th><th>성공 기준</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>H1. 판단 근거 수집 비용</strong></td>
+        <td>담당자가 고객 데이터, 정책 문서, 모델 결과, 유사 사례를 여러 시스템에서 수동 조회</td>
+        <td>심사/운영 케이스 30~50건의 작업 로그를 샘플링하고 케이스 준비 시간을 측정</td>
+        <td>Evidence Pack 도입 후 준비 시간 30%+ 감소</td>
+      </tr>
+      <tr>
+        <td><strong>H2. 정책·룰 변경 설명 비용</strong></td>
+        <td>룰셋 변경 시 승인율·부실률·고객군 영향 설명이 반복 문서 작업으로 발생</td>
+        <td>과거 룰 변경 티켓/문서의 필수 설명 항목을 추출하고 자동 생성 결과와 비교</td>
+        <td>필수 설명 항목 회수율 90%+, 담당자 수정률 40% 이하</td>
+      </tr>
+      <tr>
+        <td><strong>H3. 검수 기준 불균일</strong></td>
+        <td>수동 심사/채권관리 케이스에서 담당자별 확인 항목이 달라짐</td>
+        <td>케이스 유형별 체크리스트를 정의하고 누락 데이터·red flag 자동 탐지</td>
+        <td>필수 근거 누락률 50%+ 감소</td>
+      </tr>
+      <tr>
+        <td><strong>H4. 사후 성과 피드백 단절</strong></td>
+        <td>AI/룰/사람 판단 결과가 이후 연체·회수·민원 결과와 충분히 연결되지 않음</td>
+        <td>DecisionCase와 PostOutcome을 연결해 검수 결과별 사후 성과를 추적</td>
+        <td>케이스별 근거·결정·사후성과 재현율 95%+</td>
+      </tr>
+      <tr>
+        <td><strong>H5. 자동화 리스크</strong></td>
+        <td>AI가 고위험 케이스를 과도하게 자동화하면 규제·신용·평판 리스크 증가</td>
+        <td>고위험 조건을 정책 기반 guardrail로 정의하고 자동화 제외 경로를 강제</td>
+        <td>고위험 케이스 완전 자동승인 0건</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="formula">
+<span class="comment"># 목적함수: 생산성 개선과 리스크 통제를 동시에 최적화</span>
+Maximize J = α·ΔT_saved + β·ΔQ_evidence + γ·ΔCycle_speed
+             - λ1·R_policy_violation - λ2·R_wrong_automation - λ3·C_operation
+
+Constraints:
+  R_policy_violation ≤ ε1
+  R_wrong_automation ≤ ε2
+  AuditCoverage ≥ 95%
+  HighRiskCase → HumanReviewRequired = true
+  FinalDecisionOwner = Human or Existing Policy Engine
+  CopilotDecision = Evidence/Recommendation only
+  </div>
+</section>
+
+<section id="product">
+  <span class="sec-label">03 · Product Definition</span>
+  <h2 class="sec-title">프로젝트 정의와 유저 시나리오</h2>
+  <p class="sec-lead">
+    Credit DecisionOps Copilot의 1차 사용자는 리스크 담당자, 심사/운영 담당자, 채권관리 담당자입니다. 시스템은 결정을 대신하지 않고, 사람이 더 빠르고 일관되게 검수할 수 있도록 <strong>근거 패키지와 검토 큐</strong>를 제공합니다.
+  </p>
+
+  <div class="grid-2">
+    <div class="card blue">
+      <div class="card-title">Primary User</div>
+      <div class="card-body">리스크 매니저, 심사 담당자, 채권관리 담당자, 운영 관리자</div>
+      <div class="badge-row"><span class="badge blue">Risk Ops</span><span class="badge blue">Underwriting</span><span class="badge blue">Collection</span></div>
+    </div>
+    <div class="card green">
+      <div class="card-title">Core Output</div>
+      <div class="card-body">케이스 요약, 적용 정책/룰, 모델 결과 해석, 유사 사례, 사후 성과, red flag, 검토 체크리스트를 포함한 Evidence Pack</div>
+      <div class="badge-row"><span class="badge green">Evidence Pack</span><span class="badge green">HITL Queue</span><span class="badge green">Audit Log</span></div>
+    </div>
+  </div>
+
+  <div class="sub-h">주요 업무 시나리오</div>
+  <table class="table">
+    <thead><tr><th>시나리오</th><th>현재 예상 병목</th><th>Copilot 출력</th><th>사람의 역할</th></tr></thead>
+    <tbody>
+      <tr><td><strong>심사 예외 케이스</strong></td><td>모델 점수는 통과권이나 특정 정책 룰에 걸리는 경계 케이스 검토</td><td>고객 특성, 적용 룰, 모델 근거, 유사 케이스, red flag, 추가 확인 항목</td><td>최종 승인/반려/추가서류 요청</td></tr>
+      <tr><td><strong>룰셋 변경 검토</strong></td><td>룰 변경 전후 영향도와 승인율·부실률·수익성 변화를 설명해야 함</td><td>변경 diff, 영향 고객군, 예상 KPI 변화, 배포 전 체크리스트</td><td>룰 변경 승인, 배포 범위 결정</td></tr>
+      <tr><td><strong>연체 조기경보</strong></td><td>위험 상승 고객군의 원인과 대응 우선순위 정리</td><td>최근 행동 변화, 유사 고객군 회수 결과, 대응 우선순위, 커뮤니케이션 초안</td><td>고위험군 대응 승인 및 고객 접촉</td></tr>
+      <tr><td><strong>운영/콜센터 문의</strong></td><td>고객 문의에 대한 정책·계약·처리 이력 확인</td><td>문의 요약, 관련 정책, 이전 처리 이력, 응대 초안, escalation 필요 여부</td><td>응대 승인 또는 상위 부서 전달</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Non-goal:</strong> 본 시스템은 대출 승인/거절을 자동 확정하지 않습니다. 1차 범위는 판단 근거 준비, 체크리스트화, 검수 흐름, 사후 평가 로그 축적입니다.
+  </div>
+</section>
+
+<section id="architecture">
+  <span class="sec-label">04 · Technical Architecture</span>
+  <h2 class="sec-title">기술 아키텍처</h2>
+  <p class="sec-lead">
+    설계 원칙은 세 가지입니다. 첫째, 정형 데이터와 문서 검색을 분리하지 않고 케이스 단위 컨텍스트로 결합합니다. 둘째, AI 출력은 항상 근거와 함께 저장합니다. 셋째, 고위험 케이스는 HITL 검수 큐를 우회할 수 없습니다.
+  </p>
+
+  <div class="arch">
+    <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans KR, sans-serif">
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0 0 L8 4 L0 8" fill="none" stroke="#8B95A1" stroke-width="1.3"/>
+        </marker>
+      </defs>
+      <text x="20" y="28" font-size="12" font-weight="800" fill="#0064FF" letter-spacing="1.2">EVENT & CASE LAYER</text>
+      <rect x="20" y="42" width="860" height="74" rx="8" fill="#EBF3FF" stroke="#C5DBFF"/>
+      <rect x="42" y="61" width="160" height="36" rx="5" fill="#fff" stroke="#C5DBFF"/><text x="122" y="84" text-anchor="middle" font-size="11" fill="#0064FF" font-weight="700">Loan/Case Event</text>
+      <rect x="242" y="61" width="160" height="36" rx="5" fill="#fff" stroke="#C5DBFF"/><text x="322" y="84" text-anchor="middle" font-size="11" fill="#0064FF" font-weight="700">Case Router</text>
+      <rect x="442" y="61" width="180" height="36" rx="5" fill="#fff" stroke="#C5DBFF"/><text x="532" y="84" text-anchor="middle" font-size="11" fill="#0064FF" font-weight="700">Risk Policy Guardrail</text>
+      <rect x="662" y="61" width="180" height="36" rx="5" fill="#fff" stroke="#C5DBFF"/><text x="752" y="84" text-anchor="middle" font-size="11" fill="#0064FF" font-weight="700">Priority Scoring</text>
+      <path d="M202 79 L242 79" stroke="#8B95A1" marker-end="url(#arrow)"/><path d="M402 79 L442 79" stroke="#8B95A1" marker-end="url(#arrow)"/><path d="M622 79 L662 79" stroke="#8B95A1" marker-end="url(#arrow)"/>
+
+      <text x="20" y="154" font-size="12" font-weight="800" fill="#00835F" letter-spacing="1.2">CONTEXT & RETRIEVAL LAYER</text>
+      <rect x="20" y="168" width="860" height="126" rx="8" fill="#E6F7F1" stroke="#92D9C1"/>
+      <rect x="42" y="190" width="154" height="62" rx="5" fill="#fff" stroke="#92D9C1"/><text x="119" y="211" text-anchor="middle" font-size="11" fill="#00835F" font-weight="700">Structured Data</text><text x="119" y="230" text-anchor="middle" font-size="9" fill="#5F6B7A">SQL/API · 신청·계좌·상환</text>
+      <rect x="218" y="190" width="154" height="62" rx="5" fill="#fff" stroke="#92D9C1"/><text x="295" y="211" text-anchor="middle" font-size="11" fill="#00835F" font-weight="700">Policy & Rules</text><text x="295" y="230" text-anchor="middle" font-size="9" fill="#5F6B7A">BM25 · 버전 · 유효기간</text>
+      <rect x="394" y="190" width="154" height="62" rx="5" fill="#fff" stroke="#92D9C1"/><text x="471" y="211" text-anchor="middle" font-size="11" fill="#00835F" font-weight="700">Model Results</text><text x="471" y="230" text-anchor="middle" font-size="9" fill="#5F6B7A">score · feature attribution</text>
+      <rect x="570" y="190" width="154" height="62" rx="5" fill="#fff" stroke="#92D9C1"/><text x="647" y="211" text-anchor="middle" font-size="11" fill="#00835F" font-weight="700">Similar Cases</text><text x="647" y="230" text-anchor="middle" font-size="9" fill="#5F6B7A">Vector · outcome linked</text>
+      <rect x="746" y="190" width="96" height="62" rx="5" fill="#fff" stroke="#92D9C1"/><text x="794" y="211" text-anchor="middle" font-size="11" fill="#00835F" font-weight="700">Builder</text><text x="794" y="230" text-anchor="middle" font-size="9" fill="#5F6B7A">Context Pack</text>
+      <path d="M752 97 L752 165" stroke="#8B95A1" marker-end="url(#arrow)"/>
+
+      <text x="20" y="332" font-size="12" font-weight="800" fill="#D97706" letter-spacing="1.2">AGENT & HUMAN REVIEW LAYER</text>
+      <rect x="20" y="346" width="860" height="112" rx="8" fill="#FFF8E6" stroke="#F0D88C"/>
+      <rect x="60" y="372" width="170" height="54" rx="5" fill="#fff" stroke="#F0D88C"/><text x="145" y="393" text-anchor="middle" font-size="11" fill="#D97706" font-weight="700">DecisionOps Agent</text><text x="145" y="411" text-anchor="middle" font-size="9" fill="#5F6B7A">요약·red flag·액션 후보</text>
+      <rect x="276" y="372" width="170" height="54" rx="5" fill="#fff" stroke="#F0D88C"/><text x="361" y="393" text-anchor="middle" font-size="11" fill="#D97706" font-weight="700">Evidence Pack</text><text x="361" y="411" text-anchor="middle" font-size="9" fill="#5F6B7A">근거 링크와 함께 저장</text>
+      <rect x="492" y="372" width="170" height="54" rx="5" fill="#fff" stroke="#F0D88C"/><text x="577" y="393" text-anchor="middle" font-size="11" fill="#D97706" font-weight="700">HITL Review Queue</text><text x="577" y="411" text-anchor="middle" font-size="9" fill="#5F6B7A">승인·수정·반려·escalate</text>
+      <rect x="708" y="372" width="130" height="54" rx="5" fill="#fff" stroke="#F0D88C"/><text x="773" y="393" text-anchor="middle" font-size="11" fill="#D97706" font-weight="700">Final Action</text><text x="773" y="411" text-anchor="middle" font-size="9" fill="#5F6B7A">기존 시스템 연동</text>
+      <path d="M794 252 L794 343" stroke="#8B95A1" marker-end="url(#arrow)"/>
+      <path d="M230 399 L276 399" stroke="#8B95A1" marker-end="url(#arrow)"/><path d="M446 399 L492 399" stroke="#8B95A1" marker-end="url(#arrow)"/><path d="M662 399 L708 399" stroke="#8B95A1" marker-end="url(#arrow)"/>
+
+      <text x="20" y="494" font-size="12" font-weight="800" fill="#6D28D9" letter-spacing="1.2">AUDIT · EVALUATION · MONITORING</text>
+      <rect x="300" y="474" width="580" height="34" rx="6" fill="#F3E8FF" stroke="#D8B4FE"/>
+      <text x="590" y="496" text-anchor="middle" font-size="10.5" fill="#6D28D9" font-weight="700">Audit Store · Human Feedback · Outcome Join · Evaluation Dashboard · Cost/Latency Monitoring</text>
+      <path d="M577 426 C577 462 577 462 577 472" stroke="#8B95A1" marker-end="url(#arrow)"/>
+    </svg>
+    <div class="caption">정형 데이터, 정책/룰 문서, 모델 결과, 유사 케이스를 케이스 단위 컨텍스트로 결합하고, AI 출력은 Evidence Pack과 HITL Review를 거쳐 감사·평가 저장소로 축적합니다.</div>
+  </div>
+
+  <div class="sub-h">핵심 컴포넌트</div>
+  <div class="flow">
+    <div class="flow-row"><div class="flow-key">Case Router</div><div class="flow-val">심사 예외, 룰 변경 검토, 연체 조기경보, 운영 문의 등 케이스 유형을 분류하고 우선순위를 부여합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">Context Builder</div><div class="flow-val">SQL/API, BM25, 벡터 검색, 모델 결과 저장소를 호출해 케이스별 컨텍스트 패키지를 만듭니다. 모든 근거에는 source_id, version, valid_at을 붙입니다.</div></div>
+    <div class="flow-row"><div class="flow-key">DecisionOps Agent</div><div class="flow-val">근거 요약, 누락 데이터 체크, red flag 분류, 유사 사례 비교, 검토 체크리스트, 액션 후보를 생성합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">HITL Review Queue</div><div class="flow-val">담당자가 승인/수정/반려/추가 데이터 요청/escalation을 수행합니다. 고위험 케이스는 반드시 이 큐를 통과합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">Audit & Eval Store</div><div class="flow-val">입력 컨텍스트, 생성 결과, 사람 수정 내역, 최종 결정, 사후 성과를 연결해 품질 평가와 지속 개선의 기반으로 사용합니다.</div></div>
+  </div>
+</section>
+
+<section id="data">
+  <span class="sec-label">05 · Data Model & API Contract</span>
+  <h2 class="sec-title">데이터 모델과 API 계약</h2>
+  <p class="sec-lead">
+    설계의 핵심은 모델 결과, 정책 룰, 문서 근거, 사람의 검수, 사후 성과를 하나의 케이스 축으로 연결하는 것입니다. 그래야 자동화 품질을 단순 사용자 만족도가 아니라 실제 업무 성과와 연결해 평가할 수 있습니다.
+  </p>
+
+  <table class="table">
+    <thead><tr><th>엔티티</th><th>주요 필드</th><th>설계 의도</th></tr></thead>
+    <tbody>
+      <tr><td><strong>DecisionCase</strong></td><td>case_id, type, borrower_id, product_id, risk_level, status, created_at</td><td>심사/운영/채권관리의 공통 검토 단위</td></tr>
+      <tr><td><strong>BorrowerSnapshot</strong></td><td>borrower_id, profile_features, credit_features, repayment_history, snapshot_at</td><td>판단 시점의 고객 상태를 재현하기 위한 point-in-time 스냅샷</td></tr>
+      <tr><td><strong>CreditModelResult</strong></td><td>model_id, model_version, score, grade, feature_contrib, scored_at</td><td>AI/ML 모델 판단 근거와 버전 추적</td></tr>
+      <tr><td><strong>ApprovalRuleSet</strong></td><td>rule_id, version, condition, action, valid_from, valid_to, owner</td><td>정책 룰과 실행 가능한 조건을 분리 관리</td></tr>
+      <tr><td><strong>PolicyDocument</strong></td><td>doc_id, title, version, section, valid_at, access_scope</td><td>BM25/문서 검색과 권한 제어의 기준</td></tr>
+      <tr><td><strong>EvidencePack</strong></td><td>pack_id, case_id, evidence_items, red_flags, summary, action_candidates</td><td>AI 출력물을 최종 판단이 아닌 검수 가능한 근거 패키지로 저장</td></tr>
+      <tr><td><strong>HumanReview</strong></td><td>review_id, reviewer, decision, edits, reason_codes, reviewed_at</td><td>사람의 수정·승인·반려를 학습 가능한 피드백으로 축적</td></tr>
+      <tr><td><strong>PostOutcome</strong></td><td>case_id, delinquency_flag, repayment_status, complaint_flag, loss_amount, observed_at</td><td>사후 성과와 판단 근거를 연결</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-h">API 계약 예시</div>
+  <div class="codeblock">POST /decisionops/cases/{case_id}/evidence-pack
+
+Request:
+{
+  "case_type": "UNDERWRITING_EXCEPTION",
+  "question": "이 케이스가 수동 심사 대상인지 판단할 근거를 정리해줘",
+  "include_similar_cases": true,
+  "policy_valid_at": "2026-05-14T00:00:00+09:00",
+  "risk_guardrail": {
+    "force_human_review": true,
+    "exclude_auto_approval": true
+  }
+}
+
+Response:
+{
+  "pack_id": "epk_20260514_000182",
+  "case_id": "case_91828",
+  "risk_level": "HIGH",
+  "summary": "신청자는 모델 점수 기준 통과권이나 최근 상환 행동 변화와 정책 룰 R-17에 의해 수동 검토가 필요합니다.",
+  "evidence_items": [
+    {"type": "MODEL_RESULT", "source_id": "model_v42", "value": "risk_score=0.71"},
+    {"type": "POLICY_RULE", "source_id": "R-17@v3", "value": "최근 90일 연체 이력 조건"},
+    {"type": "SIMILAR_CASE", "source_id": "case_77121", "value": "유사 고객군 12개월 연체율 3.4%"}
+  ],
+  "red_flags": ["recent_delinquency_signal", "policy_boundary_case"],
+  "recommended_next_action": "REQUEST_HUMAN_REVIEW",
+  "audit_trace_id": "atr_9faa1"
+}</div>
+</section>
+
+<section id="evaluation">
+  <span class="sec-label">06 · Evaluation & HITL</span>
+  <h2 class="sec-title">평가 지표와 HITL 루프</h2>
+  <p class="sec-lead">
+    금융 업무에서 LLM 응답의 자연스러움은 핵심 지표가 아닙니다. 중요한 것은 근거 누락이 줄었는지, 담당자의 검토 시간이 줄었는지, 정책 위반이 없는지, 사후 성과와 연결해 품질을 개선할 수 있는지입니다.
+  </p>
+
+  <div class="grid-2">
+    <div class="card blue">
+      <div class="card-title">Offline Evaluation</div>
+      <div class="card-body">과거 케이스의 실제 검토 문서와 담당자 판단 로그를 golden set으로 삼아 근거 회수율, 정책 정합성, 요약 누락률, red flag 탐지율을 측정합니다.</div>
+    </div>
+    <div class="card green">
+      <div class="card-title">Online Evaluation</div>
+      <div class="card-body">실제 업무에서 준비 시간, 채택률, 수정 유형, 재작업률, 사후 성과를 추적합니다. A/B 또는 staged rollout으로 효과를 검증합니다.</div>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead><tr><th>지표</th><th>정의</th><th>수집 방식</th><th>1차 목표</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Evidence Recall</strong></td><td>담당자가 실제 참조해야 하는 필수 근거를 회수한 비율</td><td>golden set 비교</td><td>90%+</td></tr>
+      <tr><td><strong>Policy Validity</strong></td><td>현재 유효한 정책/룰만 참조했는지</td><td>valid_at, version 검증</td><td>99%+</td></tr>
+      <tr><td><strong>Preparation Time</strong></td><td>케이스 검토 전 근거 수집·정리 시간</td><td>업무 로그/타이머</td><td>30%+ 감소</td></tr>
+      <tr><td><strong>HITL Acceptance Rate</strong></td><td>AI 결과가 그대로 또는 일부 수정 후 채택되는 비율</td><td>review action log</td><td>60%+</td></tr>
+      <tr><td><strong>Critical Omission Rate</strong></td><td>사람 검수에서 발견된 치명적 근거 누락률</td><td>review reason code</td><td>지속 감소</td></tr>
+      <tr><td><strong>Audit Reproducibility</strong></td><td>동일 케이스의 당시 입력·근거·출력을 재현 가능한 비율</td><td>audit snapshot</td><td>95%+</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-h">HITL 피드백 루프</div>
+  <div class="flow">
+    <div class="flow-row"><div class="flow-key">1. AI 생성</div><div class="flow-val">Evidence Pack과 추천 액션 후보를 생성합니다. 모든 문장에는 가능한 경우 근거 source_id를 연결합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">2. 사람 검수</div><div class="flow-val">담당자는 승인, 수정, 반려, 추가 데이터 요청, escalation 중 하나를 선택합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">3. 수정 사유 구조화</div><div class="flow-val">수정 이유를 누락 데이터, 정책 오해, 부정확한 요약, 위험 과소평가, 문장 톤 등 reason code로 저장합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">4. 평가 데이터 축적</div><div class="flow-val">수정 내역과 사후 성과를 연결해 retrieval 품질, 정책 문서 최신성, 프롬프트/룰 개선 우선순위를 결정합니다.</div></div>
+  </div>
+</section>
+
+<section id="deployment">
+  <span class="sec-label">07 · Operation & Deployment</span>
+  <h2 class="sec-title">운영·배포 플랜</h2>
+  <p class="sec-lead">
+    금융 도메인의 AX 시스템은 기능 출시보다 안전한 운영 경계가 먼저입니다. 개인정보(PII) 보호, 정책 버전, 감사 로그, 비용·지연 모니터링, rollback 가능성을 초기 설계에 포함해야 합니다.
+  </p>
+
+  <div class="grid-2">
+    <div>
+      <div class="sub-h">배포 전략</div>
+      <table class="table">
+        <tbody>
+          <tr><td><strong>Phase 0</strong></td><td>Read-only shadow mode. 실제 업무에 영향 없이 과거/실시간 케이스에 Evidence Pack을 생성하고 담당자 결과와 비교합니다.</td></tr>
+          <tr><td><strong>Phase 1</strong></td><td>Limited pilot. 특정 케이스 유형과 소수 담당자에게만 HITL Queue를 제공합니다.</td></tr>
+          <tr><td><strong>Phase 2</strong></td><td>Feature flag rollout. 케이스 유형, 리스크 레벨, 담당 부서별로 기능을 점진 활성화합니다.</td></tr>
+          <tr><td><strong>Phase 3</strong></td><td>Productization bridge. 내부 AX에서 검증된 모듈을 AIRPACK 또는 통합여신시스템 확장 기능으로 분리 가능한 계약을 설계합니다.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="sub-h">운영 가드레일</div>
+      <table class="table">
+        <tbody>
+          <tr><td><strong>PII</strong></td><td>필드 단위 masking, access scope, retrieval 권한 제어</td></tr>
+          <tr><td><strong>정책 최신성</strong></td><td>valid_at, version, owner가 없는 정책은 사용 금지</td></tr>
+          <tr><td><strong>고위험 케이스</strong></td><td>완전 자동화 금지, 강제 HITL 라우팅</td></tr>
+          <tr><td><strong>감사</strong></td><td>입력 컨텍스트와 출력, 사람이 수정한 내용, 최종 결정 snapshot 저장</td></tr>
+          <tr><td><strong>비용</strong></td><td>케이스 유형별 LLM 호출량, 검색 비용, latency budget 추적</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sub-h">권장 기술 스택</div>
+  <table class="table">
+    <thead><tr><th>계층</th><th>후보 기술</th><th>선택 기준</th></tr></thead>
+    <tbody>
+      <tr><td><strong>API</strong></td><td>FastAPI</td><td>Python 기반 AI/데이터 생태계와 결합이 쉽고, typed contract 관리에 유리</td></tr>
+      <tr><td><strong>Workflow</strong></td><td>Airflow / Prefect / Celery+RabbitMQ</td><td>배치형 평가는 Airflow, 이벤트성 업무 큐는 Celery/RabbitMQ 또는 사내 표준에 맞춤</td></tr>
+      <tr><td><strong>Retrieval</strong></td><td>BM25 + Vector Search Hybrid</td><td>정책/룰 문서는 키워드 정합성이 중요하고, 유사 케이스는 semantic retrieval이 유리</td></tr>
+      <tr><td><strong>Metadata DB</strong></td><td>PostgreSQL/MySQL</td><td>케이스, 룰 버전, 리뷰, 감사 로그를 정합성 있게 관리</td></tr>
+      <tr><td><strong>Object Store</strong></td><td>S3-compatible storage</td><td>Evidence snapshot, 원문 문서, 평가 결과 산출물 저장</td></tr>
+      <tr><td><strong>Observability</strong></td><td>Prometheus/Grafana + Structured Logs</td><td>지연, 실패율, 비용, retrieval miss, 정책 누락을 추적</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-h">CI/CD와 릴리즈 절차</div>
+  <div class="flow">
+    <div class="flow-row"><div class="flow-key">PR Gate</div><div class="flow-val">prompt/template 변경, policy parser 변경, retrieval index 변경은 golden set regression test를 통과해야 merge합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">Index Release</div><div class="flow-val">정책 문서 index는 versioned release로 배포합니다. 신규 index는 shadow evaluation 후 promote합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">Canary</div><div class="flow-val">부서/케이스 유형/리스크 등급 단위로 canary rollout합니다. Critical omission rate가 임계값을 넘으면 자동 rollback합니다.</div></div>
+    <div class="flow-row"><div class="flow-key">Rollback</div><div class="flow-val">API feature flag, prompt version, retrieval index version, policy parser version을 독립적으로 rollback할 수 있게 설계합니다.</div></div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <span class="sec-label">08 · Roadmap & Risk Management</span>
+  <h2 class="sec-title">MVP 로드맵과 리스크 관리</h2>
+  <p class="sec-lead">
+    초기 목표는 거대한 Agent 플랫폼이 아니라, 실제 업무 시간을 줄이는 작은 문제를 2~4주 단위로 검증하는 것입니다. 각 단계는 kill criteria를 가져야 하며, 성공한 모듈만 다음 단계로 확장합니다.
+  </p>
+
+  <div class="phase">
+    <div class="phase-item">
+      <div class="phase-title">Sprint 0 · 업무 관찰과 베이스라인 측정</div>
+      <div class="phase-meta">1~2주 · No-code/low-code research</div>
+      <div class="phase-body">케이스 유형별 담당자 작업 흐름을 관찰하고, 준비 시간, 참조 시스템, 필수 근거 항목, 자주 누락되는 데이터, 규제/정책 guardrail을 정리합니다. 이 단계에서 자동화 대상과 금지 대상을 명확히 분리합니다.</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-title">Sprint 1 · Evidence Pack Generator MVP</div>
+      <div class="phase-meta">2주 · Read-only shadow mode</div>
+      <div class="phase-body">과거 케이스 또는 실시간 shadow 케이스에 대해 근거 패키지를 생성합니다. 실제 업무 결정에는 사용하지 않고 담당자 결과와 비교합니다.</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-title">Sprint 2 · HITL Review Queue</div>
+      <div class="phase-meta">2~3주 · Limited pilot</div>
+      <div class="phase-body">담당자가 AI 결과를 승인/수정/반려하고, 수정 사유를 reason code로 저장하는 UI/API를 제공합니다. 이때부터 업무 시간 감소와 채택률을 측정합니다.</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-title">Sprint 3 · Rule Change Review Assistant</div>
+      <div class="phase-meta">3~4주 · 리스크/정책 담당자 대상</div>
+      <div class="phase-body">룰셋 변경 diff, 영향 고객군, 예상 KPI, 배포 체크리스트를 자동 생성합니다. AIRPACK의 분석·룰셋·배포 흐름과 연결 가능한 인터페이스를 설계합니다.</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-title">Sprint 4 · Evaluation Dashboard & Productization Bridge</div>
+      <div class="phase-meta">3~4주 · 운영 지표 고도화</div>
+      <div class="phase-body">채택률, 수정률, 정책 누락, 비용, latency, 사후 성과를 대시보드화합니다. 내부 AX에서 검증된 Evidence Pack/HITL/Audit 모듈을 외부 제품 기능으로 분리 가능한 boundary를 정의합니다.</div>
+    </div>
+  </div>
+
+  <div class="sub-h">리스크와 대응 전략</div>
+  <table class="table">
+    <thead><tr><th>리스크</th><th>문제</th><th>대응</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hallucination</strong></td><td>근거 없는 정책/숫자 생성</td><td>근거 source_id 없는 문장 표시 금지, citation-required template, structured output validation</td></tr>
+      <tr><td><strong>Stale Policy</strong></td><td>만료된 정책 문서 참조</td><td>valid_at/version/owner 없는 문서 retrieval 제외, index release approval</td></tr>
+      <tr><td><strong>Wrong Automation</strong></td><td>고위험 케이스를 자동 처리 후보로 잘못 분류</td><td>risk guardrail rule 우선 적용, high-risk forced HITL, 자동승인 비활성</td></tr>
+      <tr><td><strong>PII Leakage</strong></td><td>민감정보가 불필요하게 모델/로그에 노출</td><td>field masking, purpose-based access, encrypted audit store, prompt logging redaction</td></tr>
+      <tr><td><strong>Metric Gaming</strong></td><td>검토 시간만 줄이고 품질이 악화</td><td>시간 절감 지표와 critical omission, 사후 성과, 재작업률을 함께 평가</td></tr>
+      <tr><td><strong>Operational Cost</strong></td><td>LLM 호출 비용/지연 증가</td><td>case complexity routing, caching, smaller model for summarization, retrieval prefilter</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-h">최종 제안 문장</div>
+  <div class="card purple">
+    <div class="card-title">Project Thesis</div>
+    <div class="card-body">
+      PFCT의 AX는 “AI 챗봇 도입”에 그치지 않고, 여신 업무의 판단 근거와 실행 흐름을 사람이 검수 가능한 시스템으로 바꾸는 방향으로 확장될 때 가장 큰 임팩트를 만들 수 있다고 생각합니다. Credit DecisionOps Copilot은 크플의 실제 온투금융 운영 경험과 AIRPACK의 분석·룰셋·배포·모니터링 흐름을 연결해, 내부 생산성 개선과 외부 제품화 가능성을 동시에 검증할 수 있는 AX Squad 프로젝트입니다.
+    </div>
+  </div>
+</section>
+
+<section id="references">
+  <span class="sec-label">References</span>
+  <h2 class="sec-title">참고 공개 자료</h2>
+  <ol class="ref-list">
+    <li>PFCT Career — AX Squad 채용공고 및 포지션 요구사항: <a href="https://pfct.career.greetinghr.com/ko/o/198185" target="_blank" rel="noopener noreferrer">https://pfct.career.greetinghr.com/ko/o/198185</a></li>
+    <li>AIRPACK 공식 페이지 — Credit Risk Management, Insight to Execution, Operation & Deployment: <a href="https://airpack.ai/" target="_blank" rel="noopener noreferrer">https://airpack.ai/</a></li>
+    <li>머니투데이 — PFCT, 금융시스템 전문기업 엔투소프트 인수 및 금융권 AX 확장: <a href="https://www.mt.co.kr/future/2026/03/05/2026030511084054942" target="_blank" rel="noopener noreferrer">https://www.mt.co.kr/future/2026/03/05/2026030511084054942</a></li>
+    <li>AI Times — PFCT, SBI저축은행에 AIRPACK-Lab 공급: <a href="https://www.aitimes.com/news/articleView.html?idxno=205370" target="_blank" rel="noopener noreferrer">https://www.aitimes.com/news/articleView.html?idxno=205370</a></li>
+    <li>PFCT 서비스 페이지 — Cple, AIRPACK 서비스 개요: <a href="https://www.pfct.co.kr/service" target="_blank" rel="noopener noreferrer">https://www.pfct.co.kr/service</a></li>
+  </ol>
+</section>
+
+<div class="footer">
+  작성 목적: PFCT AI Engineer(AX Squad) 지원용 기술기획서 초안 · 작성 기준일: 2026-05-14 · 본 문서는 공개 자료 기반 가설이며, 내부 데이터 확인 후 우선순위와 지표는 재설정되어야 합니다.
+</div>
+
+</body>
+</html>
