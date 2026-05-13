@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>자연어 기반 금융 서비스 데이터 접근을 위한 신뢰성 레이어 고도화 제안</title>
+<style>
+:root {
+  --text:#191F28; --sub:#4E5968; --muted:#8B95A1; --border:#E5E8EB; --border-strong:#D1D6DB;
+  --surface:#F9FAFB; --surface2:#F2F4F6; --accent:#0064FF; --accent-bg:#EBF3FF; --code-bg:#F6F8FA;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+.subtitle { margin-top: -8px; color: var(--text-sub, #6B7684); font-size: 15px; font-weight: 500; }
+.note { margin: 18px 0 24px; padding: 14px 16px; border-left: 3px solid var(--accent, #0064FF); background: var(--surface, #F9FAFB); color: var(--text-sub, #6B7684); font-size: 13px; line-height: 1.75; }
+body { margin:0; background:#fff; color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo","Segoe UI",sans-serif; line-height:1.72; letter-spacing:-0.015em; word-break:keep-all; }
+main { max-width:900px; margin:0 auto; padding:46px 48px 70px; }
+h1 { font-size:31px; line-height:1.25; letter-spacing:-0.045em; margin:0 0 4px; }
+h1 + h2 { border-top:0; padding-top:0; margin-top:0; font-size:18px; color:var(--sub); font-weight:600; }
+h2 { margin:42px 0 15px; padding-top:24px; border-top:1px solid var(--border); font-size:21px; line-height:1.35; letter-spacing:-0.035em; }
+h3 { margin:26px 0 10px; font-size:16px; line-height:1.45; }
+h2[id], h3[id] { scroll-margin-top:22px; }
+p { margin:10px 0; font-size:14.2px; color:var(--text); }
+blockquote { margin:20px 0 26px; border-left:4px solid var(--accent); background:var(--surface); padding:14px 18px; border-radius:8px; color:var(--sub); }
+blockquote p { color:var(--sub); font-size:13.1px; margin:4px 0; }
+ul,ol { padding-left:22px; margin:9px 0 16px; }
+li { margin:5px 0; font-size:14px; }
+strong { font-weight:700; }
+hr { border:0; border-top:1px solid var(--border); margin:30px 0; }
+table { width:100%; border-collapse:separate; border-spacing:0; margin:16px 0 24px; font-size:13px; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+th,td { border-bottom:1px solid var(--border); border-right:1px solid var(--border); padding:9px 11px; vertical-align:top; }
+th:last-child,td:last-child { border-right:0; }
+tr:last-child td { border-bottom:0; }
+th { background:var(--surface2); color:var(--text); font-weight:700; text-align:left; }
+td { color:var(--sub); }
+code { background:var(--code-bg); border:1px solid var(--border); border-radius:5px; padding:1px 5px; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; font-size:.92em; }
+pre { background:var(--code-bg); border:1px solid var(--border); border-radius:10px; padding:13px 15px; overflow:auto; margin:16px 0 22px; }
+pre code { border:0; padding:0; background:transparent; font-size:12.4px; line-height:1.55; }
+a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.toc { margin:22px 0 28px; padding:18px 20px; border:1px solid var(--border); border-radius:12px; background:linear-gradient(180deg,var(--surface),#fff); }
+.toc-title { display:block; font-size:11px; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+.toc-list { list-style:none; padding-left:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:7px 18px; }
+.toc-list li { margin:0; font-size:13px; line-height:1.55; }
+.toc-list a { color:var(--sub); text-decoration:none; border-bottom:1px solid transparent; }
+.toc-list a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+.toc-list .toc-sub { padding-left:14px; font-size:12.3px; color:var(--muted); }
+.toc-list .toc-sub a { color:var(--muted); }
+@media (max-width: 720px) { main { padding:30px 24px 50px; } .toc-list { grid-template-columns:1fr; } }
+@media (min-width: 1280px) {
+  main { max-width:1200px; display:grid; grid-template-columns:220px 1fr; column-gap:50px; padding:36px 40px 70px; }
+  main > * { grid-column:2; max-width:900px; }
+  main > .toc { grid-column:1; grid-row:1 / span 999; position:sticky; top:24px; align-self:start; margin:0; padding:16px 14px; max-height:calc(100vh - 48px); overflow-y:auto; max-width:220px; background:linear-gradient(180deg,var(--surface),#fff); }
+  main > .toc .toc-list { grid-template-columns:1fr; gap:5px 0; }
+  main > .toc .toc-list li { font-size:12.3px; line-height:1.5; }
+  main > .toc .toc-list .toc-sub { font-size:11.7px; padding-left:10px; }
+  main > .toc .toc-title { font-size:10.5px; margin-bottom:8px; }
+}
+@media print {
+  @page { margin:14mm 12mm; }
+  main { display:block; max-width:none; padding:0; grid-template-columns:none; column-gap:0; }
+  main > * { grid-column:auto; max-width:none; }
+  main > .toc { position:static; max-height:none; overflow:visible; max-width:none; background:none; }
+  h1 { font-size:21px; } h1 + h2 { font-size:13px; }
+  h2 { font-size:15px; margin-top:24px; padding-top:14px; page-break-after:avoid; }
+  h3 { font-size:12.5px; page-break-after:avoid; }
+  p,li,td,th { font-size:9.4px; line-height:1.48; }
+  blockquote { padding:8px 10px; margin:10px 0 14px; }
+  table { margin:10px 0 14px; page-break-inside:auto; }
+  tr { page-break-inside:avoid; }
+  .toc { padding:8px 10px; margin:8px 0 12px; page-break-inside:avoid; }
+  .toc-title { font-size:8.4px; margin-bottom:4px; }
+  .toc-list { grid-template-columns:1fr 1fr; gap:2px 10px; }
+  .toc-list li { font-size:8.8px; line-height:1.35; }
+  .toc-list .toc-sub { font-size:8.2px; padding-left:8px; }
+  pre { page-break-inside:avoid; white-space:pre-wrap; }
+}
+</style>
+</head>
+<body><main>
+<h1>자연어 기반 금융 서비스 데이터 접근을 위한 신뢰성 레이어 고도화 제안</h1>
+<p class="subtitle">Trusted Financial Data Foundation Proposal</p>
+<div class="note"><strong>용어 정의.</strong> 본 문서에서 말하는 <strong>금융 서비스 데이터</strong>는 대출·신용·금리/한도 등 금융 도메인 데이터뿐 아니라, 사용자 행동 이벤트, 제품 퍼널, 파트너 응답, 운영 로그, 모델 결과처럼 금융 서비스 의사결정에 연결되는 데이터를 함께 포함합니다.</div>
+<h2>문서 목적 및 전제</h2>
+<blockquote><p>본 문서는 핀다 Data Engineer 지원 과정에서, 공개자료 기반으로 핀다의 데이터 플랫폼 고도화 방향을 가설화하고 제가 어떤 문제정의와 기술적 접근으로 기여할 수 있는지 설명하기 위한 제안서입니다.<br/>작성 기준: 공개자료 기반 추정. 핀다 내부 아키텍처·우선순위·거버넌스 정책은 비공개이므로, 모든 제안은 입사 후 Discovery 단계에서 검증·수정되어야 합니다.</p></blockquote>
+<nav aria-label="문서 목차" class="toc"><span class="toc-title">Contents</span><ol class="toc-list"><li class=""><a href="#executive-summary">1. Executive Summary</a></li><li class=""><a href="#current-state">2. 공개자료 기반 현황 추정</a></li><li class=""><a href="#hypotheses">3. 문제 인식과 접근 원칙</a></li><li class="toc-sub"><a href="#h1-trust-context">가설. Trust Context</a></li><li class="toc-sub"><a href="#h2-natural-language-access">설계 원칙. 권한·의미·근거</a></li><li class="toc-sub"><a href="#h3-mvp-first">접근 방식. MVP 우선</a></li><li class=""><a href="#architecture">4. 레이어 구조</a></li><li class="toc-sub"><a href="#request-flow">최소 요청 흐름</a></li><li class=""><a href="#mvp">5. MVP 설계</a></li><li class="toc-sub"><a href="#mvp-targets">MVP 대상 후보</a></li><li class="toc-sub"><a href="#mvp-deliverables">MVP 산출물</a></li><li class="toc-sub"><a href="#use-cases">예시 사용 시나리오</a></li><li class="toc-sub"><a href="#kpi">검증 KPI</a></li><li class=""><a href="#contribution">6. 기여 가능성</a></li><li class=""><a href="#references">7. 참고자료</a></li></ol></nav>
+<h2 id="executive-summary">1. Executive Summary</h2>
+<p>핀다는 대출 비교·신용관리·마이데이터·AI 대출예측으로 확장하며 금융 데이터의 활용 범위를 넓혀가고 있습니다. 공개자료 기준으로는 Databricks Lakehouse, Delta Lake, Spark Streaming, Unity Catalog 등을 도입해 기존 데이터웨어하우스의 비용·성능·거버넌스 문제를 개선한 이력이 확인됩니다.</p>
+<p>저는 다음 고도화 과제 중 하나가 단순 데이터 적재나 분석 환경 구축을 넘어, <strong>권한을 가진 구성원이 자연어로 금융 데이터를 질문하고, 그 답의 정의·품질·권한·근거를 함께 확인할 수 있는 Trusted Financial Data Foundation</strong>이라고 가정했습니다.</p>
+<p>이 제안의 핵심은 새로운 프로토콜(MCP, Model Context Protocol 등) 자체를 크게 구축하는 것이 아닙니다. <strong>기존 데이터 플랫폼 위에 권한, 의미, 품질, 리니지, 최신성, 감사 가능성을 결합해 데이터 접근의 신뢰도를 높이는 최소 레이어를 설계하는 것</strong>입니다.</p>
+<hr/>
+<h2 id="current-state">2. 공개자료 기반 현황 추정</h2>
+<table><thead><tr><th>영역</th><th>확인/추정 내용</th><th>제안에 주는 의미</th></tr></thead><tbody>
+<tr><td>Lakehouse</td><td>Databricks Lakehouse, Delta Lake, Spark Streaming, Unity Catalog 도입 사례가 확인됩니다.</td><td>데이터·분석·AI 환경 통합과 거버넌스의 기반은 이미 존재한다고 가정할 수 있습니다.</td></tr>
+<tr><td>Workflow</td><td>Airflow, CDC, Streaming 기반 파이프라인 고도화 정황이 확인됩니다.</td><td>Airflow는 품질 검증, 상태 기록, 재처리 정책의 핵심 접점입니다.</td></tr>
+<tr><td>Serving &amp; Infra</td><td>JD 기준 Iceberg, Flink, StarRocks, Kubernetes, Terraform이 명시되어 있습니다.</td><td>Lakehouse 이후 실시간/준실시간 처리, OLAP serving, IaC 자동화 단계로 확장 중이라고 추정합니다.</td></tr>
+<tr><td>AI &amp; Model Operation</td><td>공개자료 및 채용공고 기준, 금리/한도 예측, 신용점수 예측, FDS, CSS, 리스크 세그멘테이션 등 금융 모델의 기획·배포·모니터링이 주요 과제로 확인됩니다.</td><td>데이터 플랫폼은 단순 분석 환경을 넘어 모델 결과의 근거, feature snapshot, 품질 상태, 성능 모니터링 컨텍스트를 함께 제공해야 합니다.</td></tr>
+</tbody></table>
+<p>즉, 데이터 플랫폼의 신뢰성은 분석 편의성을 넘어 모델 결과의 근거·재현성·모니터링 가능성과도 직접 연결됩니다.</p>
+<p>위 추정이 맞다면 다음 병목은 “데이터를 더 많이 쌓는 것”이 아니라, <strong>조직의 다양한 직무가 각자의 권한 안에서 같은 데이터를 같은 의미로 이해하고, 그 결과를 신뢰할 수 있게 만드는 것</strong>일 가능성이 큽니다.</p>
+<hr/>
+<h2 id="hypotheses">3. 문제 인식과 접근 원칙</h2>
+<h3 id="h1-trust-context">가설. Lakehouse 이후의 병목은 Trust Context일 수 있다</h3>
+<p>공개자료상 Lakehouse 도입이 확인되는 만큼, 비용·성능·분석 환경 통합은 상당 부분 진전되었을 것으로 추정됩니다. 다음 병목은 사용자가 데이터와 AI 결과를 신뢰하기 위해 필요한 <strong>정의, 품질, 권한, 리니지, 최신성, 근거</strong>가 얼마나 쉽게 확인되는지일 수 있습니다.</p>
+<h3 id="h2-natural-language-access">설계 원칙. 자연어 데이터 접근은 권한·의미·근거를 함께 제공해야 한다</h3>
+<p>AI가 SQL 작성과 지표 탐색을 대신할수록 데이터 접근 장벽은 낮아집니다. 그러나 금융 도메인에서는 접근성이 높아질수록 권한 없는 데이터 노출, 잘못된 지표 해석, 오래된 데이터 기반 의사결정, 출처 없는 AI 응답의 위험도 함께 커집니다.</p>
+<p>따라서 본 제안의 자연어 데이터 접근 레이어(이하 <strong>Financial Data Access Layer</strong>)는 단순 챗봇이 아니라, 권한·의미 계층·품질 상태·근거 정보를 결합해 자연어 데이터 접근을 안전하게 만드는 <strong>신뢰 기반 레이어</strong>로 다뤄져야 합니다. 다음 조건을 만족해야 합니다.</p>
+<ul>
+<li>사용자의 조직·직무·권한에 따라 조회 가능한 데이터와 지표를 제한합니다.</li>
+<li>자연어 질문을 승인된 지표 정의, 데이터 제품, 정책에 매핑합니다.</li>
+<li>민감정보와 개인신용정보는 기본적으로 마스킹, 집계, 최소 단위 제한을 적용합니다.</li>
+<li>결과에는 source, snapshot, freshness, quality status, query/audit id를 함께 반환합니다.</li>
+</ul>
+<h3 id="h3-mvp-first">접근 방식. 특정 도메인 데이터 제품에서 작게 검증한다</h3>
+<p>전사 범용 자연어 데이터 시스템을 처음부터 크게 만드는 것은 위험합니다. 먼저 반복적으로 발생하는 단순 수치 확인형 질문과 분석 요청 로그를 분류하고, owner·description·품질 기준·freshness SLA가 정의된 표준 데이터 제품 또는 SSOT 후보 1~2개만 대상으로 제한해 검증합니다.</p>
+<p>자연어 기반 데이터 접근의 정확도는 LLM 자체 성능보다, 어떤 데이터를 참고 대상으로 허용할지에 더 크게 좌우됩니다. 승인율·한도조회·대출 실행·금리/한도·FDS 이벤트처럼 조직마다 다르게 해석될 수 있는 용어는 표준 정의와 연결하고, 여러 후보가 매칭될 경우 데이터 계층, owner 유무, description 완성도, freshness, 품질 통과 여부, 권한 정책을 함께 고려해 신뢰도 기반 우선순위를 부여합니다. 기준을 충족하지 못한 질문은 답을 생성하지 않고, 추가 조건 요청·owner 확인 필요·권한 부족·품질 BLOCK 등의 상태로 반환합니다.</p>
+<hr/>
+<h2 id="architecture">4. 권한 기반 자연어 데이터 접근 레이어 구조</h2>
+<p>본 제안은 MCP 서버의 세부 구현 방식, LLM provider, 통신 방식, 저장 스키마를 확정하는 문서가 아닙니다. 실제 구현 스택은 핀다 내부의 Databricks, Airflow, Catalog, 인증, BI/AI 도구 현황에 맞춰 결정되어야 합니다.</p>
+<p>제안 범위는 아래 5개 레이어입니다.</p>
+<table><thead><tr><th>Layer</th><th>역할</th><th>MVP 범위</th></tr></thead><tbody>
+<tr><td>Identity &amp; Permission</td><td>사용자 조직·직무·권한·민감도 정책을 확인합니다.</td><td>SSO/RBAC/ABAC 등 기존 권한 체계와 연결되는 정책 확인 단계를 정의합니다.</td></tr>
+<tr><td>Semantic &amp; Metric</td><td>자연어 질문을 승인된 지표·차원·필터·데이터 제품으로 매핑합니다.</td><td>핵심 지표 5~10개, 용어 정의, 허용 필터, 최소 집계 단위를 등록합니다.</td></tr>
+<tr><td>Safe Query &amp; Serving</td><td>안전한 조회 경로를 선택하고 비용·범위·민감도 제한을 적용합니다.</td><td>임의 SQL보다 승인된 query template 또는 metric query를 우선합니다.</td></tr>
+<tr><td>Trust Context</td><td>데이터 품질, 최신성, owner, SLA, lineage, 제한사항을 제공합니다.</td><td>핵심 테이블의 PASS/WARN/BLOCK 상태와 freshness를 기록합니다.</td></tr>
+<tr><td>Evidence &amp; Audit</td><td>결과의 근거와 감사 가능성을 제공합니다.</td><td>source table, snapshot, quality status, query/audit id를 반환합니다.</td></tr>
+</tbody></table>
+<h3 id="request-flow">최소 요청 흐름</h3>
+<pre><code>자연어 질문
+→ 사용자 권한 확인
+→ 질문 의도와 업무 목적 확인
+→ 승인된 지표/표준 데이터 제품으로 매핑
+→ 신뢰도·권한·품질 기준으로 답변 가능 여부 판단
+→ 안전한 조회 실행
+→ 결과 + 조회 기준 + 신뢰 상태 + 근거 + 해석 주의사항 반환
+→ 감사 로그 저장</code></pre>
+<p>이 흐름의 목적은 모든 임직원이 자유롭게 데이터베이스에 접근하도록 만드는 것이 아닙니다. <strong>각자의 권한 안에서 안전하게 질문하고, 답의 근거와 한계를 함께 이해할 수 있게 만드는 것</strong>입니다.</p>
+<hr/>
+<h2 id="mvp">5. MVP 설계</h2>
+<h3 id="mvp-targets">MVP 대상 후보</h3>
+<table><thead><tr><th>후보</th><th>이유</th></tr></thead><tbody>
+<tr><td>대출 상품/금리/한도 snapshot</td><td>핀다의 핵심 사용자 경험과 직접 연결되고, 최신성·정확성 요구가 높습니다.</td></tr>
+<tr><td>AI 대출예측서비스의 예측 조건 snapshot 또는 금융 모델 결과 데이터 제품 후보</td><td>금리/한도 예측, 신용점수 예측, FDS 등 모델 결과의 근거·품질·재현성·모니터링 컨텍스트 검증에 적합합니다.</td></tr>
+<tr><td>파트너 금융사 응답 로그</td><td>외부 연동 품질, 지연, downstream 영향 추적에 적합합니다.</td></tr>
+</tbody></table>
+<h3 id="mvp-deliverables">MVP 산출물</h3>
+<table><thead><tr><th>산출물</th><th>설명</th></tr></thead><tbody>
+<tr><td>핵심 데이터 제품 정의서</td><td>owner, SLA, 민감도, 주요 지표, 허용 질의 범위를 정리합니다.</td></tr>
+<tr><td>Quality &amp; Freshness Gate</td><td>Airflow 또는 기존 워크플로우 종료 전 PASS/WARN/BLOCK 상태를 기록합니다.</td></tr>
+<tr><td>Semantic/Metric Registry</td><td>자연어 질문이 매핑될 지표·차원·필터를 정의합니다.</td></tr>
+<tr><td>Trust Context 조회 인터페이스 또는 View</td><td>테이블/지표별 품질, 최신성, owner, 제한사항을 조회합니다.</td></tr>
+<tr><td>Evidence Response Format</td><td>자연어 응답에 결과, 조회 기준, 데이터 신뢰 상태, 근거, 해석 주의사항, audit id를 함께 제공합니다. 모델 결과가 포함되는 경우 source/feature snapshot과 기준 시점을 포함합니다.</td></tr>
+</tbody></table>
+<h3 id="use-cases">예시 사용 시나리오</h3>
+<table><thead><tr><th>직무</th><th>자연어 질문 예시</th><th>응답 조건</th></tr></thead><tbody>
+<tr><td>기획/PM</td><td>“최근 4주간 대출 신청→승인 전환율이 떨어진 구간은?”</td><td>승인된 funnel metric 기준, 세그먼트와 품질 상태를 포함합니다.</td></tr>
+<tr><td>개발/운영</td><td>“파트너사 응답 지연이 추천 결과에 영향을 준 시점은?”</td><td>응답 로그, freshness, downstream 영향 범위를 포함합니다.</td></tr>
+<tr><td>리스크/전략</td><td>“금리/한도 예측 또는 신용점수 예측 결과가 어제와 달라진 주요 구간은?”</td><td>feature 기준 시점, quality status, 모델 결과 snapshot, 변경 원인 후보를 포함합니다.</td></tr>
+</tbody></table>
+<h3 id="kpi">검증 KPI</h3>
+<table><thead><tr><th>영역</th><th>KPI</th></tr></thead><tbody>
+<tr><td>접근성</td><td>비데이터 직군의 셀프서브 데이터 질문 성공률과 데이터팀 반복 요청 감소를 확인합니다.</td></tr>
+<tr><td>품질</td><td>핵심 테이블 품질 실패 탐지율과 silent failure 감소를 확인합니다.</td></tr>
+<tr><td>신선도</td><td>freshness SLA 위반 건수와 AI 예측 배치 지연 시간을 확인합니다.</td></tr>
+<tr><td>거버넌스</td><td>핵심 데이터 제품 owner/SLA/민감도/허용 질의 등록률을 확인합니다.</td></tr>
+<tr><td>재현성</td><td>분석·모델 결과의 source/feature snapshot 재현률과 audit id 부여율을 확인합니다.</td></tr>
+</tbody></table>
+<hr/>
+
+<h3 id="four-week-roadmap">4주 MVP 배포 일정</h3>
+<table>
+<thead><tr><th>주차</th><th>목표</th><th>주요 산출물</th></tr></thead>
+<tbody>
+<tr><td>1주차</td><td>Discovery &amp; SSOT 후보 선정</td><td>반복 질문·분석 요청 로그를 분류하고, MVP 데이터 제품 1~2개를 선정합니다. owner·description·freshness SLA·품질 기준 초안을 정의합니다.</td></tr>
+<tr><td>2주차</td><td>Trust Layer 핵심 컴포넌트 구축</td><td>권한 정책 매핑, Semantic/Metric Registry, Quality &amp; Freshness Gate(PASS/WARN/BLOCK)를 구현합니다.</td></tr>
+<tr><td>3주차</td><td>자연어 접근 MVP 통합</td><td>신뢰도 기반 후보 선택 로직, Answerability Gate, Evidence Response Format을 통합하고 내부 테스트로 응답 정확도를 점검합니다.</td></tr>
+<tr><td>4주차</td><td>제한 배포 &amp; 운영 검증</td><td>소수 직무 대상 파일럿을 운영하고, audit log·정확도·답변 불가 사유·KPI를 모니터링한 뒤 배포 범위 확대 여부를 판단합니다.</td></tr>
+</tbody>
+</table>
+<p>배포 기준은 기능 개수보다 안전성입니다. MVP는 전사 공개가 아니라 권한이 명확한 소수 직무와 표준 데이터 제품을 대상으로 제한 배포하고, 답변 정확도·재현성·품질 실패 탐지·권한 위반 차단 여부를 확인한 뒤 확장합니다.</p>
+
+<h2 id="contribution">6. 지원자 관점의 기여 가능성</h2>
+<p>제가 이 문제에 기여할 수 있다고 보는 이유는 특정 MCP 구현 경험보다 <strong>금융 데이터가 실제 사용자 자산, 운영 시스템, 모델/전략 판단, 비즈니스 성과와 연결되는 환경을 다뤄봤기 때문</strong>입니다.</p>
+<ul>
+<li><strong>금융 데이터 정합성</strong>: 백테스트/라이브 정합성, 재처리 가능성, 데이터 품질, 운영 추적성을 실제 운용 시스템에서 다뤘습니다.</li>
+<li><strong>Airflow 기반 파이프라인 현대화</strong>: DAG, Sensor, TaskGroup, Storage Adapter, Data Quality Gate, Metadata Tracking으로 수집·검증·저장 책임을 분리한 경험이 있습니다.</li>
+<li><strong>Backend Reliability</strong>: RabbitMQ/Celery, DLQ, manual ACK, idempotency, bulkhead, audit log 등 운영 신뢰성 패턴을 데이터 플랫폼에도 전이할 수 있습니다.</li>
+<li><strong>작은 MVP부터 검증하는 방식</strong>: 내부 도메인을 단정하지 않고, 핵심 데이터 제품·사용자·운영 병목을 학습한 뒤 작게 구현하고 검증하는 접근을 선호합니다.</li>
+</ul>
+<p>결국 Trusted Financial Data Foundation은 신규 플랫폼을 크게 만드는 제안이 아닙니다. 핀다가 이미 구축한 데이터 플랫폼 위에 <strong>정의·품질·권한·리니지·최신성·자연어 접근·AI 근거 컨텍스트</strong>를 얹어 데이터 사용의 신뢰도와 전사 활용도를 높이는 고도화 방향입니다.</p>
+<hr/>
+<h2 id="references">7. 참고자료</h2>
+<ul>
+<li>Finda Data Engineer JD, GreetingHR: <a href="https://finda.career.greetinghr.com/ko/o/213079" target="_blank" rel="noopener noreferrer">https://finda.career.greetinghr.com/ko/o/213079</a></li>
+<li>Databricks 고객 사례 — Finda: <a href="https://www.databricks.com/kr/customers/finda" target="_blank" rel="noopener noreferrer">https://www.databricks.com/kr/customers/finda</a></li>
+<li>핀다포스트 — 핀다의 생명줄, 데이터 파이프라인을 구축하고 플랫폼을 만드는 DP팀: <a href="https://www.post.finda.co.kr/people230511" target="_blank" rel="noopener noreferrer">https://www.post.finda.co.kr/people230511</a></li>
+<li>Finda 공식 홈페이지: <a href="https://finda.co.kr/" target="_blank" rel="noopener noreferrer">https://finda.co.kr/</a></li>
+<li>Unicorn Factory — 핀다 AI 대출예측서비스 출시: <a href="https://www.unicornfactory.co.kr/article/2025060910220449200" target="_blank" rel="noopener noreferrer">https://www.unicornfactory.co.kr/article/2025060910220449200</a></li>
+<li>Toss Tech — 입수는 Datalake로! (feat. Iceberg): <a href="https://toss.tech/article/datalake-iceberg" target="_blank" rel="noopener noreferrer">https://toss.tech/article/datalake-iceberg</a></li>
+<li>카카오뱅크 기술블로그 — Airflow로 펀드 배치 시스템 완벽 구축하기: <a href="https://tech.kakaobank.com/posts/2412-financial-batch-system-with-airflow/" target="_blank" rel="noopener noreferrer">https://tech.kakaobank.com/posts/2412-financial-batch-system-with-airflow/</a></li>
+<li>Databricks Blog — 신용 데이터 플랫폼 구축하기: <a href="https://www.databricks.com/kr/blog/how-build-credit-data-platform-unifying-data-processes-and-people-lakehouse" target="_blank" rel="noopener noreferrer">https://www.databricks.com/kr/blog/how-build-credit-data-platform-unifying-data-processes-and-people-lakehouse</a></li>
+<li>금융위원회 — 금융분야 통합 AI 가이드라인 공개 보도자료: <a href="https://www.fsc.go.kr/no010101/85908" target="_blank" rel="noopener noreferrer">https://www.fsc.go.kr/no010101/85908</a></li>
+</ul>
+</main></body>
+</html>
