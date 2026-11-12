@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>정연서</title>
-<meta name="description" content="정연서 — Forward Deployed Engineer · Backend · AI Engineering. 이력서와 포트폴리오.">
+<meta name="description" content="정연서 — Forward Deployed Engineer. 고객 문제 진단부터 전략 수립, 시스템 구축, 운영 전환까지.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,13 +16,12 @@
 
 <header>
   <h1 class="name">정연서</h1>
-  <p class="title-line">Forward Deployed Engineer · Backend / FullStack · AI Engineering</p>
+  <p class="title-line">Forward Deployed Engineer · Engineering × Strategy × Consulting</p>
   <div class="contact-row">
     <a href="mailto:yeonseosla@gmail.com">yeonseosla@gmail.com</a>
     <a href="https://github.com/yeonseo-Jung">github.com/yeonseo-Jung</a>
     <a href="https://www.linkedin.com/in/yeonseo-jung">linkedin.com/in/yeonseo-jung</a>
   </div>
-  <p class="meta-row">위시켓 AIDP 사업부 FDE (2026.06–) · 이전 STOA Investment 백엔드 (2023.01–2026.06)</p>
   <nav class="nav">
     <a href="./" class="current">홈</a>
     <a href="resume/">이력서</a>
@@ -33,49 +32,68 @@
 </header>
 
 <section>
-  <h2>하는 일</h2>
-  <ul class="facts">
-    <li><strong>FDE</strong> — 고객 현장에서 요구사항을 정의하고, 레거시 시스템의 데이터를 신규 시스템으로 옮기고, 운영 반영과 사후 정정까지 맡습니다.</li>
-    <li><strong>Backend / FullStack</strong> — FastAPI · Next.js · PostgreSQL 기반 서비스와 메시지 큐 기반 실행 인프라를 설계·운영합니다.</li>
-    <li><strong>AI Engineering</strong> — LLM이 직접 실행하지 않는 경계(계획 검증, 사람 승인, 읽기 전용 평면)를 설계하고, 평가 세트·백테스트·셰도우 대조로 효과를 측정합니다.</li>
-  </ul>
+  <p class="lead">
+    고객의 업무 현장에 들어가 문제를 진단하고, 비즈니스 목표를 다시 정의하고, 그 목표를 운영되는 시스템으로 만듭니다.
+    위시켓 AIDP 사업부에서 중소·중견기업의 ERP·데이터·AI 전환을 맡고 있고, 그 전에는 핀테크 스타트업 STOA Investment에서
+    1,600+ 계좌 · AUM 500억 원+ 규모의 운용 상품과 24/7 실행 인프라를 설계·운영했습니다.
+  </p>
+  <div class="stats">
+    <div><b>1,600+</b><span>24/7 운용 계좌</span></div>
+    <div><b>23,130</b><span>라인 전량 일치 ERP 이관</span></div>
+    <div><b>−95%</b><span>실행 계층 메모리</span></div>
+    <div><b>40%</b><span>서비스 매출 기여</span></div>
+  </div>
 </section>
 
 <section>
-  <h2>주요 프로젝트</h2>
-  <div class="cards">
-    <a class="card" href="portfolio/#p1">
-      <div class="card-kicker">FDE · 데이터 이관 · 운영 반영</div>
-      <div class="card-title">시험·인증기관 레거시 ERP 이관</div>
-      <div class="card-body">SQL Server → Supabase. 시험의뢰 9,012건 등 본이관, 검증 31항목 통과, 이관 후 오매핑 4,359건 정정.</div>
-    </a>
-    <a class="card" href="portfolio/#p2">
-      <div class="card-kicker">FDE · Backend · 운영 반영</div>
-      <div class="card-title">제조·유통 그룹 ERP 이관·컷오버</div>
-      <div class="card-body">ECOUNT → Odoo 5,219문서 · 23,130라인 전량 일치. 두 원천 기초재고 456/456 대사.</div>
-    </a>
-    <a class="card" href="portfolio/#p4">
-      <div class="card-kicker">AI Engineering · FullStack · 구축 중</div>
-      <div class="card-title">소비재 브랜드 AI 데이터 워크스페이스</div>
-      <div class="card-body">LLM은 조회 계획만 만들고 서버가 검증·실행. 90문항 평가 세트로 모델 비교.</div>
-    </a>
-    <a class="card" href="portfolio/#p5">
-      <div class="card-kicker">AI Engineering · 셰도우 운영</div>
-      <div class="card-title">유지보수 요청 LLM 트리아지</div>
-      <div class="card-body">204건 백테스트로 과잉 차단 95.1% 확인, 쓰기 모드 중단 후 셰도우 대조(방향 일치 70.3%).</div>
-    </a>
-    <a class="card" href="portfolio/#p7">
-      <div class="card-kicker">Backend · 분산 시스템 · 운영</div>
-      <div class="card-title">분산 주문 실행 인프라와 Rust 전환</div>
-      <div class="card-body">1,600+ 계좌 · 24/7. at-least-once + 멱등성, 계좌 단위 bulkhead. 메모리 −95%, 이미지 −87%.</div>
-    </a>
-    <a class="card" href="portfolio/#p3">
-      <div class="card-kicker">AI Engineering · Backend · staging</div>
-      <div class="card-title">ERP 에이전트 쓰기 통제 계층</div>
-      <div class="card-body">plan → authorization → commit, HMAC 서명 Slack 승인. 에이전트 쓰기를 사람 승인 뒤에만 실행.</div>
-    </a>
+  <h2>문제를 푸는 방식</h2>
+
+  <div class="step">
+    <div class="step-no">01 · 진단</div>
+    <div>
+      <h3>요구사항이 아니라 목표를 봅니다</h3>
+      <p>4개 법인 제조·유통 그룹의 ERP 프로젝트에서 요구사항은 모두 구현했지만 고객의 목표는 바뀌지 않았습니다. 고객사를 다시 찾아가 발주 포털과 엑셀을 오가는 건별 수작업이 병목임을 확인하고, 프로젝트 목표를 "기능 구현"에서 "담당자가 실행하는 구조 → 결과만 승인하는 구조"로 재정의해 Phase 2로 전환했습니다.</p>
+      <a href="portfolio/#p2" class="small">사례 보기</a>
+    </div>
   </div>
-  <p class="small" style="margin-top:12px"><a href="portfolio/">전체 9건 보기</a></p>
+
+  <div class="step">
+    <div class="step-no">02 · 설계</div>
+    <div>
+      <h3>되돌릴 수 있게 설계합니다</h3>
+      <p>레거시 ERP 운영 이관 2건을 맡아, 실패가 곧 고객 업무 중단인 조건에서 로컬 랩 게이트와 운영 환경 롤백 실연을 먼저 끝낸 뒤 본이관했습니다. 13년치 시험 이력 9,012건은 수수료 합계를 1원 단위까지, ERP 거래 5,219문서 · 23,130라인은 품목·수량·금액을 전량 일치시켰습니다.</p>
+      <a href="portfolio/#p1" class="small">사례 보기</a>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-no">03 · 판단</div>
+    <div>
+      <h3>AI 도입의 속도를 데이터로 정합니다</h3>
+      <p>고객 유지보수 요청을 LLM이 판정하는 파이프라인을 만들고, 204건 백테스트에서 사람보다 과하게 막는다는 신호를 확인하자 자동 착수 대신 사람 판단과 대조하는 단계로 도입 전략을 조정했습니다. 자연어 데이터 조회는 90문항 평가 세트로 모델을 비교해, 모델 교체보다 조회 설계가 정확도를 좌우한다는 근거를 만들었습니다.</p>
+      <a href="portfolio/#p5" class="small">사례 보기</a>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-no">04 · 확산</div>
+    <div>
+      <h3>한 번 푼 문제를 조직의 방식으로 만듭니다</h3>
+      <p>사업부 FDE 전원을 대상으로 FDE의 역할과 시간 배분 방향을 제안했고, FDE 채용 1차 면접관을 맡고 있습니다. 제안서 · 견적서 · 보고서 7종을 같은 입력에서 생성하는 문서 표준과, 사내 도구를 에이전트가 안전하게 쓰게 하는 접근 계층을 만들었습니다.</p>
+      <a href="portfolio/#p0" class="small">사례 보기</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>역량</h2>
+  <table class="skill-table">
+    <tbody>
+      <tr><th>Consulting</th><td>현장 진단, 고객 인터뷰 설계, 목표·범위 재정의, 이해관계자 설득, 클라우드 아키텍처·견적 협상</td></tr>
+      <tr><th>Strategy</th><td>AI 도입 단계 설계, 상품화(3-클릭 구독 상품), 조직 역할 정의, 채용 기준</td></tr>
+      <tr><th>Engineering</th><td>FastAPI · Next.js · PostgreSQL · Odoo, RabbitMQ 분산 실행, Rust, Airflow, LLM 평가·가드레일, AWS</td></tr>
+    </tbody>
+  </table>
 </section>
 
 </main>

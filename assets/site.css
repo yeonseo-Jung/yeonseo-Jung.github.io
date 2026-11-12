@@ -75,6 +75,21 @@ ul.facts li::marker { color: var(--text-muted); }
 .sub { color: var(--text-sub); }
 .small { font-size: 12.5px; }
 
+/* Home */
+.lead { font-size: 15.5px; line-height: 1.85; color: var(--text); }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 22px; }
+.stats div { border: 1px solid var(--border); border-radius: var(--r2); padding: 14px 14px 12px; background: var(--surface); }
+.stats b { display: block; font-size: 22px; font-weight: 700; letter-spacing: -0.4px; color: var(--accent); line-height: 1.2; }
+.stats span { font-size: 12px; color: var(--text-sub); }
+.step { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.step:last-child { border-bottom: none; }
+.step-no { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.4px; padding-top: 3px; }
+.step h3 { font-size: 16px; margin-bottom: 4px; }
+.step p { color: var(--text-sub); font-size: 13.5px; margin-bottom: 4px; }
+.frame { display: grid; grid-template-columns: 88px 1fr; gap: 6px 14px; margin: 10px 0; font-size: 13.5px; }
+.frame dt { font-weight: 700; color: var(--accent); font-size: 12.5px; padding-top: 2px; }
+.frame dd { color: var(--text); }
+
 /* Experience */
 .job { padding: 4px 0 22px; }
 .job + .job { border-top: 1px solid var(--border); padding-top: 22px; }
@@ -141,6 +156,8 @@ a.card:hover .card-title { color: var(--accent); }
   .page { padding: 32px 16px 48px; }
   .name { font-size: 26px; }
   .cards { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .step, .frame { grid-template-columns: 1fr; gap: 2px; }
   .toc { columns: 1; }
   .skill-table th { width: 96px; }
   .skill-table td.where, .where-note { display: none; }
