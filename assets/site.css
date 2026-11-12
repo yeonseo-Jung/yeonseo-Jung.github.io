@@ -1,0 +1,161 @@
+:root {
+  --text:       #191F28;
+  --text-sub:   #4E5968;
+  --text-muted: #8B95A1;
+  --border:     #E5E8EB;
+  --border2:    #CDD1D6;
+  --bg:         #FFFFFF;
+  --surface:    #F9FAFB;
+  --accent:     #0064FF;
+  --accent-bg:  #EBF3FF;
+  --warn:       #B25E00;
+  --r:          4px;
+  --r2:         6px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { font-weight: 600; }
+code {
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0 4px;
+}
+
+.page { max-width: 860px; margin: 0 auto; padding: 56px 48px 72px; }
+
+/* Header */
+.name { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; }
+.title-line { font-size: 15px; color: var(--text-sub); margin-top: 6px; }
+.contact-row {
+  display: flex; flex-wrap: wrap; gap: 6px 20px;
+  margin-top: 16px; font-size: 13px; color: var(--text-sub);
+}
+.meta-row { margin-top: 8px; font-size: 12.5px; color: var(--text-muted); }
+
+.nav {
+  display: flex; flex-wrap: wrap; gap: 6px 18px;
+  margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.nav a.current { color: var(--text); font-weight: 600; }
+
+/* Sections */
+section { margin-top: 44px; }
+h2 {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--text-muted);
+  padding-bottom: 10px; border-bottom: 1px solid var(--border); margin-bottom: 18px;
+}
+h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; line-height: 1.4; }
+h4 { font-size: 13.5px; font-weight: 700; margin: 18px 0 6px; }
+p + p { margin-top: 8px; }
+
+ul.facts { padding-left: 18px; }
+ul.facts li { margin: 3px 0; }
+ul.facts li::marker { color: var(--text-muted); }
+
+.muted { color: var(--text-muted); }
+.sub { color: var(--text-sub); }
+.small { font-size: 12.5px; }
+
+/* Experience */
+.job { padding: 4px 0 22px; }
+.job + .job { border-top: 1px solid var(--border); padding-top: 22px; }
+.job-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.job-org { font-size: 16px; font-weight: 700; }
+.job-period { font-size: 13px; color: var(--text-muted); }
+.job-role { font-size: 13px; color: var(--text-sub); margin: 2px 0 10px; }
+
+/* Project cards (index) */
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.card {
+  border: 1px solid var(--border); border-radius: var(--r2);
+  padding: 18px 20px; background: #fff; color: inherit; display: block;
+}
+a.card:hover { border-color: var(--border2); text-decoration: none; }
+a.card:hover .card-title { color: var(--accent); }
+.card-kicker { font-size: 11.5px; color: var(--text-muted); }
+.card-title { font-size: 15px; font-weight: 700; margin: 2px 0 6px; line-height: 1.45; }
+.card-body { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+
+/* Status badges */
+.badge {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 1px 7px; border-radius: 10px; vertical-align: 2px; margin-left: 4px;
+  border: 1px solid var(--border2); color: var(--text-sub); background: var(--surface);
+}
+.badge.live { color: #00835F; border-color: #A6DCC8; background: #EEFAF5; }
+.badge.pilot { color: var(--warn); border-color: #F1CFA0; background: #FFF7EC; }
+
+/* Skills */
+.skill-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.skill-table th, .skill-table td {
+  text-align: left; vertical-align: top; padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-table th { width: 150px; font-weight: 600; color: var(--text); }
+.skill-table td.where { width: 34%; color: var(--text-muted); font-size: 12px; }
+
+/* Project detail (portfolio) */
+.project { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border2); }
+.project:first-of-type { border-top: none; padding-top: 0; }
+.project-meta { font-size: 12.5px; color: var(--text-muted); margin: 4px 0 12px; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 4px; }
+.tag {
+  font-size: 11.5px; padding: 1px 8px; border-radius: var(--r);
+  border: 1px solid var(--border); color: var(--text-sub); background: #fff;
+}
+.kv { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+.kv th, .kv td { text-align: left; vertical-align: top; padding: 7px 10px; border: 1px solid var(--border); }
+.kv thead th { background: var(--surface); font-weight: 600; }
+.kv td.num, .kv th.num { text-align: right; white-space: nowrap; }
+.limits {
+  margin-top: 12px; padding: 10px 14px; background: var(--surface);
+  border-left: 3px solid var(--border2); font-size: 12.8px; color: var(--text-sub);
+}
+.limits strong { color: var(--text); }
+
+.toc { columns: 2; column-gap: 32px; font-size: 13px; padding-left: 18px; }
+.toc li { margin: 2px 0; break-inside: avoid; }
+
+.footer-note { margin-top: 48px; font-size: 12px; color: var(--text-muted); }
+
+@media (max-width: 640px) {
+  .page { padding: 32px 16px 48px; }
+  .name { font-size: 26px; }
+  .cards { grid-template-columns: 1fr; }
+  .toc { columns: 1; }
+  .skill-table th { width: 96px; }
+  .skill-table td.where, .where-note { display: none; }
+  .contact-row { gap: 4px 14px; }
+  .kv { display: block; overflow-x: auto; }
+}
+
+@media print {
+  @page { size: A4; margin: 14mm 14mm 16mm; }
+  body { font-size: 11.5px; }
+  .page { max-width: none; padding: 0; }
+  .nav, .no-print { display: none; }
+  section { margin-top: 24px; }
+  .project { break-before: page; border-top: none; padding-top: 0; margin-top: 0; }
+  .project:first-of-type { break-before: auto; }
+  .job, .card, .kv tr, .limits { break-inside: avoid; }
+  a { color: var(--text); }
+}

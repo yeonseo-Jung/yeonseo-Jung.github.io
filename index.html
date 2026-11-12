@@ -3,377 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>정연서 — Software Engineer</title>
-<meta name="description" content="정연서 — Software Engineer. Resume & Portfolio.">
+<title>정연서</title>
+<meta name="description" content="정연서 — Forward Deployed Engineer · Backend · AI Engineering. 이력서와 포트폴리오.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --text:       #191F28;
-  --text-sub:   #6B7684;
-  --text-muted: #ADB5BD;
-  --border:     #E5E8EB;
-  --border2:    #CDD1D6;
-  --bg:         #FFFFFF;
-  --surface:    #F9FAFB;
-  --accent:     #0064FF;
-  --accent-bg:  #EBF3FF;
-  --r:          4px;
-  --r2:         6px;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html, body {
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #fff;
-  color: var(--text);
-  font-size: 14px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a { color: var(--accent); text-decoration: none; }
-strong { font-weight: 600; }
-
-.page {
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 80px 48px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* ── Header ── */
-.name {
-  font-size: 38px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-}
-
-.title-line {
-  font-size: 15px;
-  color: var(--text-sub);
-  margin-top: 6px;
-}
-
-.contact-row {
-  display: flex;
-  gap: 22px;
-  flex-wrap: wrap;
-  margin-top: 22px;
-  font-size: 13px;
-  color: var(--text-sub);
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.contact-item svg {
-  opacity: 0.35;
-  flex-shrink: 0;
-}
-
-.summary {
-  margin-top: 26px;
-  font-size: 14px;
-  line-height: 1.8;
-  max-width: 680px;
-  padding-left: 14px;
-  border-left: 2px solid var(--border2);
-  color: var(--text-sub);
-}
-
-.summary p + p { margin-top: 14px; }
-
-/* ── Divider ── */
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 44px 0;
-}
-
-/* ── Cards ── */
-.cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.card {
-  position: relative;
-  border: 1px solid var(--border);
-  border-radius: var(--r2);
-  padding: 26px 28px;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.15s ease;
-}
-
-.card:hover {
-  border-color: var(--border2);
-}
-
-.card:hover .card-title {
-  color: var(--accent);
-}
-
-/* 카드 전체를 클릭 영역으로 만드는 stretched-link */
-.card-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.card-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: var(--r2);
-}
-
-.card-title {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--text);
-  transition: color 0.15s ease;
-}
-
-.card-meta {
-  font-size: 12.5px;
-  color: var(--text-sub);
-  margin-top: 6px;
-  line-height: 1.65;
-}
-
-.card-foot {
-  position: relative;
-  z-index: 2;
-  margin-top: 22px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-}
-
-.pdf-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12.5px;
-  color: var(--text-sub);
-  transition: color 0.15s ease;
-}
-
-.pdf-link:hover {
-  color: var(--accent);
-}
-
-.pdf-link svg { flex-shrink: 0; }
-
-/* ── Skills ── */
-.skills-label {
-  display: block;
-  margin-bottom: 22px;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.skill-group {
-  margin-bottom: 22px;
-}
-
-.skill-group:last-child {
-  margin-bottom: 0;
-}
-
-.skill-group-title {
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.skill-row {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 14px;
-  padding: 7px 0;
-  font-size: 13px;
-  line-height: 1.6;
-  border-bottom: 1px solid var(--border);
-}
-
-.skill-row:last-child {
-  border-bottom: none;
-}
-
-.skill-row-label {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-muted);
-}
-
-.skill-row-text {
-  color: var(--text-sub);
-}
-
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .page { padding: 56px 24px; }
-  .name { font-size: 30px; }
-  .cards { grid-template-columns: 1fr; gap: 12px; }
-  .contact-row { gap: 14px; font-size: 12.5px; }
-  .summary { font-size: 13.5px; }
-  .divider { margin: 32px 0; }
-  .skill-row {
-    grid-template-columns: 1fr;
-    gap: 3px;
-    padding: 9px 0;
-  }
-  .skill-row-label {
-    font-size: 10.5px;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-  }
-  .skill-row-text { font-size: 12.5px; }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-
 <main class="page">
 
-  <header>
-    <div class="name">정연서</div>
-    <div class="title-line">Software Engineer · Backend · Distributed Systems · Data Platform</div>
+<header>
+  <h1 class="name">정연서</h1>
+  <p class="title-line">Forward Deployed Engineer · Backend / FullStack · AI Engineering</p>
+  <div class="contact-row">
+    <a href="mailto:yeonseosla@gmail.com">yeonseosla@gmail.com</a>
+    <a href="https://github.com/yeonseo-Jung">github.com/yeonseo-Jung</a>
+    <a href="https://www.linkedin.com/in/yeonseo-jung">linkedin.com/in/yeonseo-jung</a>
+  </div>
+  <p class="meta-row">위시켓 AIDP 사업부 FDE (2026.06–) · 이전 STOA Investment 백엔드 (2023.01–2026.06)</p>
+  <nav class="nav">
+    <a href="./" class="current">홈</a>
+    <a href="resume/">이력서</a>
+    <a href="portfolio/">포트폴리오</a>
+    <a href="resume.pdf">이력서 PDF</a>
+    <a href="portfolio.pdf">포트폴리오 PDF</a>
+  </nav>
+</header>
 
-    <div class="contact-row">
-      <div class="contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.44 1.18 2 2 0 012.42.04h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.73-1.73a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.02z"/></svg>
-        010-6632-0568
-      </div>
-      <div class="contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <a href="mailto:yeonseosla@gmail.com">yeonseosla@gmail.com</a>
-      </div>
-      <div class="contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-        <a href="https://github.com/yeonseo-Jung">github.com/yeonseo-Jung</a>
-      </div>
-      <div class="contact-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        <a href="https://www.linkedin.com/in/yeonseo-jung">linkedin.com/in/yeonseo-jung</a>
-      </div>
-    </div>
+<section>
+  <h2>하는 일</h2>
+  <ul class="facts">
+    <li><strong>FDE</strong> — 고객 현장에서 요구사항을 정의하고, 레거시 시스템의 데이터를 신규 시스템으로 옮기고, 운영 반영과 사후 정정까지 맡습니다.</li>
+    <li><strong>Backend / FullStack</strong> — FastAPI · Next.js · PostgreSQL 기반 서비스와 메시지 큐 기반 실행 인프라를 설계·운영합니다.</li>
+    <li><strong>AI Engineering</strong> — LLM이 직접 실행하지 않는 경계(계획 검증, 사람 승인, 읽기 전용 평면)를 설계하고, 평가 세트·백테스트·셰도우 대조로 효과를 측정합니다.</li>
+  </ul>
+</section>
 
-    <div class="summary">
-      <p><strong>복잡한 도메인 문제를 백엔드·데이터·분산 시스템으로 구조화하고, 실제 운영 가능한 서비스로 연결하는 Software Engineer</strong>입니다. 1,600+ 계좌가 동작하는 24/7 운용 환경에서 API 서버, 메시징 인프라, 데이터 파이프라인, 실행 엔진, 운영 자동화를 설계·운영했습니다.</p>
-      <p>단순 기능 구현에 그치지 않고, 사용자 문제와 비즈니스 제약을 이해한 뒤 데이터 검증·시스템 설계·라이브 운영을 통해 <strong>1,600+ 계좌 라이브 운용, AUM 500억+, 서비스 매출 40% 기여</strong>로 연결했습니다.</p>
-      <p>특정 스택에 종속되기보다 문제에 맞는 도구를 빠르게 학습하고 적용합니다. 설계 결정은 <strong>안정성, 성능, 비용, 확장성, 운영 복잡도</strong>의 트레이드오프로 판단합니다.</p>
-    </div>
-  </header>
-
-  <hr class="divider">
-
-  <section class="skills">
-    <span class="skills-label">Skill Set</span>
-
-    <div class="skill-group">
-      <div class="skill-group-title">Core Development</div>
-      <div class="skill-row">
-        <span class="skill-row-label">Language / Runtime</span>
-        <span class="skill-row-text">Python · Rust</span>
-      </div>
-      <div class="skill-row">
-        <span class="skill-row-label">Backend / API</span>
-        <span class="skill-row-text">FastAPI · Django DRF · SQLAlchemy · asyncio</span>
-      </div>
-      <div class="skill-row">
-        <span class="skill-row-label">Messaging</span>
-        <span class="skill-row-text">RabbitMQ · Celery · pub/sub · DLQ · Idempotency</span>
-      </div>
-      <div class="skill-row">
-        <span class="skill-row-label">Data / Infra</span>
-        <span class="skill-row-text">MySQL · Redis · Apache Airflow · Docker · AWS</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-title">Systems &amp; Operations</div>
-      <div class="skill-row">
-        <span class="skill-row-label">Runtime / Migration</span>
-        <span class="skill-row-text">tokio · axum · sqlx · lapin · Strangler Fig · Feature Flag</span>
-      </div>
-      <div class="skill-row">
-        <span class="skill-row-label">Data Platform</span>
-        <span class="skill-row-text">Data Quality Gate · Metadata Tracking · Backfill · S3 · Azure Blob</span>
-      </div>
-      <div class="skill-row">
-        <span class="skill-row-label">Observability</span>
-        <span class="skill-row-text">Prometheus · Grafana</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-group-title">Working Style</div>
-      <div class="skill-row">
-        <span class="skill-row-label">Approach</span>
-        <span class="skill-row-text">Domain-Driven Design · Data-Informed Engineering · End-to-End Ownership</span>
-      </div>
-      <div class="skill-row">
-        <span class="skill-row-label">Execution</span>
-        <span class="skill-row-text">AI-Augmented Execution · 운영 가능한 시스템 설계 · 라이브 운영 기준 검증</span>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section class="cards">
-
-    <article class="card">
-      <h2 class="card-title"><a class="card-link" href="resume/">Resume</a></h2>
-      <div class="card-meta">경력 · Skills · Core Projects</div>
-      <!-- PDF 업데이트 후 다시 노출 예정
-      <div class="card-foot">
-        <a class="pdf-link" href="resume.pdf" download>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download PDF
-        </a>
-      </div>
-      -->
-    </article>
-
-    <article class="card">
-      <h2 class="card-title"><a class="card-link" href="portfolio/">Portfolio</a></h2>
-      <div class="card-meta">프로젝트 상세 분석</div>
-      <!-- PDF 업데이트 후 다시 노출 예정
-      <div class="card-foot">
-        <a class="pdf-link" href="portfolio.pdf" download>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download PDF
-        </a>
-      </div>
-      -->
-    </article>
-
-  </section>
+<section>
+  <h2>주요 프로젝트</h2>
+  <div class="cards">
+    <a class="card" href="portfolio/#p1">
+      <div class="card-kicker">FDE · 데이터 이관 · 운영 반영</div>
+      <div class="card-title">시험·인증기관 레거시 ERP 이관</div>
+      <div class="card-body">SQL Server → Supabase. 시험의뢰 9,012건 등 본이관, 검증 31항목 통과, 이관 후 오매핑 4,359건 정정.</div>
+    </a>
+    <a class="card" href="portfolio/#p2">
+      <div class="card-kicker">FDE · Backend · 운영 반영</div>
+      <div class="card-title">제조·유통 그룹 ERP 이관·컷오버</div>
+      <div class="card-body">ECOUNT → Odoo 5,219문서 · 23,130라인 전량 일치. 두 원천 기초재고 456/456 대사.</div>
+    </a>
+    <a class="card" href="portfolio/#p4">
+      <div class="card-kicker">AI Engineering · FullStack · 구축 중</div>
+      <div class="card-title">소비재 브랜드 AI 데이터 워크스페이스</div>
+      <div class="card-body">LLM은 조회 계획만 만들고 서버가 검증·실행. 90문항 평가 세트로 모델 비교.</div>
+    </a>
+    <a class="card" href="portfolio/#p5">
+      <div class="card-kicker">AI Engineering · 셰도우 운영</div>
+      <div class="card-title">유지보수 요청 LLM 트리아지</div>
+      <div class="card-body">204건 백테스트로 과잉 차단 95.1% 확인, 쓰기 모드 중단 후 셰도우 대조(방향 일치 70.3%).</div>
+    </a>
+    <a class="card" href="portfolio/#p7">
+      <div class="card-kicker">Backend · 분산 시스템 · 운영</div>
+      <div class="card-title">분산 주문 실행 인프라와 Rust 전환</div>
+      <div class="card-body">1,600+ 계좌 · 24/7. at-least-once + 멱등성, 계좌 단위 bulkhead. 메모리 −95%, 이미지 −87%.</div>
+    </a>
+    <a class="card" href="portfolio/#p3">
+      <div class="card-kicker">AI Engineering · Backend · staging</div>
+      <div class="card-title">ERP 에이전트 쓰기 통제 계층</div>
+      <div class="card-body">plan → authorization → commit, HMAC 서명 Slack 승인. 에이전트 쓰기를 사람 승인 뒤에만 실행.</div>
+    </a>
+  </div>
+  <p class="small" style="margin-top:12px"><a href="portfolio/">전체 9건 보기</a></p>
+</section>
 
 </main>
-
 </body>
 </html>

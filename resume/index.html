@@ -3,387 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>정연서 — Software Engineer 이력서</title>
+<title>정연서 이력서</title>
+<meta name="description" content="정연서 — Forward Deployed Engineer · Backend · AI Engineering 이력서">
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --text:       #191F28;
-  --text-sub:   #6B7684;
-  --text-muted: #ADB5BD;
-  --border:     #E5E8EB;
-  --border2:    #CDD1D6;
-  --bg:         #FFFFFF;
-  --surface:    #F9FAFB;
-  --surface2:   #F2F4F6;
-  --accent:     #0064FF;
-  --accent-bg:  #EBF3FF;
-  --r:          4px;
-  --r2:         6px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #fff; color: var(--text); font-size: 14px; line-height: 1.7;
-  -webkit-font-smoothing: antialiased; word-break: keep-all;
-  max-width: 820px; margin: 0 auto; padding: 48px 52px 60px;
-}
-a { color: var(--accent); text-decoration: none; }
-strong { font-weight: 600; }
-em { font-style: italic; color: var(--text-sub); }
-
-/* HEADER */
-.name { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; }
-.title-line { font-size: 15px; color: var(--text-sub); margin-top: 6px; }
-.contact-row { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 18px; font-size: 13px; color: var(--text-sub); }
-.contact-item { display: flex; align-items: center; gap: 7px; }
-.contact-item svg { opacity: 0.35; flex-shrink: 0; }
-.service-badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 7px 12px; background: var(--accent-bg); border-radius: 4px; font-size: 12.5px; }
-.service-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px; color: var(--accent); text-transform: uppercase; }
-.service-text { color: var(--text); font-weight: 500; }
-
-.summary {
-  margin-top: 24px; font-size: 14.5px; line-height: 1.85; max-width: 760px;
-  padding-left: 16px; border-left: 2px solid var(--border2);
-}
-
-.growth-fit {
-  margin-top: 20px; padding: 18px 20px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--r2); background: var(--surface);
-}
-.growth-fit-label {
-  display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
-}
-.growth-fit p {
-  font-size: 12.8px; line-height: 1.78; color: var(--text-sub); margin: 0 0 9px;
-}
-.growth-fit p:last-child { margin-bottom: 0; }
-
-.role-cards { display: flex; flex-direction: column; gap: 7px; margin-top: 18px; }
-.role-card { display: grid; grid-template-columns: 176px minmax(0, 1fr); align-items: start; gap: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); font-size: 12.8px; line-height: 1.55; }
-.role-card-label { font-size: 10.2px; font-weight: 700; letter-spacing: 0.35px; color: var(--accent); text-transform: uppercase; line-height: 1.35; overflow-wrap: anywhere; }
-.role-card-text { color: var(--text-sub); min-width: 0; }
-
-/* SECTIONS */
-section { padding-top: 40px; }
-.sec-label { font-size: 10.5px; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 28px; display: block; }
-.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-/* SKILLS */
-.skills-layout { display: grid; grid-template-columns: 230px 1fr; gap: 0 44px; }
-.sg-title { font-size: 10.5px; font-weight: 600; letter-spacing: 1.3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; display: block; }
-.skill-group { margin-bottom: 28px; }
-.skill-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
-.skill-row:last-child { border-bottom: none; }
-.skill-level { font-size: 11px; font-weight: 500; color: var(--text-muted); }
-.skill-level.expert { color: var(--accent); }
-.skill-level.advanced { color: #00835F; }
-.skill-level.proficient { color: var(--text-sub); }
-.tag-col { display: flex; flex-direction: column; gap: 22px; }
-.tg-title { font-size: 10.5px; font-weight: 600; letter-spacing: 1.3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; display: block; }
-.tag-cloud { display: flex; flex-wrap: wrap; gap: 5px; }
-.tag { font-size: 12px; padding: 3px 9px; border-radius: var(--r); border: 1px solid var(--border); color: var(--text-sub); background: #fff; line-height: 1.6; }
-.edu-block { margin-top: 4px; }
-.edu-school { font-size: 14px; font-weight: 600; }
-.edu-dept { font-size: 13px; color: var(--text-sub); margin-top: 3px; }
-.edu-supplement { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.55; }
-
-/* EXPERIENCE */
-.exp-item { padding-bottom: 36px; margin-bottom: 36px; border-bottom: 1px solid var(--border); }
-.exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.exp-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3px; }
-.exp-company { font-size: 17px; font-weight: 700; }
-.exp-period { font-size: 13px; color: var(--text-muted); flex-shrink: 0; margin-left: 20px; }
-.exp-role { font-size: 13.5px; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
-.exp-quote { font-size: 13.5px; color: var(--text-sub); line-height: 1.75; padding-left: 14px; border-left: 2px solid var(--border2); margin-bottom: 14px; }
-.blist { list-style: none; }
-.blist li { display: grid; grid-template-columns: 14px 1fr; gap: 8px; padding: 5px 0; font-size: 13.5px; line-height: 1.7; border-bottom: 1px solid var(--border); }
-.blist li:last-child { border-bottom: none; }
-.blist li .bullet { color: var(--text-muted); font-size: 12px; margin-top: 4px; }
-.blist li.priority .bullet { color: var(--accent); font-weight: 700; }
-.result-badge { display: inline-block; font-size: 11.5px; font-weight: 500; padding: 1px 8px; border-radius: 3px; margin-left: 5px; border: 1px solid var(--border); color: var(--text-sub); background: var(--surface); }
-.tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
-
-/* PROJECT CARDS */
-.proj-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r2); padding: 20px 24px; margin-bottom: 14px; }
-.proj-card:last-child { margin-bottom: 0; }
-.proj-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-.proj-card-title { font-size: 14px; font-weight: 700; }
-.proj-card-meta { font-size: 11px; color: var(--text-muted); }
-.proj-card-row { display: grid; grid-template-columns: 42px 1fr; gap: 4px; padding: 4px 0; font-size: 12.5px; line-height: 1.65; }
-.proj-card-label { font-weight: 600; color: var(--text-muted); font-size: 11px; }
-.proj-card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
-.proj-card-tags .tag { font-size: 11px; padding: 2px 7px; }
-
-/* GAP */
-.gap-card { background: var(--accent-bg); border: 1px solid #C5DBFF; border-radius: var(--r2); padding: 18px 22px; }
-.gap-card-title { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
-.gap-card-body { font-size: 12.5px; color: var(--text-sub); line-height: 1.7; }
-
-@media print {
-  @page { margin: 14mm 12mm 14mm 12mm; }
-  body { padding: 10px 20px 20px; font-size: 10.5px; }
-  section { padding-top: 12px; page-break-inside: auto; }
-  .sec-label { margin-bottom: 8px; page-break-after: avoid; break-after: avoid; }
-  header { margin-bottom: 6px; }
-  .name { font-size: 22px; }
-  .title-line { font-size: 13px; }
-  .contact-row { margin-top: 6px; gap: 12px; }
-  .summary { margin: 8px 0; line-height: 1.55; font-size: 10.5px; }
-
-  .growth-fit { margin: 8px 0 10px; padding: 8px 10px; }
-  .growth-fit-label { font-size: 8.2px; margin-bottom: 4px; letter-spacing: 0.9px; page-break-after: avoid; break-after: avoid; }
-  .growth-fit p { font-size: 10px; line-height: 1.65; margin-bottom: 6px; page-break-inside: avoid; orphans: 3; widows: 3; }
-  .role-cards { margin: 10px 0; gap: 5px; }
-  .role-card { grid-template-columns: 140px minmax(0, 1fr); padding: 6px 8px; font-size: 9.7px; line-height: 1.42; }
-  .role-card-label { font-size: 8.3px; letter-spacing: 0.25px; line-height: 1.22; }
-  .role-card-text { font-size: 9.4px; line-height: 1.42; }
-  .skills-layout { gap: 14px; margin-top: 6px; }
-  .skill-row { padding: 3px 0; font-size: 10.5px; }
-  .skill-group { padding: 8px; }
-  .sg-title { font-size: 10.5px; margin-bottom: 4px; }
-  .tg-title { font-size: 10px; margin-bottom: 4px; }
-  .tag { font-size: 9.5px; padding: 2px 6px; }
-  .tag-cloud { gap: 4px; }
-  /* Core Projects는 자연스럽게 흐르도록 (page-break-before 제거)
-     → 직전 페이지의 빈 여백을 활용 */
-  /* 단위별 분할 보호 (자소서 growth-fit은 단락 단위로만 보호) */
-  .exp-item { margin-bottom: 16px; padding-bottom: 16px; page-break-inside: avoid; }
-  .proj-card { page-break-inside: avoid; margin-bottom: 14px; }
-  .role-card { page-break-inside: avoid; }
-  .summary { page-break-inside: avoid; }
-  .blist > li { page-break-inside: avoid; }
-  .tag-col > div { page-break-inside: avoid; }
-  .skill-group { page-break-inside: avoid; }
-  .tag-row { page-break-inside: avoid; }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
+<main class="page">
 
-<!-- ═══════════ HEADER ═══════════ -->
 <header>
-  <div class="name">정연서</div>
-  <div class="title-line">Software Engineer · Backend Platform · Distributed Workflow Systems</div>
-
+  <h1 class="name">정연서</h1>
+  <p class="title-line">Forward Deployed Engineer · Backend / FullStack · AI Engineering</p>
   <div class="contact-row">
-    <div class="contact-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      <a href="mailto:yeonseosla@gmail.com">yeonseosla@gmail.com</a>
-    </div>
-    <div class="contact-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-      <a href="https://github.com/yeonseo-Jung" target="_blank" rel="noopener noreferrer">github.com/yeonseo-Jung</a>
-    </div>
-    <div class="contact-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      <a href="https://yeonseo-jung.github.io" target="_blank" rel="noopener noreferrer">yeonseo-jung.github.io</a>
-    </div>
-    <div class="contact-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      <a href="https://www.linkedin.com/in/yeonseo-jung" target="_blank" rel="noopener noreferrer">linkedin.com/in/yeonseo-jung</a>
-    </div>
-    <div class="contact-item">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.44 1.18 2 2 0 012.42.04h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.73-1.73a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.02z"/></svg>
-      010-6632-0568
-    </div>
+    <a href="mailto:yeonseosla@gmail.com">yeonseosla@gmail.com</a>
+    <a href="https://github.com/yeonseo-Jung">github.com/yeonseo-Jung</a>
+    <a href="https://www.linkedin.com/in/yeonseo-jung">linkedin.com/in/yeonseo-jung</a>
+    <a href="https://yeonseo-jung.github.io">yeonseo-jung.github.io</a>
   </div>
-
-  <div class="service-badge">
-    <span class="service-label">병역</span>
-    <span class="service-text">산업기능요원(보충역) 신규 편입 희망</span>
-  </div>
-
-  <div class="summary">
-    <strong>복잡한 도메인 로직을 안정적인 백엔드 플랫폼과 분산 워크플로우 시스템으로 구현하는 Software Engineer</strong>입니다. 1,600+ 계좌가 동작하는 24/7 운영 환경에서 API, 데이터 파이프라인, 비동기 작업 큐, 실행 인프라를 설계·운영하며 실제 서비스 성과로 연결해왔습니다.<br>
-    사용자 문제를 데이터로 검증하고, 운영 가능한 시스템 경계로 재구성하는 데 강점이 있습니다. 설계 결정은 <strong>운영 안정성, 장애 격리, 확장성, 비용, 재현 가능성, 비즈니스 임팩트</strong>의 트레이드오프로 판단합니다.
-  </div>
-
-  <div class="role-cards">
-    <div class="role-card">
-      <span class="role-card-label">Domain Immersion</span>
-      <span class="role-card-text">도메인을 기술 과제로만 보지 않고, 돈이 흐르는 구조와 사용자 행동, 운영 제약까지 파고들어 비즈니스 임팩트로 연결합니다.</span>
-    </div>
-    <div class="role-card">
-      <span class="role-card-label">Boundaryless Ownership</span>
-      <span class="role-card-text">역할의 경계를 먼저 긋기보다 문제 정의, 데이터 검증, 백엔드 구현, 운영 개선까지 필요한 일을 스스로 찾아 결과로 연결합니다.</span>
-    </div>
-    <div class="role-card">
-      <span class="role-card-label">Evidence-to-Execution</span>
-      <span class="role-card-text">아이디어를 주장으로 끝내지 않고, 데이터 검증과 실험, 시스템 구현, 운영 지표를 거쳐 실제 성과로 증명합니다.</span>
-    </div>
-  </div>
+  <p class="meta-row">기준일 2026-11-13 · 병역: 산업기능요원(보충역) 복무 중</p>
+  <nav class="nav">
+    <a href="../">홈</a>
+    <a href="./" class="current">이력서</a>
+    <a href="../portfolio/">포트폴리오</a>
+    <a href="../resume.pdf">PDF</a>
+  </nav>
 </header>
 
-<hr class="divider" style="margin-top:36px;">
-
-<!-- ═══════════ SKILLS ═══════════ -->
-<section id="skills">
-  <span class="sec-label">Skills &amp; Stack</span>
-  <div class="skills-layout">
-    <div>
-      <div class="skill-group">
-        <span class="sg-title">핵심 기술</span>
-        <div class="skill-row"><span>Python</span><span class="skill-level expert">Expert</span></div>
-        <div class="skill-row"><span>FastAPI / Django</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>SQL / MySQL</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>Apache Airflow</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>RabbitMQ / Celery</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>Redis</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>Docker / AWS</span><span class="skill-level advanced">Advanced</span></div>
-        <div class="skill-row"><span>Rust</span><span class="skill-level advanced">Advanced</span></div>
-      </div>
-      <div class="skill-group">
-        <span class="sg-title">학력</span>
-        <div class="edu-block">
-          <div class="edu-school">서울시립대학교</div>
-          <div class="edu-dept">신소재공학과 · 4학년 중퇴</div>
-          <div class="edu-supplement">실무 기반으로 데이터 문제 해결 · 백엔드 시스템 · 실험 검증 · 분산 실행 구조를 지속 학습</div>
-        </div>
-      </div>
-    </div>
-    <div class="tag-col">
-      <div>
-        <span class="tg-title">Backend · API Systems</span>
-        <div class="tag-cloud">
-          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Django</span>
-          <span class="tag">RESTful API</span><span class="tag">SQLAlchemy</span>
-          <span class="tag">External API Integration</span>
-        </div>
-      </div>
-      <div>
-        <span class="tg-title">Data Pipeline · Workflow</span>
-        <div class="tag-cloud">
-          <span class="tag">Apache Airflow</span><span class="tag">SQL / MySQL</span>
-          <span class="tag">Data Quality Gate</span><span class="tag">Metadata Tracking</span>
-          <span class="tag">Backfill</span><span class="tag">Storage Adapter</span>
-        </div>
-      </div>
-      <div>
-        <span class="tg-title">Distributed Execution</span>
-        <div class="tag-cloud">
-          <span class="tag">RabbitMQ / Celery</span><span class="tag">Redis</span>
-          <span class="tag">pub/sub · Fanout</span><span class="tag">DLQ · Idempotency</span>
-          <span class="tag">Bulkhead</span><span class="tag">Audit Log</span>
-        </div>
-      </div>
-      <div>
-        <span class="tg-title">Operations · Reliability</span>
-        <div class="tag-cloud">
-          <span class="tag">Docker Compose</span><span class="tag">AWS S3 · Azure Blob</span>
-          <span class="tag">Prometheus · Grafana</span><span class="tag">GitHub Actions</span>
-          <span class="tag">Rust · tokio</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<section>
+  <h2>요약</h2>
+  <ul class="facts">
+    <li>위시켓 AIDP 사업부 FDE. 중소·중견기업 고객 현장에서 요구사항 정의, 레거시 데이터 이관, 백엔드·웹 구현, LLM 기능 설계와 평가, 운영 반영까지 맡습니다.</li>
+    <li>레거시 ERP 운영 이관 2건: SQL Server → Supabase(시험의뢰 9,012건 등, 검증 31항목 통과), ECOUNT → Odoo(5,219문서 · 23,130라인 전량 일치).</li>
+    <li>LLM 기능은 모델이 직접 쓰거나 실행하지 않는 구조로 설계하고, 백테스트·셰도우 대조·평가 세트로 효과를 측정합니다.</li>
+    <li>이전 STOA Investment에서 1,600+ 계좌 · 24/7 주문 실행 인프라를 설계·운영했고, 실행 계층을 Rust로 점진 전환해 메모리를 95% 줄였습니다.</li>
+  </ul>
 </section>
 
-<hr class="divider">
+<section>
+  <h2>경력</h2>
 
-<!-- ═══════════ EXPERIENCE ═══════════ -->
-<section id="experience">
-  <span class="sec-label">Experience</span>
-
-  <div class="exp-item">
-    <div class="exp-head">
-      <span class="exp-company">STOA Investment (퀀터스)</span>
-      <span class="exp-period">2023.01 – 현재 · 3년 5개월</span>
+  <div class="job">
+    <div class="job-head">
+      <span class="job-org">위시켓 · AIDP 사업부</span>
+      <span class="job-period">2026.06 – 현재</span>
     </div>
-    <div class="exp-role">Backend Platform · Distributed Execution · Data Workflow Systems</div>
-    <div class="exp-quote">
-      초기 멤버로 합류해 복잡한 도메인 로직을 API, 데이터 파이프라인, 비동기 실행 인프라로 구조화하고, 백테스트·라이브 운영·외부 시스템 연동까지 이어지는 운영 시스템을 설계·구현했습니다.<br>
-      주요 프로젝트는 <strong>문제 정의 → 데이터 검증 → 시스템 설계 → 장애 격리 → 운영 확장</strong>의 흐름으로 진행했습니다.
-      <span style="display:block; margin-top:8px; font-size:12px; color:var(--text-muted); font-style:italic;">※ 아래는 본인이 직접 주도한 핵심 프로젝트만 정리했습니다.</span>
-    </div>
-    <ul class="blist">
-      <li><span class="bullet">→</span><span><strong>복잡한 도메인 로직의 제품형 운영 시스템 전환</strong> — 사용자가 직접 설정하기 어려운 전략 선택·리밸런싱·실행 흐름을 표준화된 서비스 워크플로우로 재구성. 데이터 기반 가설 검증, 전략 엔진, 백테스트, 라이브 운영, 주문 실행 위임을 하나의 운영 시스템으로 연결.<span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌 라이브 운용</span><span class="result-badge">AUM 500억+</span><span class="result-badge">서비스 매출 40% 기여</span></span></span></li>
-      <li><span class="bullet">→</span><span><strong>분산 실행 인프라 Zero-to-One 설계·운영</strong> — 시그널 생성부와 실행부를 pub/sub 1:N 구조로 분리하고, 외부 시스템 연동 실패가 전체 처리 흐름으로 전파되지 않도록 실행 계층을 격리. DLQ, manual ACK, 시간 슬롯 기반 idempotency, 계좌 단위 bulkhead, audit log를 적용해 중복 실행 방지와 장애 후 재처리 가능성을 확보.<span style="display:block;margin-top:6px"><span class="result-badge">1,600+ 계좌</span><span class="result-badge">6개 외부 시스템 통합</span><span class="result-badge">24/7 운영 · 관측 메시지 유실 0건</span><span class="result-badge">월평균 거래대금 5천억</span></span></span></li>
-      <li><span class="bullet">→</span><span><strong>데이터 플랫폼 확장을 위한 수집·적재 파이프라인 현대화</strong> — 실시간 데이터와 외부 API 기반 정형 데이터 수집·적재 로직이 레거시 코드에 분산되어 있던 구조를 Airflow 기반 실행 계층으로 재설계. DAG, Sensor, TaskGroup, SQLAlchemy, Storage Adapter, Data Quality Gate를 통해 수집·검증·저장·메타데이터 추적 책임을 분리하고, 추후 피처 스토어·데이터 마켓으로 확장 가능한 기반을 마련.</span></li>
-      <li><span class="bullet">→</span><span><strong>Django · FastAPI 기반 API 서버 설계·운영</strong> — 사용자 계정, 설정 관리, 실행 요청, 결과 조회 등 서비스 핵심 API를 설계·운영. 동기 CRUD 요청은 Django DRF로, 비동기·고부하 작업은 FastAPI + asyncio + Celery로 분리해 요청 처리 경계와 백그라운드 실행 경계를 명확히 구분.<span style="display:block;margin-top:5px">· SQLAlchemy 커넥션 풀, 작업 큐, 실행 상태 추적, 에러 응답 표준화를 적용해 API 안정성과 운영 관측성을 개선</span></span></li>
-      <li><span class="bullet">→</span><span><strong>운영 비용과 확장성을 개선한 실행 계층 전환</strong> — 라이브 실행 시스템의 메모리 사용량, 배포 이미지 크기, 이벤트 루프 복잡도, 드라이버 호환성 문제를 Rust 기반 실행 계층으로 점진 전환. Strangler Fig + Feature Flag로 Python/Rust 공존과 롤백 가능성을 확보하고, 성능 개선을 실측 지표로 검증.<span style="display:block;margin-top:6px"><span class="result-badge">메모리 -95% (4.3GB → 193MB)</span><span class="result-badge">이미지 -87% (1.2GB → 160MB)</span><span class="result-badge">핵심 실행 LOC -53%</span></span></span></li>
-      <li><span class="bullet">→</span><span><strong>가설 기반 상품 라인업 확장 시스템 구축</strong> — 동일한 시뮬레이션·라이브 인프라 위에서 서로 다른 자산군과 입력 신호를 가진 전략 상품군을 확장. 각 전략은 <strong>문제 가설 정의 → 데이터 검증 → 파라미터 탐색 → out-of-sample 검증 → 라이브 진입</strong>의 동일한 실험·출시 파이프라인을 거쳐 운영화.<span style="display:block;margin-top:5px">· 추세 신호 기반 전략군 13종, 자산 페어 동적 비중 스위칭 전략 2종 추가 운용</span></span></li>
+    <p class="job-role">Forward Deployed Engineer · 고객사 ERP·데이터·AI 딜리버리</p>
+    <ul class="facts">
+      <li><a href="../portfolio/#p1">시험·인증기관 레거시 ERP 이관</a> — SQL Server → Supabase/PostgreSQL. 로컬 랩 게이트 통과 후 운영 반영, 4단계 검증과 역검증. 이관 후 코드값 의미 오매핑 4,359건을 원천 화면으로 확정해 백업·카나리·멱등 재실행으로 정정.</li>
+      <li><a href="../portfolio/#p2">제조·유통 그룹 ERP 이관·컷오버</a> — ECOUNT → Odoo 19 거래 5,219문서 · 23,130라인 전량 일치, 운영 환경 롤백 실연 후 적재. ECOUNT·WMS 두 원천 기초재고 456/456 좌표 대사 통과. 릴리즈 충돌을 공지 대신 릴리즈 락으로 해결.</li>
+      <li><a href="../portfolio/#p3">ERP 에이전트 쓰기 통제 계층</a> — plan → authorization → commit, HMAC 서명 Slack 승인 카드, 원장 테이블. staging E2E 완료.</li>
+      <li><a href="../portfolio/#p4">소비재 브랜드 AI 데이터 워크스페이스</a> — FastAPI · Next.js · PostgreSQL · DuckDB · AWS ECS 단독 구축 중. LLM은 조회 계획만 만들고 서버가 검증·실행. 90문항 평가 세트로 모델 비교(81.1% / 87.8%, p = 0.070).</li>
+      <li><a href="../portfolio/#p5">유지보수 요청 LLM 트리아지</a> — 204건 백테스트에서 과잉 차단 95.1%를 확인하고 쓰기 모드를 멈춘 뒤 셰도우 모드로 전환. 13일 대조 방향 일치 70.3%.</li>
+      <li><a href="../portfolio/#p6">에이전트용 헤드리스 접근 계층</a> — 해시 저장 API 토큰, 읽기 등급, 허용 컬럼 view 155개로 에이전트 읽기 범위 고정.</li>
     </ul>
-    <div class="tag-row">
-      <span class="tag">Python · SQL</span><span class="tag">KPI Definition</span>
-      <span class="tag">Hypothesis Testing</span><span class="tag">Backtest / Live Consistency</span>
-      <span class="tag">FastAPI · Django</span><span class="tag">Apache Airflow</span>
-      <span class="tag">SQLAlchemy</span><span class="tag">RabbitMQ · Celery</span>
-      <span class="tag">Data Quality Gate</span><span class="tag">AWS S3 · Azure Blob</span>
-      <span class="tag">Rust · tokio</span>
-    </div>
   </div>
 
-  <div class="exp-item">
-    <div class="exp-head">
-      <span class="exp-company">마이셀럽스 (현 키토크에이아이)</span>
-      <span class="exp-period">2021.12 – 2022.12 · 1년</span>
+  <div class="job">
+    <div class="job-head">
+      <span class="job-org">STOA Investment (퀀터스)</span>
+      <span class="job-period">2023.01 – 2026.06</span>
     </div>
-    <div class="exp-role">데이터 엔지니어</div>
-    <div class="exp-quote">
-      AI 기반 인플루언서 매칭 플랫폼에서 데이터 수집·정제·분석 파이프라인을 자동화하고, 비개발자도 직접 실행·모니터링할 수 있는 운영 도구를 구축했습니다.
-    </div>
-    <ul class="blist">
-      <li><span class="bullet">→</span><span><strong>운영 업무 자동화 및 내부 도구화</strong> — 라벨링·클렌징·수집·분석을 수동으로 분산 수행하던 업무를 반복 가능한 Python 파이프라인으로 통합하고, 실행 상태를 UI에서 확인할 수 있도록 도구화. <strong>4~5명 인력 → 1명</strong> 수준으로 운영 비용 절감<span class="result-badge">80% 인력 절감</span></span></li>
-      <li><span class="bullet">→</span><span><strong>비개발자가 운영 가능한 구조로 인수인계</strong> — 개발자가 계속 붙어있어야 돌아가는 파이프라인은 장기적으로 실패한다고 보고, PyQt 기반 UI로 제어·상태·모니터링 기능을 감싸 분석가·운영팀이 직접 파이프라인을 쓰고 관리할 수 있게 만들었습니다.</span></li>
+    <p class="job-role">Backend · 분산 실행 · 데이터 파이프라인 · 초기 멤버</p>
+    <ul class="facts">
+      <li><a href="../portfolio/#p7">분산 주문 실행 인프라</a> — RabbitMQ fanout, manual ACK · DLQ · 멱등성 키 · 계좌 단위 bulkhead. 1,600+ 계좌, 거래소·증권사 6곳, 월평균 거래대금 약 5천억 원.</li>
+      <li><a href="../portfolio/#p7">Python → Rust 실행 계층 전환</a> — Strangler Fig + feature flag. 메모리 4.3GB → 193MB, 이미지 1.2GB → 160MB, 핵심 코드 24K → 11.4K LOC.</li>
+      <li><a href="../portfolio/#p8">데이터 파이프라인 Airflow 전환</a> — 세션 팩토리, 스토리지 어댑터, 적재 전 품질 게이트. 레거시 파이프라인 2종 폐기.</li>
+      <li><a href="../portfolio/#p9">운용 엔진 백테스트·라이브 정합성</a> — point-in-time 데이터, 상태 3계층 분리. AUM 500억 원+ 상품의 엔진.</li>
+      <li>서비스 API — 동기 CRUD는 Django DRF, 비동기·고부하 작업은 FastAPI + asyncio + Celery로 분리.</li>
     </ul>
-    <div class="tag-row">
-      <span class="tag">Python</span><span class="tag">PyQt</span>
-      <span class="tag">데이터 파이프라인</span><span class="tag">자동화</span><span class="tag">데이터 품질</span>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span class="job-org">마이셀럽스 (현 키토크에이아이)</span>
+      <span class="job-period">2021.12 – 2022.12</span>
     </div>
+    <p class="job-role">데이터 엔지니어</p>
+    <ul class="facts">
+      <li>수작업으로 나뉘어 있던 수집·정제·라벨링 작업을 Python 파이프라인으로 통합하고, 비개발자가 실행·모니터링할 수 있는 PyQt 도구로 넘겼습니다. 운영 인력 4–5명 → 1명.</li>
+    </ul>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- ═══════════ CORE PROJECTS ═══════════ -->
-<section id="projects">
-  <span class="sec-label">Core Projects</span>
-  <div class="exp-quote" style="border-left:none;padding-left:0;font-size:12.5px;margin-bottom:18px">
-    아래는 각 프로젝트의 핵심 요약입니다. <strong>아키텍처, 대안 비교, 설계 결정 근거, 운영 한계</strong> 등 상세 내용은 <a href="https://yeonseo-jung.github.io/portfolio/swe" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; text-underline-offset: 2px;">포트폴리오 링크</a>에서 다룹니다.
-  </div>
-
-  <div class="proj-card">
-    <div class="proj-card-head">
-      <span class="proj-card-title">1. 액티브 포트폴리오 운영 시스템 — 전략 엔진·검증 파이프라인·라이브 운영</span>
-      <span class="proj-card-meta">STOA · 2024 – 현재 · 문제 정의·전략 엔진·백테스팅·라이브 운영 전담</span>
-    </div>
-    <div style="font-size:11.5px; color:var(--text-muted); line-height:1.55; margin:-2px 0 8px;">복잡한 도메인 정책, 데이터 검증, 실행 요청을 안정적인 서비스 워크플로우로 연결한 운영 시스템</div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>신규·라이트 유저는 전략 선택, 리밸런싱, 리스크 조절, 시장 국면 해석의 학습 비용이 높아 실제 운용 전환까지 이어지기 어려움.</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span><strong>기관형 자산배분 프레임워크를 3-클릭 구독형 상품으로 재구성</strong>하고, 가설 검증 → 포트폴리오 산출 → 리스크 오버레이 → 주문 실행 위임 → 라이브 모니터링으로 이어지는 제품형 운용 시스템 설계.<span style="display:block;margin-top:5px">· 운용 데이터 기반으로 자산군 상관구조, 성과 기여도, 리스크 기여도를 분석하며 자산 구성과 상품 구조를 점진 개선</span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 라이브 운용 · AUM 500억+ · 서비스 매출 40% 기여 · 시뮬레이션 4.15y / 라이브 1.36y 정합 검증</strong><span style="display:block;margin-top:5px">· 가설을 실서비스 상품과 수익 모델로 연결하고, 백테스트↔라이브 정합성 검증을 통해 운영 가능성을 확인</span></span></div>
-    <div class="proj-card-tags">
-      <span class="tag">Problem Solving</span><span class="tag">KPI Definition</span><span class="tag">Hypothesis Validation</span><span class="tag">Productization</span><span class="tag">Backtest / Live Consistency</span>
-    </div>
-  </div>
-
-  <div class="proj-card">
-    <div class="proj-card-head">
-      <span class="proj-card-title">2. 분산 실행 인프라 — 비동기 작업 큐·외부 시스템 연동·Rust 전환</span>
-      <span class="proj-card-meta">STOA · 2023 – 현재 · 전략·모델 서빙·실행 계층 설계·운영</span>
-    </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>계좌 수 증가와 외부 시스템 실패에도 시그널 생성, 주문 실행, 체결 상태 기록이 안정적으로 동작하는 분산 실행 인프라가 필요했습니다.</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>시그널 생성부와 주문 실행부를 pub/sub 1:N 구조로 분리하고, RabbitMQ broadcast, DLQ, manual ACK, 시간 슬롯 멱등성, 계좌 단위 Bulkhead로 주문 side effect를 실행 계층에 격리.<span style="display:block;margin-top:5px">· 실행 시스템의 운영 비용과 확장성 개선을 위해 Rust 기반 실행 계층을 점진 도입하고, Feature Flag로 공존·롤백 가능성을 확보</span></span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span><strong>1,600+ 계좌 · 6개 거래소/증권사 · 24/7 운영 · 관측 메시지 유실 0건</strong><span style="display:block;margin-top:3px">· 월평균 거래대금 약 5천억 / 메모리 -95% · 이미지 -87% · 핵심 실행 LOC -53% 실측</span></span></div>
-    <div class="proj-card-tags">
-      <span class="tag">RabbitMQ</span><span class="tag">FastAPI · Celery</span><span class="tag">DLQ · Idempotency</span><span class="tag">Bulkhead</span><span class="tag">Rust · tokio · sqlx</span><span class="tag">Feature Flag</span>
-    </div>
-  </div>
-
-  <div class="proj-card">
-    <div class="proj-card-head">
-      <span class="proj-card-title">3. 데이터 파이프라인 — 수집·적재·품질 검증·현대화</span>
-      <span class="proj-card-meta">STOA · 2026.03 · 수집·적재·품질 검증·전환 전담</span>
-    </div>
-    <div class="proj-card-row"><span class="proj-card-label">문제</span><span>실시간 데이터와 외부 API 기반 정형 데이터의 수집·적재 로직, 데이터 검증, 저장소, 백필 정책이 레거시 코드에 분산되어 데이터 플랫폼 확장성이 제한됨.</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">설계</span><span>Airflow DAG, Sensor, TaskGroup, SQLAlchemy, Storage Adapter, Data Quality Gate를 통해 수집·검증·저장·메타데이터 추적 책임을 분리하고, 피처 스토어·데이터 마켓으로 확장 가능한 기반을 마련.</span></div>
-    <div class="proj-card-row"><span class="proj-card-label">성과</span><span>도메인 제약이 반영된 데이터 실행 표준을 구축하고, <strong>레거시 파이프라인 2종을 폐기</strong>. 백필·스토리지 전환·품질 검증을 표준화해 데이터 플랫폼 확장 기반을 개선.</span></div>
-    <div class="proj-card-tags">
-      <span class="tag">Apache Airflow</span><span class="tag">Sensor · TaskGroup</span><span class="tag">Data Quality Gate</span><span class="tag">Metadata Tracking</span><span class="tag">AWS S3 · Azure Blob</span>
-    </div>
-  </div>
+<section>
+  <h2>기술</h2>
+  <table class="skill-table">
+    <tbody>
+      <tr><th>Backend</th><td>Python (FastAPI, Django DRF, SQLAlchemy, asyncio), TypeScript (Next.js API Routes, Prisma), Rust (tokio, axum, sqlx)</td><td class="where">1, 2, 4, 6, 7</td></tr>
+      <tr><th>Frontend</th><td>Next.js, React, Playwright E2E</td><td class="where">1, 2, 4</td></tr>
+      <tr><th>Data</th><td>PostgreSQL, Supabase(RLS), MySQL, SQL Server, DuckDB, Redis, Apache Airflow, Odoo JSON-RPC</td><td class="where">1, 2, 4, 8</td></tr>
+      <tr><th>Messaging</th><td>RabbitMQ, Celery, DLQ, 멱등성 키, bulkhead</td><td class="where">7</td></tr>
+      <tr><th>AI Engineering</th><td>LLM 조회 계획 검증, 평가 세트·백테스트·셰도우 대조, Human-in-the-loop 승인, Claude Code · Codex CLI, OpenAI Agents SDK, MCP</td><td class="where">3, 4, 5, 6</td></tr>
+      <tr><th>Infra · Ops</th><td>Docker, AWS(ECS, S3), Azure Blob, Vercel, GitHub Actions, Prometheus, Grafana</td><td class="where">4, 7, 8</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted where-note" style="margin-top:8px">오른쪽 숫자는 포트폴리오 프로젝트 번호입니다.</p>
 </section>
 
+<section>
+  <h2>학력</h2>
+  <p><strong>서울시립대학교</strong> <span class="sub">신소재공학과 · 4학년 중퇴</span></p>
+</section>
 
+</main>
 </body>
 </html>
