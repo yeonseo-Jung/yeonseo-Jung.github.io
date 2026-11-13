@@ -70,12 +70,12 @@
   <p class="project-meta">위시켓 AIDP · 2026.06–2026.08 · 냉동공조 분야 시험·인증기관 · 이관 전략·런북·ETL·검증·고객 보고 리드</p>
 
   <h4>문제</h4>
-  <p>2013년부터 쌓인 시험 이력이 레거시 SQL Server에 있었고, 신규 ERP(Next.js · Supabase/PostgreSQL)로 옮겨 운영을 전환해야 했습니다. 운영 환경은 하나뿐이어서 이관 실패가 곧 고객 업무 중단이었습니다.</p>
+  <p>2013년부터 쌓인 시험 이력이 레거시 SQL Server에 있었고, 신규 ERP(Next.js · PostgreSQL)로 옮겨 운영을 전환해야 했습니다. 운영 환경은 하나뿐이어서 이관 실패가 곧 고객 업무 중단이었습니다.</p>
 
   <h4>설계 결정</h4>
   <ul class="facts">
-    <li><strong>게이트 분리</strong> — Docker MSSQL 2022로 만든 로컬 랩에서 G0–G5 게이트를 모두 통과한 뒤에만 운영 DB(G6–G7)를 건드리도록 순서를 고정했습니다.</li>
-    <li><strong>사이드맵</strong> — 앱 스키마에 레거시 컬럼을 추가하지 않고 <code>migration_id_map</code> 테이블로 레거시 키 ↔ 신규 키를 추적했습니다. 앱 코드에 이관 흔적이 남지 않고, 행 단위 대조와 재실행이 가능해집니다.</li>
+    <li><strong>게이트 분리</strong> — 격리된 로컬 랩에서 G0–G5 게이트를 모두 통과한 뒤에만 운영 DB(G6–G7)를 건드리도록 순서를 고정했습니다.</li>
+    <li><strong>사이드맵</strong> — 앱 스키마에 레거시 컬럼을 추가하지 않고 별도 매핑 테이블로 레거시 키 ↔ 신규 키를 추적했습니다. 앱 코드에 이관 흔적이 남지 않고, 행 단위 대조와 재실행이 가능해집니다.</li>
     <li><strong>4단계 검증</strong> — 건수 대조 → 금액 합계 → 사이드맵 기준 행 단위 대조 → FK·enum 무결성. 검증기가 실제로 오류를 잡는지 확인하려고 변조 1건을 넣어 실패하는지 보는 역검증을 함께 돌렸습니다.</li>
   </ul>
 
@@ -101,7 +101,7 @@
     <li>레거시 관리자 화면의 실제 select option 값으로 코드 의미를 확정하고 변환 상수를 고쳤습니다.</li>
     <li>운영 정정은 대상 행 JSONL 백업 → 단일 트랜잭션 카나리 → 멱등 재실행 순서로 진행해 롤백 가능하게 했습니다.</li>
   </ul>
-  <div class="tags"><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span><span class="tag">Python ETL</span><span class="tag">Next.js</span><span class="tag">Docker</span><span class="tag">Vitest</span><span class="tag">Playwright</span></div>
+  <div class="tags"><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">Python ETL</span><span class="tag">Next.js</span><span class="tag">Docker</span><span class="tag">Vitest</span><span class="tag">Playwright</span></div>
 </section>
 
 <!-- P2 -->
@@ -117,7 +117,7 @@
   </dl>
 
   <h4>기반 작업: 데이터 이관</h4>
-  <p>법인별로 ECOUNT(SaaS ERP), 자체 WMS(MSSQL), 레거시 PHP ERP에 흩어진 거래·재고를 Odoo 19 기반 신규 ERP로 옮겨야 했습니다. 원장이 서로 다른 시스템 세 개라 "같은 데이터"의 기준부터 맞춰야 했습니다.</p>
+  <p>법인별로 ECOUNT(SaaS ERP), 자체 WMS(MSSQL), 레거시 PHP ERP에 흩어진 거래·재고를 Odoo 기반 신규 ERP로 옮겨야 했습니다. 원장이 서로 다른 시스템 세 개라 "같은 데이터"의 기준부터 맞춰야 했습니다.</p>
 
   <h4>ECOUNT → Odoo 거래 이관</h4>
   <ul class="facts">
@@ -136,10 +136,10 @@
 
   <h4>운영 절차</h4>
   <ul class="facts">
-    <li>여러 담당자가 같은 통합 브랜치를 출하하면서 Slack 공지로 순서를 맞추는 방식이 3회 실패했습니다. 공지 대신 릴리즈 락(<code>release-lock acquire --head &lt;검증한 SHA&gt;</code>)을 잡아야 머지·배포할 수 있게 바꿨습니다.</li>
+    <li>여러 담당자가 같은 통합 브랜치를 출하하면서 Slack 공지로 순서를 맞추는 방식이 3회 실패했습니다. 공지 대신 검증한 커밋 단위로 릴리즈 락을 잡아야 머지·배포할 수 있게 바꿨습니다.</li>
     <li>레거시 PHP ERP에 하드코딩된 DB 자격증명을 환경변수로 옮기고 최소 권한 계정을 분리했습니다.</li>
   </ul>
-  <div class="tags"><span class="tag">Odoo 19 JSON-RPC</span><span class="tag">Next.js</span><span class="tag">Prisma</span><span class="tag">Supabase</span><span class="tag">SQL Server</span><span class="tag">TypeScript</span><span class="tag">Vercel</span></div>
+  <div class="tags"><span class="tag">Odoo</span><span class="tag">Next.js</span><span class="tag">SQL Server</span><span class="tag">TypeScript</span></div>
 </section>
 
 <!-- P3 -->
@@ -154,7 +154,7 @@
   <ul class="facts">
     <li>모든 에이전트 쓰기를 <strong>plan → authorization → commit</strong> 3단계로 강제했습니다. 에이전트는 변경 계획만 만들고, 사람이 승인한 계획만 서버가 실행합니다.</li>
     <li>승인은 Slack 카드로 받고, 카드 응답은 HMAC 서명으로 위변조를 막았습니다. 계획·승인·실행 기록은 원장 테이블에 남깁니다.</li>
-    <li>원장 스키마 마이그레이션 32개와, 제어면 코드(<code>l2/**</code> 79커밋, API 34커밋)를 단독으로 작성했습니다.</li>
+    <li>원장 스키마 마이그레이션 32개와, 제어면·API 코드를 단독으로 작성했습니다.</li>
   </ul>
   <div class="tags"><span class="tag">Next.js API Routes</span><span class="tag">PostgreSQL</span><span class="tag">HMAC</span><span class="tag">Slack API</span><span class="tag">Human-in-the-loop</span></div>
 </section>
@@ -172,7 +172,7 @@
     <li><strong>모델은 SQL을 실행하지 않음</strong> — LLM은 질문을 조회 계획(데이터셋 · 동작 · 조건)으로만 바꾸고, 서버가 카탈로그 기준으로 계획을 검증한 뒤 실행합니다. 답할 수 없는 질문과 데이터셋을 넘나드는 질문은 모델 판단과 별개로 서버가 차단합니다.</li>
     <li><strong>데이터 경계</strong> — 원천 시스템은 읽기 전용으로만 연결하고, 계정·개인정보는 모델 입력에서 뺍니다. 고객 변경 요청의 판정은 규칙 엔진이 하고 LLM은 판정하지 않습니다. 모델 CLI는 도구·MCP·훅을 끈 격리 상태로 호출합니다.</li>
     <li><strong>저장소</strong> — 운영 데이터는 PostgreSQL, 분석 질의는 DuckDB로 나누고, 두 엔진의 결과가 같은지 대조하는 테스트를 두었습니다.</li>
-    <li><strong>모델 경로 교체</strong> — 고객 AWS 계정에서 Bedrock Claude를 쓸 수 없다는 MSP 회신을 받고, 모델 경로를 Bedrock의 GPT 계열과 OpenAI Agents SDK로 바꿨습니다.</li>
+    <li><strong>모델 경로 교체</strong> — 고객 클라우드에서 계획한 모델을 쓸 수 없다는 회신을 받고, 모델 호출 경로를 다른 모델로 바꿨습니다.</li>
   </ul>
 
   <h4>평가</h4>
@@ -190,7 +190,7 @@
     <li>오답 28건을 원인별로 나누자 가장 큰 유형은 값 하나를 묻는 질문에 집계 대신 행 나열을 고른 경우(15건)였습니다. 모델 교체보다 조회 계획 어휘와 서버 검증을 고치는 쪽이 효과가 크다는 근거가 됐습니다.</li>
     <li>기본 모델은 정답률이 아니라 실행 경계의 잔여 위험을 우선하는 기준으로 정했고, 그 판단 근거를 정답률과 분리해 기록했습니다.</li>
   </ul>
-  <div class="tags"><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">DuckDB</span><span class="tag">AWS ECS</span><span class="tag">OpenAI Agents SDK</span><span class="tag">GitHub Actions</span><span class="tag">LLM Eval</span></div>
+  <div class="tags"><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">DuckDB</span><span class="tag">AWS</span><span class="tag">GitHub Actions</span><span class="tag">LLM Eval</span></div>
 </section>
 
 <!-- P5 -->
@@ -203,8 +203,8 @@
 
   <h4>설계</h4>
   <ul class="facts">
-    <li>30분 주기로 요청을 가져와 모호성 · 중복 · 난이도 · 리스크를 판정하고 답변 초안과 작업 워커 제안을 만듭니다. 판정마다 토큰·비용을 원장(SQLite)에 남기고 예산을 관리합니다.</li>
-    <li>판정 엔진은 실측 비용으로 골랐습니다(<code>claude -p</code> 호출당 약 $0.19 → 구독 기반 <code>codex exec</code>).</li>
+    <li>30분 주기로 요청을 가져와 모호성 · 중복 · 난이도 · 리스크를 판정하고 답변 초안과 작업 워커 제안을 만듭니다. 판정마다 토큰·비용을 원장에 남기고 예산을 관리합니다.</li>
+    <li>판정 엔진은 호출당 실측 비용을 비교해 골랐습니다.</li>
     <li>가드레일: dry-run 기본, 정지 마커, 근거 없는 판정 차단(근거 게이트), 발송 채널 허용 목록.</li>
   </ul>
 
@@ -215,7 +215,7 @@
     <li>판단: 자동 착수를 밀어붙이는 대신 2일 시험 뒤 사람 판단과 나란히 돌리는 셰도우 단계로 도입 전략을 바꿨습니다. 13일 대조에서 방향 일치 70.3%를 확보하고, 규칙 개선 루프를 돌리고 있습니다.</li>
     <li>규칙 변경은 같은 티켓을 재판정하는 A/B로 확인했습니다. 53쌍 중 리스크 상향 6건이 규칙 의도와 반대여서 개별 검증 대상으로 남겼습니다.</li>
   </ul>
-  <div class="tags"><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">launchd</span><span class="tag">Codex CLI</span><span class="tag">Backtest</span><span class="tag">A/B</span></div>
+  <div class="tags"><span class="tag">Python</span><span class="tag">LLM</span><span class="tag">Backtest</span><span class="tag">A/B</span></div>
 </section>
 
 <!-- P6 -->
@@ -223,10 +223,10 @@
   <h3>6. 사내 시스템을 에이전트가 쓰게 하는 헤드리스 접근 계층</h3>
   <p class="project-meta">위시켓 AIDP · 2026.07–2026.11 · 사내 딜리버리 어드민(Next.js · PostgreSQL) · 인증·에이전트 읽기 평면 설계</p>
   <ul class="facts">
-    <li><strong>API 토큰</strong> — 로그인 세션 없이 CLI·에이전트가 호출할 수 있게 토큰 인증을 추가했습니다. 토큰은 sha256 해시로만 저장하고 스코프·만료를 필수로 했습니다.</li>
+    <li><strong>API 토큰</strong> — 로그인 세션 없이 CLI·에이전트가 호출할 수 있게 토큰 인증을 추가했습니다. 토큰은 해시로만 저장하고 스코프·만료를 필수로 했습니다.</li>
     <li><strong>읽기 등급</strong> — 데이터 영역마다 스코프를 새로 만들면 새 스코프가 기존 토큰에 소급되지 않아 토큰을 전량 재발급해야 했고, 이 일이 3회 반복됐습니다. 스코프 대신 읽기 등급을 두어 재발급 없이 범위를 넓힐 수 있게 바꿨습니다.</li>
     <li><strong>에이전트 읽기 평면</strong> — 모델 176개를 민감도로 분류하고, 허용 컬럼만 담은 view 155개를 생성했습니다. PostgreSQL에서는 테이블 단위 SELECT를 준 뒤 특정 컬럼만 회수할 수 없어서, 권한 회수 대신 view로 노출 범위를 고정했습니다.</li>
-    <li>이 계층 위에 사내 Claude Code·Codex 플러그인용 CLI(<code>aidp-work</code>, 테스트 145개)를 만들었고, 계약 변경을 CI 게이트로 검사합니다.</li>
+    <li>이 계층 위에 사내 에이전트 플러그인용 CLI(테스트 145개)를 만들었고, 계약 변경을 CI 게이트로 검사합니다.</li>
   </ul>
   <div class="tags"><span class="tag">TypeScript</span><span class="tag">PostgreSQL views</span><span class="tag">Token auth</span><span class="tag">CLI</span></div>
 </section>
