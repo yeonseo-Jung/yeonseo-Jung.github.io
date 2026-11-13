@@ -47,7 +47,7 @@
   </ol>
   <p class="small muted" style="margin-top:12px">
     0–6은 위시켓 AIDP에서 고객 현장에 들어가 진단부터 운영 전환까지 맡은 사례, 7–9는 STOA Investment에서 상품과 인프라를 처음부터 만든 사례입니다.
-    구현은 Claude Code · Codex 에이전트 팀을 설계·지휘하는 방식으로 진행하고, 사람의 시간은 진단과 의사결정에 씁니다.
+    구현은 AI 코딩 에이전트 팀을 설계·지휘하는 방식으로 진행하고, 사람의 시간은 진단과 의사결정에 씁니다.
   </p>
 </section>
 
@@ -59,7 +59,7 @@
     <li><strong>고객 인터뷰와 목표 수립</strong> — 소비재 브랜드 프로젝트에서 팀별 심층 인터뷰 질의 은행과 진행 키트를 설계하고, 인터뷰 결과를 팀별 핵심 목표 · 마일스톤 · 범위 밖 항목으로 좁혀 MVP 범위를 정했습니다.</li>
     <li><strong>클라우드 아키텍처·견적 협상</strong> — 고객 AWS 환경을 MSP와 함께 설계하면서 아키텍처를 v13 → v21로 반복 개정하고, 견적서의 미팅 결론과 다른 가정(로그 크기, 동기화 방식, 비밀값 운영, 마이그레이션 위치)을 짚어 재산출을 요청했습니다.</li>
     <li><strong>문서 표준</strong> — 제안서 · 견적서 · 킥오프 · 중간보고 · 완료보고 · 주간보고 · 전략서 7종을 같은 JSON 입력에서 PPTX · PDF로 생성하는 사업부 문서 표준을 만들어 사내 플러그인으로 배포했습니다.</li>
-    <li><strong>에이전트 운영 체계</strong> — 머신 3대에 걸친 개발·에이전트 운영 환경을 하나의 정본으로 관리하고(가드 훅, 승인 게이트, 교차 모델 리뷰), FDE가 에이전트에 일을 나누는 단위·모델 라우팅·자율 경계를 프로세스로 정리했습니다.</li>
+    <li><strong>에이전트 운영 체계</strong> — 개발·에이전트 운영 환경을 하나의 정본으로 관리하고(가드 훅, 승인 게이트, 교차 모델 리뷰), FDE가 에이전트에 일을 나누는 단위·모델 라우팅·자율 경계를 프로세스로 정리했습니다.</li>
     <li><strong>팀 기준</strong> — FDE 채용 1차 면접관(2026-10~)을 맡고, 사업부 FDE의 역할·시간 배분에 대한 논의 자료를 작성했습니다.</li>
   </ul>
 </section>
@@ -74,7 +74,7 @@
 
   <h4>설계 결정</h4>
   <ul class="facts">
-    <li><strong>게이트 분리</strong> — 격리된 로컬 랩에서 G0–G5 게이트를 모두 통과한 뒤에만 운영 DB(G6–G7)를 건드리도록 순서를 고정했습니다.</li>
+    <li><strong>게이트 분리</strong> — 운영과 분리된 검증 환경에서 G0–G5 게이트를 모두 통과한 뒤에만 운영 DB(G6–G7)를 건드리도록 순서를 고정했습니다.</li>
     <li><strong>사이드맵</strong> — 앱 스키마에 레거시 컬럼을 추가하지 않고 별도 매핑 테이블로 레거시 키 ↔ 신규 키를 추적했습니다. 앱 코드에 이관 흔적이 남지 않고, 행 단위 대조와 재실행이 가능해집니다.</li>
     <li><strong>4단계 검증</strong> — 건수 대조 → 금액 합계 → 사이드맵 기준 행 단위 대조 → FK·enum 무결성. 검증기가 실제로 오류를 잡는지 확인하려고 변조 1건을 넣어 실패하는지 보는 역검증을 함께 돌렸습니다.</li>
   </ul>
@@ -101,7 +101,7 @@
     <li>레거시 관리자 화면의 실제 select option 값으로 코드 의미를 확정하고 변환 상수를 고쳤습니다.</li>
     <li>운영 정정은 대상 행 JSONL 백업 → 단일 트랜잭션 카나리 → 멱등 재실행 순서로 진행해 롤백 가능하게 했습니다.</li>
   </ul>
-  <div class="tags"><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">Python ETL</span><span class="tag">Next.js</span><span class="tag">Docker</span><span class="tag">Vitest</span><span class="tag">Playwright</span></div>
+  <div class="tags"><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">Python</span><span class="tag">Next.js</span><span class="tag">Docker</span><span class="tag">Vitest</span><span class="tag">Playwright</span></div>
 </section>
 
 <!-- P2 -->
@@ -117,9 +117,9 @@
   </dl>
 
   <h4>기반 작업: 데이터 이관</h4>
-  <p>법인별로 ECOUNT(SaaS ERP), 자체 WMS(MSSQL), 레거시 PHP ERP에 흩어진 거래·재고를 Odoo 기반 신규 ERP로 옮겨야 했습니다. 원장이 서로 다른 시스템 세 개라 "같은 데이터"의 기준부터 맞춰야 했습니다.</p>
+  <p>법인별로 클라우드 ERP, 자체 WMS(SQL Server), 레거시 ERP에 흩어진 거래·재고를 Odoo 기반 신규 ERP로 옮겨야 했습니다. 원장이 서로 다른 시스템 세 개라 "같은 데이터"의 기준부터 맞춰야 했습니다.</p>
 
-  <h4>ECOUNT → Odoo 거래 이관</h4>
+  <h4>클라우드 ERP → Odoo 거래 이관</h4>
   <ul class="facts">
     <li>운영 반영 순서: 사전 점검(참조 ID 실재 확인) → 스냅샷 백업 → <strong>운영 환경에서 롤백을 먼저 실연</strong> → 거래처 동기화 → 전량 적재 → 다단계 검증 → 라인 단위 대사.</li>
     <li>결과: 구매 2,027 + 판매 3,192 = <strong>5,219문서 · 23,130라인</strong>, 품목·수량·공급가액 전량 일치(불일치 0, 중복 0).</li>
@@ -129,7 +129,7 @@
 
   <h4>기초재고 컷오버</h4>
   <ul class="facts">
-    <li>ECOUNT 209 + WMS 244 + 기적재 3 = 456개 재고 좌표(품목 · 위치 · 로트)를 두 원천에서 합쳐 적재했습니다.</li>
+    <li>ERP 209 + WMS 244 + 기적재 3 = 456개 재고 좌표(품목 · 위치 · 로트)를 두 원천에서 합쳐 적재했습니다.</li>
     <li>재개 가능한 실행 원장, go/no-go 게이트, 롤백 지점, 산출물 해시를 갖춘 컷오버 스크립트를 작성했습니다.</li>
     <li>결과: 기대값 대비 <strong>456/456 일치</strong>(초과·부족·누락·예상 외 0).</li>
   </ul>
@@ -137,7 +137,7 @@
   <h4>운영 절차</h4>
   <ul class="facts">
     <li>여러 담당자가 같은 통합 브랜치를 출하하면서 Slack 공지로 순서를 맞추는 방식이 3회 실패했습니다. 공지 대신 검증한 커밋 단위로 릴리즈 락을 잡아야 머지·배포할 수 있게 바꿨습니다.</li>
-    <li>레거시 PHP ERP에 하드코딩된 DB 자격증명을 환경변수로 옮기고 최소 권한 계정을 분리했습니다.</li>
+    <li>레거시 ERP에 하드코딩된 DB 자격증명을 환경변수로 옮기고 최소 권한 계정을 분리했습니다.</li>
   </ul>
   <div class="tags"><span class="tag">Odoo</span><span class="tag">Next.js</span><span class="tag">SQL Server</span><span class="tag">TypeScript</span></div>
 </section>
@@ -170,15 +170,15 @@
   <h4>설계 결정</h4>
   <ul class="facts">
     <li><strong>모델은 SQL을 실행하지 않음</strong> — LLM은 질문을 조회 계획(데이터셋 · 동작 · 조건)으로만 바꾸고, 서버가 카탈로그 기준으로 계획을 검증한 뒤 실행합니다. 답할 수 없는 질문과 데이터셋을 넘나드는 질문은 모델 판단과 별개로 서버가 차단합니다.</li>
-    <li><strong>데이터 경계</strong> — 원천 시스템은 읽기 전용으로만 연결하고, 계정·개인정보는 모델 입력에서 뺍니다. 고객 변경 요청의 판정은 규칙 엔진이 하고 LLM은 판정하지 않습니다. 모델 CLI는 도구·MCP·훅을 끈 격리 상태로 호출합니다.</li>
-    <li><strong>저장소</strong> — 운영 데이터는 PostgreSQL, 분석 질의는 DuckDB로 나누고, 두 엔진의 결과가 같은지 대조하는 테스트를 두었습니다.</li>
+    <li><strong>데이터 경계</strong> — 원천 시스템은 읽기 전용으로만 연결하고, 계정·개인정보는 모델 입력에서 뺍니다. 고객 변경 요청의 판정은 규칙 엔진이 하고 LLM은 판정하지 않습니다. 모델 호출은 도구 실행 권한을 끈 격리 상태로 합니다.</li>
+    <li><strong>저장소</strong> — 운영 데이터와 분석 질의 경로를 나누고, 두 경로의 결과가 같은지 대조하는 테스트를 두었습니다.</li>
     <li><strong>모델 경로 교체</strong> — 고객 클라우드에서 계획한 모델을 쓸 수 없다는 회신을 받고, 모델 호출 경로를 다른 모델로 바꿨습니다.</li>
   </ul>
 
   <h4>평가</h4>
   <p>자연어 조회 90문항(답 가능 · 모호 · 답 불가 · 교차 질문)으로 백엔드를 비교했습니다.</p>
   <table class="kv">
-    <thead><tr><th>지표</th><th class="num">Claude CLI</th><th class="num">Codex CLI</th><th class="num">규칙 기반</th></tr></thead>
+    <thead><tr><th>지표</th><th class="num">모델 A</th><th class="num">모델 B</th><th class="num">규칙 기반</th></tr></thead>
     <tbody>
       <tr><td>전체 정답률 (90문)</td><td class="num">81.1%</td><td class="num">87.8%</td><td class="num">38.9%</td></tr>
       <tr><td>action 어휘 제외 기준</td><td class="num">93.3%</td><td class="num">92.2%</td><td class="num">—</td></tr>
@@ -190,7 +190,7 @@
     <li>오답 28건을 원인별로 나누자 가장 큰 유형은 값 하나를 묻는 질문에 집계 대신 행 나열을 고른 경우(15건)였습니다. 모델 교체보다 조회 계획 어휘와 서버 검증을 고치는 쪽이 효과가 크다는 근거가 됐습니다.</li>
     <li>기본 모델은 정답률이 아니라 실행 경계의 잔여 위험을 우선하는 기준으로 정했고, 그 판단 근거를 정답률과 분리해 기록했습니다.</li>
   </ul>
-  <div class="tags"><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">DuckDB</span><span class="tag">AWS</span><span class="tag">GitHub Actions</span><span class="tag">LLM Eval</span></div>
+  <div class="tags"><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span><span class="tag">GitHub Actions</span><span class="tag">LLM Eval</span></div>
 </section>
 
 <!-- P5 -->
@@ -280,8 +280,8 @@
       <tr><td>품질</td><td>수작업 확인</td><td>row count · schema · key/날짜 coverage · 값 범위 게이트</td><td>기준 미달 데이터는 적재하지 않고 검토 상태로 분리</td></tr>
     </tbody>
   </table>
-  <p>Managed Airflow 대신 자체 운영을 택했습니다. 기존 Docker Compose 인프라와 배치 규모에서는 비용 대비 통제 가능성이 더 높았기 때문입니다. 전환 후 레거시 파이프라인 2종을 폐기했습니다.</p>
-  <div class="tags"><span class="tag">Apache Airflow</span><span class="tag">SQLAlchemy</span><span class="tag">Docker Compose</span><span class="tag">AWS S3</span><span class="tag">Azure Blob</span></div>
+  <p>Managed 서비스 대신 자체 운영을 택했습니다. 배치 규모와 비용, 기존 컨테이너 인프라에 대한 통제 가능성을 비교한 결과입니다. 전환 후 레거시 파이프라인 2종을 폐기했습니다.</p>
+  <div class="tags"><span class="tag">Apache Airflow</span><span class="tag">SQLAlchemy</span><span class="tag">Docker</span><span class="tag">AWS S3</span><span class="tag">Azure Blob</span></div>
 </section>
 
 <!-- P9 -->

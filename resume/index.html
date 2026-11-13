@@ -54,10 +54,10 @@
     <p class="job-role">Forward Deployed Engineer · 중소·중견기업 ERP·데이터·AI 전환</p>
     <ul class="facts">
       <li><a href="../portfolio/#p0">전략·컨설팅</a> — 고객 심층 인터뷰 설계와 MVP 범위 수립, 고객 AWS 아키텍처(v13 → v21)·MSP 견적 협상, 제안서·견적서·보고서 7종 문서 표준, FDE 채용 1차 면접관.</li>
-      <li><a href="../portfolio/#p1">시험·인증기관 레거시 ERP 이관</a> — SQL Server → PostgreSQL. 로컬 랩 게이트 통과 후 운영 반영, 4단계 검증과 역검증. 이관 후 코드값 의미 오매핑 4,359건을 원천 화면으로 확정해 백업·카나리·멱등 재실행으로 정정.</li>
-      <li><a href="../portfolio/#p2">제조·유통 그룹 ERP</a> — 현장 재진단으로 목표를 업무 구조 전환으로 재정의(Phase 2). ECOUNT → Odoo 거래 5,219문서 · 23,130라인 전량 일치, 운영 환경 롤백 실연 후 적재. ECOUNT·WMS 두 원천 기초재고 456/456 좌표 대사 통과. 릴리즈 충돌을 공지 대신 릴리즈 락으로 해결.</li>
+      <li><a href="../portfolio/#p1">시험·인증기관 레거시 ERP 이관</a> — SQL Server → PostgreSQL. 격리 검증 환경 게이트 통과 후 운영 반영, 4단계 검증과 역검증. 이관 후 코드값 의미 오매핑 4,359건을 원천 화면으로 확정해 백업·카나리·멱등 재실행으로 정정.</li>
+      <li><a href="../portfolio/#p2">제조·유통 그룹 ERP</a> — 현장 재진단으로 목표를 업무 구조 전환으로 재정의(Phase 2). 클라우드 ERP → Odoo 거래 5,219문서 · 23,130라인 전량 일치, 운영 환경 롤백 실연 후 적재. ERP·WMS 두 원천 기초재고 456/456 좌표 대사 통과. 릴리즈 충돌을 공지 대신 릴리즈 락으로 해결.</li>
       <li><a href="../portfolio/#p3">ERP 에이전트 쓰기 통제 계층</a> — plan → authorization → commit, HMAC 서명 Slack 승인 카드, 원장 테이블. staging E2E 검증.</li>
-      <li><a href="../portfolio/#p4">소비재 브랜드 AI 데이터 워크스페이스</a> — FastAPI · Next.js · PostgreSQL · DuckDB · AWS 단독 리드. LLM은 조회 계획만 만들고 서버가 검증·실행. 90문항 평가 세트로 모델 비교(81.1% / 87.8%, p = 0.070).</li>
+      <li><a href="../portfolio/#p4">소비재 브랜드 AI 데이터 워크스페이스</a> — FastAPI · Next.js · PostgreSQL · AWS 단독 리드. LLM은 조회 계획만 만들고 서버가 검증·실행. 90문항 평가 세트로 모델 비교(81.1% / 87.8%, p = 0.070).</li>
       <li><a href="../portfolio/#p5">유지보수 요청 LLM 트리아지</a> — 204건 백테스트 결과로 자동 착수 대신 셰도우 단계 도입을 결정, 13일 대조 방향 일치 70.3%.</li>
       <li><a href="../portfolio/#p6">에이전트용 헤드리스 접근 계층</a> — 해시 저장 API 토큰, 읽기 등급, 허용 컬럼 view 155개로 에이전트 읽기 범위 고정.</li>
     </ul>
@@ -85,7 +85,7 @@
     </div>
     <p class="job-role">데이터 엔지니어</p>
     <ul class="facts">
-      <li>수작업으로 나뉘어 있던 수집·정제·라벨링 작업을 Python 파이프라인으로 통합하고, 비개발자가 실행·모니터링할 수 있는 PyQt 도구로 넘겼습니다. 운영 인력 4–5명 → 1명.</li>
+      <li>수작업으로 나뉘어 있던 수집·정제·라벨링 작업을 Python 파이프라인으로 통합하고, 비개발자가 직접 실행·모니터링하는 운영 도구로 넘겼습니다. 운영 인력 4–5명 → 1명.</li>
     </ul>
   </div>
 </section>
@@ -97,9 +97,9 @@
       <tr><th>Consulting · Strategy</th><td>현장 진단, 인터뷰 설계, 목표·범위 재정의, 상품 기획, AI 도입 단계 설계, 클라우드 아키텍처·견적 협상, 업무 표준화</td><td class="where">0, 2, 4, 5, 9</td></tr>
       <tr><th>Backend</th><td>Python (FastAPI, Django DRF, SQLAlchemy, asyncio), TypeScript (Next.js), Rust (tokio, axum, sqlx)</td><td class="where">1, 2, 4, 6, 7</td></tr>
       <tr><th>Frontend</th><td>Next.js, React, Playwright E2E</td><td class="where">1, 2, 4</td></tr>
-      <tr><th>Data</th><td>PostgreSQL, MySQL, SQL Server, DuckDB, Redis, Apache Airflow, Odoo</td><td class="where">1, 2, 4, 8</td></tr>
+      <tr><th>Data</th><td>PostgreSQL, MySQL, SQL Server, Redis, Apache Airflow, Odoo</td><td class="where">1, 2, 4, 8</td></tr>
       <tr><th>Messaging</th><td>RabbitMQ, Celery, DLQ, 멱등성 키, bulkhead</td><td class="where">7</td></tr>
-      <tr><th>AI Engineering</th><td>LLM 조회 계획 검증, 평가 세트·백테스트·셰도우 대조, Human-in-the-loop 승인, Claude Code · Codex CLI, OpenAI Agents SDK, MCP</td><td class="where">3, 4, 5, 6</td></tr>
+      <tr><th>AI Engineering</th><td>LLM 조회 계획 검증, 평가 세트·백테스트·셰도우 대조, Human-in-the-loop 승인, AI 코딩 에이전트 오케스트레이션, OpenAI Agents SDK, MCP</td><td class="where">3, 4, 5, 6</td></tr>
       <tr><th>Security</th><td>최소 권한 계정 분리, 하드코딩 자격증명 제거, 서명 기반 승인, 토큰 해시 저장·스코프·만료, 에이전트 읽기 범위 제한</td><td class="where">2, 3, 6</td></tr>
       <tr><th>Infra · Ops</th><td>Docker, AWS, GitHub Actions, Prometheus, Grafana</td><td class="where">4, 7, 8</td></tr>
     </tbody>
